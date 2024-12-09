@@ -107,5 +107,5 @@ En **Music-Place**, utilizamos una paleta de colores vibrante que refleja nuestr
 
 Estos colores se utilizan en nuestra tienda en línea para garantizar una experiencia visual coherente y atractiva para nuestros usuarios.
 
-![Logo]()
+![Logo](design/logo_Music-place_redondo.webp.webp)
 
