@@ -1,0 +1,35 @@
+{
+  "name": "musicplace",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  },
+  "description": "Bienvenido a **Music-Place**, tu tienda en línea de confianza para todo lo relacionado con la música. Desde **instrumentos musicales**, **accesorios** hasta **discos** y **libros de música**, tenemos lo que necesitas para llevar tu pasión musical al siguiente nivel.",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adri197711/adrianClavario_Music_Place.git"
+  },
+  "keywords": [
+    "musica",
+    "instrumentos",
+    "guitarras",
+    "teclados",
+    "cuerdas"
+  ],
+  "author": "Adrián Clavario",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adri197711/adrianClavario_Music_Place/issues"
+  },
+  "homepage": "https://github.com/adri197711/adrianClavario_Music_Place#readme"
+}
