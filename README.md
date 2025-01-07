@@ -4,6 +4,10 @@
 
 Bienvenido a **Music-Place**, tu tienda en línea de confianza para todo lo relacionado con la música. Desde **instrumentos musicales**, **accesorios** hasta **discos** y **libros de música**, tenemos lo que necesitas para llevar tu pasión musical al siguiente nivel.
 
+## Seguimiento del proyecto
+
+[Github Proyects] (https://github.com/users/adri197711/projects/4)
+
 ## Contenido
 
 - [Descripción](#descripción)
