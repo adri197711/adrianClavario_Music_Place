@@ -1,8 +1,52 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 100%;
 }
 
-a {
-  color: #00B7FF;
+.ofertas{
+  display: flex;
+  border-bottom: 1px solid gray;
+  margin: 2rem auto;
+
+}
+main section {
+  width: 100%;
+  align-self: center;
+align-items: center;
+align-content: center;
+  margin: 2rem auto;
+}
+
+.marca p{
+  color: darkgreen;
+  font-size: 36px;
+}
+span i{
+  text-align: end;
+  font-size: 20px;
+
+}
+.contacto h3{
+margin: 2rem a;
+  font-size: 36px;
+text-align: center;
+font-weight: 900;
+}
+
+
+.textarea{
+  border: 1px solid grey;
+  margin: 5rem ;
+  width: 45%;
+  height: 4rem;
+}
+
+.iconos-redes{
+  padding: 2rem;
+margin-left: 60%;
+  width: 12rem;
+  display: flex;
 }

@@ -1,0 +1,87 @@
+body{
+  margin: 0;
+  padding: 0;
+  
+}
+.body {
+  font-family:Arial, Helvetica, sans-serif;
+  background-image: url('../images/footer.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(233, 236, 236);
+  display: flex;
+  justify-content: center;
+  height: max-content;
+  padding: 3rem;
+  
+}
+
+#registroForm {
+  background-color: rgb(171, 168, 156);
+  padding: 25px;
+  border-radius: 10px;
+
+  box-shadow: 1px 2px 10px black;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+label.inline{
+  display:inline-block;
+}
+
+input, select{
+  padding: 8px;
+  margin-bottom: 5px;
+box-sizing: border-box;  
+}
+
+input[type="checkbox"]{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.reg-input[type="text"],
+.reg-input[type="email"],
+.reg-input[type="number"],
+.reg-input[type="password"],
+select{
+width: 100%;
+}
+
+
+#show-hide {
+  position: relative;
+  top: -8px;
+  float: right;
+  color: dimgrey;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: all .5s ease;
+}
+
+#show-hide:hover {
+  border-bottom: 1px solid gainsboro;
+  color: rgb(17, 17, 17);
+}
+
+input[type="button"]{
+  background-color: rgb(62, 144, 62);
+  color: seashell;
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  transition: 0.5s;
+  }
+
+  input[type="button"]:hover{
+background-color: rgb(12, 92, 65);
+  }
+
+
+

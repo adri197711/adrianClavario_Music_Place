@@ -1,0 +1,29 @@
+footer{
+  background-image: url('../images/footer.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2rem;
+}
+
+footer p,h4{
+  color: aliceblue;
+}
+
+
+.icon-size{
+  justify-content: center;
+  color: rgb(10, 44, 108);
+  border-bottom: 1px dotted grey;
+}
+
+span button{
+  position: relative;
+margin: 1rem;
+margin-left: 95%;
+  width: 1rem;
+
+}
+.Copyright{
+  text-align: center;
+  padding-top: 2rem;
+}

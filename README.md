@@ -28,6 +28,18 @@ Bienvenido a **Music-Place**, tu tienda en línea de confianza para todo lo rela
 Intentamos ser el ecommerce de referencia para músicos, tanto profesionales como aficionados,
 y apuntamos al público en general con una sección de **Accesorios** ofreciendo una experiencia de compra única y satisfactoria.
 
+### Sobre mi
+# ¡Hola! Soy Adriám
+Soy una persona apasionada por la tecnología. Me dedico a la programación y desarrollo web. Siempre estoy buscando aprender nuevas tecnologías y mejorar mis habilidades, especialmente en el área de backend. 
+
+En este repositorio, comparto mi proyecto de ecommerce. Si tienes alguna pregunta o colaboración, no dudes en contactarme.
+
+¡Gracias por visitar mi perfil!
+
+## Conéctate conmigo:
+- Correo: adrianclavario11@gmail.com
+
+
 ## Productos
 
 ### Instrumentos musicales

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<%- include('./partials/head') %>
+
+  <body>
+    <main class="login-main">
+    <div class="login_logo">
+      <img src="/images/logo_music_place.png" alt="Logo Music Place">
+    </div>
+    <form class="form-login" id="loginForm" novalidate>
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" placeholder="Ingrese email o nombre de usuario" required autocomplete="off">
+      <div class="errorMessage" id="emailError"></div>
+
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="Ingrese contraseña"    id="password" required autocomplete="off">
+      <span id="show-hide">Show/Hide</span>
+      <div class="errorMessage" id="passwordError"></div>
+
+
+
+      <a href="/"><input class="login-input" type="button" value="Login"></a>
+
+      <a href="register"><input type="button" value="Crear cuenta"> </a>
+      </div>
+    </form>
+
+  </body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./stylesheets/register.css">
+  <title>Validacion formulario</title>
+</head>
+
+<body>
+  <main class="body">
+  <div id="registroForm">
+
+    <h2>Formulario de registro</h2>
+
+    <form id="formulario" novalidate>
+
+      <label for="nombre">Nombre</label>
+      <input class="reg-input" type="text" id="nombre" name="nombre" placeholder="Ingrese nombre y apellido" minlength="3" required autocomplete="off">
+      <div class="error" id="errorNombre"></div>
+      <br>
+
+      <label for="username">Usuario</label>
+      <input class="reg-input"  type="text" id="username" name="username" placeholder="Nombre de usuario" minlength="3" required autocomplete="off">
+      <div class="error" id="errorApellido"></div>
+      <br>
+       
+      <label for="email">Email</label>
+      <input class="reg-input"  type="email" id="email" name="documento" placeholder="Ingrese su email" required autocomplete="off">
+      <div class="error" id="errorEmail"></div>
+      <br>
+   
+      <label for="password">Password</label>
+      <input  class="reg-input" type="password" id="password" name="password" placeholder="contraseña"  required autocomplete="off">
+      <span id="show-hide">Show/Hide</span>
+      <div class="error" id="errorPassword"></div>
+      <br>
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input class="reg-input"  type="password"  placeholder="Confirmar contraseña"  name="confirmPassword" id="confirmPassword" required autocomplete="off">
+      <span id="show-hide">Show/Hide</span>
+      <div class="errorMessage" id="confirmPasswordError"></div>
+
+      <label class="inline">
+        <input type="checkbox" name="aceptoTerminos"  id="aceptoTerminos" checked="false"
+         required>Acepto Términos y condiciones</label>
+        <div class="error" id="errorAceptoTerminos"></div>
+        <br>
+
+   
+
+        <a href="/"><input type="button" value="Registrarse"> </a>
+    </form>
+  </div>
+
+</body>
+
+</html>
