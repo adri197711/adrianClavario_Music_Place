@@ -12,7 +12,8 @@ footer p,h4{
 
 .icon-size{
   justify-content: center;
-  color: rgb(10, 44, 108);
+  color: rgb(18, 82, 200);
+  padding: 1rem;
   border-bottom: 1px dotted grey;
 }
 

@@ -120,7 +120,7 @@ header form {
   font-size: 18px;
   padding: .1rem;
 }
-
+@media screen and (max-width:767px){
 /* Menu desplegable */
 
 #menu-toggle:checked+label.menu-icon-action+ul {
@@ -188,7 +188,7 @@ header form {
   text-shadow: 2px 2px 5px rgb(211, 204, 204), 0 0 25px rgb(123, 123, 181), 2px 0 5px rgb(245, 245, 248);
   border-bottom: none;
 }
-
+}
 @media screen and (min-width:768px){
   #menu-icon {
     display: none;

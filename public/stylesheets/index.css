@@ -16,10 +16,10 @@ main {
   margin: 0 auto;
 }
 .fotos img{
-  width: 30%;
+  width: 40%;
   height: 30%;
   border-radius: 20px;
-  margin: 1rem 0.5rem;
+  margin: 1rem ;
   text-align: center;
   border: none;
 }
@@ -35,9 +35,7 @@ main {
   padding-left:10px;
   font-size: 10px;
   font-weight: bold;
-  width: 95%;
-  border-radius: 20px;
-  border: 2px solid black;
+  width: 80%;
 }
 
 .img:hover {

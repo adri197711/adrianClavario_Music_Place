@@ -22,11 +22,11 @@ align-content: center;
 
 .marca p{
   color: darkgreen;
-  font-size: 36px;
+  font-size: 24px;
 }
 span i{
   text-align: end;
-  font-size: 20px;
+  font-size: 10px;
 
 }
 .contacto h3{
@@ -41,7 +41,7 @@ font-weight: 900;
   border: 1px solid grey;
   margin: 5rem ;
   width: 45%;
-  height: 4rem;
+  height: 2rem;
 }
 
 .iconos-redes{
