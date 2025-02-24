@@ -1,19 +1,23 @@
 footer{
-  background-image: url('../images/footer.jpg');
+  background-image: url('../images/products/footer.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   padding: 2rem;
 }
 
 footer p,h4{
-  color: aliceblue;
+
+   color: rgb(247, 248, 251);
+   box-shadow: 10px 10px 15px 20px gray;
+text-shadow: 5px 1px  20px 5px
 }
 
 
 .icon-size{
+  font-size: 20px;
   justify-content: center;
-  color: rgb(18, 82, 200);
-  padding: 1rem;
+  color: rgb(6, 43, 82);
+  padding: 1.5rem;
   border-bottom: 1px dotted grey;
 }
 

@@ -5,7 +5,9 @@ body {
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
   width: 100%;
 }
-
+.tachado{
+  text-decoration: line-through; 
+}
 .ofertas{
   display: flex;
   border-bottom: 1px solid gray;

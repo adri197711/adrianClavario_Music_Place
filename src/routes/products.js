@@ -1,8 +1,17 @@
-var express = require('express');
-var router = express.Router();
-/* GET home page. */
-const productsController = require('../controllers/productsController')
+const express = require('express');
+const router = express.Router();
 
-router.get('/', productsController.index);
+
+const { list, detail, add, create, edit, update, remove, search } = require('../controllers/productsController')
+
+router
+    .get('/', list)
+    .get('/detail/:id', detail)
+    .get('/add', add)
+    .post('/create', create)
+    .get('/edit/:id', edit)
+    .put('/update/:id', update)
+    .delete('/remove/:id', remove)
+    .get('/search', search)
 
 module.exports = router;

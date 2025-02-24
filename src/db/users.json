@@ -1,0 +1,55 @@
+[
+  {
+    "id": "1",
+    "name": "Admin",
+    "surname": "MercadoLiebre",
+    "email": "admin@ml.com",
+    "password": "$2b$10$JC/h8GORA64DWjcVD96EAeYEFNWCmj19mU2xgwPbfX5ugoazpUsky",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "admin"
+  },
+  {
+    "id": "2",
+    "name": "User",
+    "surname": "MercadoLiebre",
+    "email": "user@ml.com",
+    "password": "$2b$10$JC/h8GORA64DWjcVD96EAeYEFNWCmj19mU2xgwPbfX5ugoazpUsky",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "user"
+  },
+  {
+    "id": "4",
+    "name": "Locked",
+    "surname": "MercadoLiebre",
+    "email": "locked@ml.com",
+    "password": "$2b$10$JC/h8GORA64DWjcVD96EAeYEFNWCmj19mU2xgwPbfX5ugoazpUsky",
+    "token": null,
+    "validate": true,
+    "lock": true,
+    "rol": "user"
+  },
+  {
+    "id": "0d87eafc-fe80-4dba-8037-493490677fa4",
+    "password": "$2b$10$IJIDx6Ax38Ua5p/3k8pTQ.dVi39wrRYOIWJ8JZqLq6X5NlTpuyc6u",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "user"
+  },
+  {
+    "id": "5d01fb9a-26e9-4031-90c2-f1c2c2665baa",
+    "name": "adri",
+    "surname": "clavario",
+    "username": "adrian",
+    "email": "adri@gmail",
+    "password": "$2b$10$6CU48txuqaKRhPunDFGdLuhoKzZB6tN.5k.G5i16FRQdf92oK1a9G",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "admin"
+  }
+]

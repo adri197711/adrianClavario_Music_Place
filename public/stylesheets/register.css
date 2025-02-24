@@ -13,9 +13,13 @@ body{
   justify-content: center;
   height: max-content;
   padding: 3rem;
-  
 }
 
+.tit-reg{
+  padding: 1rem;
+  text-align: center;
+  color: rgb(69, 138, 69);
+}
 #registroForm {
   background-color: rgb(171, 168, 156);
   padding: 25px;
@@ -27,6 +31,7 @@ body{
 label {
   display: block;
   margin-bottom: 5px;
+  color: #2053c9;
 }
 
 label.inline{
@@ -51,7 +56,19 @@ input[type="checkbox"]{
 select{
 width: 100%;
 }
-
+#check {
+  position: relative;
+  padding: 0;
+  width: 10px;
+display: flex;
+}
+.inline{
+  position: absolute;
+  margin: 0 20px;
+  display: flex;
+  flex-direction: row;
+}
+ 
 
 #show-hide {
   position: relative;

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <%- include('.././partials/headAdmin', {title:'Editar usuario'}) %>
+  <body>
+    <%- include('.././partials/headAdmin', {title:'Editar usuario'}) %>
+ 
+
+<body>
+  <main class="body">
+  <div id="registroForm">
+
+    <h2 class="tit-reg">Actualizar Legajo</h2>
+
+    <form  action="/users/update/<%=id%>?_method=PUT" method="POST"
+     novalidate>
+
+      <label for="name">Nombre</label>
+      <input class="reg-input" type="text" id="nombre" name="name"
+      value="<%= nqme %>">
+      <div class="error" id="errorNombre"></div>
+      <br>
+
+      <label for="surname">Apellido</label>
+      <input class="reg-input"  type="text" id="surname" name="surname" 
+      value="<%=surname%>">
+      <div class="error" id="errorApellido"></div>
+
+      <label for="username">Usuario</label>
+      <input class="reg-input"  type="text" id="username" name="username"   
+      value="<%=username%>">
+      <div class="error" id="errorUsername"></div>
+      <br>
+       
+      <label for="email">Email</label>
+      <input class="reg-input"  type="email" id="email" name="email" 
+      value="<%= email %>">
+      <div class="error" id="errorEmail"></div>
+      <br>
+   
+      <label for="" class="form-label">Rol</label>
+      <select name="rol" id="rol" class="form-control form-select-lg py-3">
+        <% roles.forEach(rol=> { %>
+          <option value="<%= rol %>">
+            <%= rol=="user" ? 'Usuario' : 'Administrador' %>
+          </option>
+          <% }) %>
+      </select>
+
+      <label for="password">Password</label>
+      <input  class="reg-input" type="password" id="password" name="password"   required autocomplete="off">
+      <span id="show-hide">Show/Hide</span>
+      <div class="error" id="errorPassword"></div>
+      <br>
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input class="reg-input"  type="password" name="confirmPassword" id="confirmPassword" required autocomplete="off">
+      <span id="show-hide">Show/Hide</span>
+      <div class="errorMessage" id="confirmPasswordError"></div>
+     
+      <div>
+      <label class="inline">Acepto Términos y condiciones</label>
+      <input type="checkbox" name="aceptoTerminos" class="check" id="check"  checked="off"
+         required>
+         
+         <div class="error" id="errorAceptoTerminos"></div>
+        </div>
+         <br>
+         
+
+        <button type="submit" class="btn btn-outline-dark">Actualizar Legajo de usuario</button>
+      </form>
+      <form action="/users/remove/<%=id%>?_method.DELETE" method="POST">
+        <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
+      </form>
+    </div>
+
+ 
+
+</body>
+
+</html>

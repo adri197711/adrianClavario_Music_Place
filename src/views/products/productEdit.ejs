@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <%- include('.././partials/headAdmin', {title:'Editar producto'}) %>
+  <body>
+    <%- include('.././partials/headAdmin', {title:'Editar producto'}) %>
+    <main class="body">
+      <div id="registroForm">
+        
+    <h2>Editar producto</h2>
+    <form action="/products/update/<%= id %>?_method=PUT"
+       method="POST" id="formAddProduct">
+
+
+      <label for="name">Producto</label>
+      <input class="reg-input"  type="text" value="<%= name %>"  id="productname" name="name" >
+      <div class="error" id="errorproduct"></div>
+      <br>
+       
+      <label for="brand">Marca</label>
+      <input class="reg-input"  type="text" value="<%= brand %>" id="marcaProduct" name="brand" >
+      <div class="error" id="errorMarca"></div>
+     
+      <label for="model">Modelo</label>
+      <input class="reg-input"  type="text" value="<%= model %>" id="productModel" name="model" >
+      <div class="error" id="errorModel"></div>
+ 
+      <label for="color">Color</label>
+      <input class="reg-input"  type="text" value="<%= color %>" id="productColor" name="color" >
+      <div class="error" id="errorColor"></div>
+       
+      <br>
+      
+      <label for="price">Precio</label>
+      <input  class="reg-input" type="number" value="<%= price %>" id="price" name="price" >
+      <div class="error" id="errorPrice"></div>
+      <br>
+      <label for="discount">Descuento</label>
+      <input class="reg-input" type="text" value="<%= discount %>"  id="discount" name="discount" autocomplete="off">
+      <div class="error" id="errordiscount"></div>
+      <br>
+      <label for="category" class="form-label">Categoría:</label>
+      <select name="category" id="category" class="form-control form-select-lg py-3">
+        <% categories.forEach(category=> { %>
+          <option value="<%= category %>">
+            <%= category=="in-sale" ? 'Ofertas' : 'Ultimos agregados' %>
+          </option>
+          <% }) %>
+      </select>
+<br>
+<br>
+      <label for="image" class="form-label">Imagen</label>
+      <input class="form-control form-control-lg" type="file" name="image" id="image">
+      <label for="description" class="form-label">Descripción:</label>
+      <textarea name="description" id="description"  style="resize: none;"
+        rows="5"><%=description%></textarea>
+
+<br>
+<br>
+
+
+        <button type="submit" class="btn btn-outline-dark">Actualizar Producto</button>
+    </form>
+    <form action="/products/remove/<%=id%>?_method.DELETE" method="POST">
+      <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
+    </form>
+  </div>
+
+</body>
+
+</html>

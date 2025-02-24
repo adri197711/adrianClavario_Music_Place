@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html>
-<%- include('./partials/head') %>
+<%- include('./partials/head',{title:'index'}) %>
 
   <body>
     <%- include('./partials/header') %>
-      <main>
-        <div class="fotos">
-         <a href="products"><img class="foto" src="../images/teclado.jpg" alt=""> </a>
-         <a href="products"><img class="foto" src="../images/bateria3.jpg" alt=""></a>
-         <a href="products"><img class="foto" src="../images/lespaul1.jpg" alt=""></a>
-         <a href="products"><img class="foto" src="../images/strato.jpg" alt=""></a>
-         <a href="products"><img class="foto" src="../images/bcrich.jpg" alt=""></a>
-         <a href="products"><img class="foto" src="../images/marshall.jpg" alt=""></a>
-         <a href="products"><img class="foto" src="../images/bateria1.jpg" alt=""></a>
-         <a href="products"><img class="foto" src="../images/cuerdas.jpg" alt=""></a>
-         <a href="products"><img class="foto" src="../images/afinador.jpg" alt=""></a>
-         <a href="products"><img class="foto" src="../images/ibanez.jpg" alt=""></a>
-         <a href="products"><img class="foto" src="../images/bajo.jpg" alt=""></a>
-         <a href="products"><img class="foto" src="../images/ampli.jpg" alt=""></a>
-        </div>
+      <main class="main-index">
+        <h2>Ultimos Agregados</h2>
+
+        <section>
+<article class="fotos">
+          <% newest.forEach(({id,image,brand,model,price,discount}) => {%>
+
+<a href="../products/detail/<%= id %>">
+  <img 
+  src="../images/products/<%= image %>"
+   alt="Imagen del producto"></a>
+
+<%})%>
+</article>
+<article class="fotos">
+<h2>Ofertas</h2>
+<% inSale.forEach(({id,image,brand,model,price,discount}) => {%>
+
+<a href="../products/detail/<%= id %>">
+  <img 
+  src="../images/products/<%= image %>"
+   alt="Imagen del producto"></a>
+
+<%})%>
+</article>
+        </section>
       </main>
+
       <%- include('./partials/footer') %>
   </body>
 

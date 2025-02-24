@@ -1,0 +1,16 @@
+  
+  <div class="modal fade" id="showDetail<%= id %>" tabindex="-1" aria-labelledby="showDetail<%= id %>Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 d-flex gap-2 align-items-center" id="showDetail<%= id %>Label">
+            <span class="fs-2 text-info"><i class="fas fa-info-circle"></i></span> 
+            Vista Previa</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           <iframe width="100%" height="700px" src="/products/detail/<%= id %>?admin=true" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>

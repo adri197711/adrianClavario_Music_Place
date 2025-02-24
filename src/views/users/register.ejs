@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./stylesheets/register.css">
-  <title>Validacion formulario</title>
-</head>
+  <%- include('../partials/head') %>
 
 <body>
   <main class="body">
   <div id="registroForm">
 
-    <h2>Formulario de registro</h2>
+    <h2 class="tit-reg">Formulario de registro</h2>
 
-    <form id="formulario" novalidate>
+    <form  action="/users/processRegister" methhod="POSt"
+     novalidate>
 
       <label for="nombre">Nombre</label>
       <input class="reg-input" type="text" id="nombre" name="nombre" placeholder="Ingrese nombre y apellido" minlength="3" required autocomplete="off">
@@ -41,16 +36,18 @@
       <input class="reg-input"  type="password"  placeholder="Confirmar contraseña"  name="confirmPassword" id="confirmPassword" required autocomplete="off">
       <span id="show-hide">Show/Hide</span>
       <div class="errorMessage" id="confirmPasswordError"></div>
+     
+      <div>
+      <label class="inline">Acepto Términos y condiciones</label>
+      <input type="checkbox" name="aceptoTerminos" class="check" id="check"  checked="off"
+         required>
+         
+         <div class="error" id="errorAceptoTerminos"></div>
+        </div>
+         <br>
 
-      <label class="inline">
-        <input type="checkbox" name="aceptoTerminos"  id="aceptoTerminos" checked="false"
-         required>Acepto Términos y condiciones</label>
-        <div class="error" id="errorAceptoTerminos"></div>
-        <br>
+         <button type="submit" class="add-btn" >Guardar usuario</button>
 
-   
-
-        <a href="/"><input type="button" value="Registrarse"> </a>
     </form>
   </div>
 

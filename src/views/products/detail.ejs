@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/head', {title:'detail'}) %>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <div class="main-cart">
+        <img width="45px" src="/images/products/<%= image %> " alt="" class="foto-cart"><br>
+
+        <div class="marcaCart">
+
+            <p class="name-cart">
+                <%= name  %>
+                <%= brand  %>
+                <%= model  %>
+            </p>
+            <% if (discount !=0) { %>
+                <span>
+                    <%price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> <span class="tachado">$<%= price%>
+                        </span> / <strong><%- discount %>% OFF</strong>
+                </span>
+                <% } %>
+                    <h2>Precio $
+                        <%= (price - price * discount /
+                            100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
+                    </h2>
+                    <span><i class="fas fa-credit-card"> Paga en 12 cuotas sin interes</i></span>
+                    <span><i class="fas fa-truck"> Envio gratis por pago en efectivo</i></span>
+                    <button class="btn-cart">Comprar ahora</button>
+        </div>
+    </div>
+
+    </main> 
+  <%- include('../partials/footer') %>
+  </body>
+</html>

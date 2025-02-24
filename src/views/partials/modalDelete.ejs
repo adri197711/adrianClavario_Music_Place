@@ -1,0 +1,22 @@
+
+<form action="/products/remove/<%=id%>?_method=DELETE" method="POST">
+  <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <p class="fs-4">Advertencia</p>
+        El producto <%= name %> será eliminado
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <form action="/products/remove/<%=id%>?_method=DELETE" method="POST">
+          <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/headAdmin', {title: 'Administrar Productos' }) %>
+<body>
+
+    <%- include('./partials/headerAdmin', {title: 'Administrar Productos' }) %>
+
+  <main>
+  <table border="1" >
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Producto</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>color</th>
+        <th>Precio</th>
+        <th>Descuento</th>
+        <th>Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.forEach(({id,name,price,discount,category,brand,color,model}) => {%>
+        <tr>
+          <th scope="row"><%= id %></th>
+          <td><%=name%></td>
+          <td><%=brand%></td>
+          <td><%=model%></td>
+          <td><%=color%></td>
+          <td><%=price%></td>
+          <td><%=discount%></td>
+          <td><%=category%></td>
+          <td>
+            <div class="d-flex gap-2">
+          <div>
+              <a href="/products/edit/<%= id %>" class="btn btn-sm btn-success">Editar</a>
+            </div>			
+              <div>
+								<a class="btn btn-sm btn-dark " href="/products/add">Nuevo</a>
+							</div>
+              
+              <form action="/products/remove/<%=id%>?_method=DELETE" method="POST">
+                <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
+              </form>
+          
+						
+            </div>
+          </td>
+        </tr>
+     <% }) %>
+  </tbody>
+  </table>
+  <tfoot>
+    <%- include('./partials/pager', {
+    path : '/admin/products',
+    currentPage,
+    totalPages
+  }) %>
+</tfoot>
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+crossorigin="anonymous"></script>
+</body>
+</html>
