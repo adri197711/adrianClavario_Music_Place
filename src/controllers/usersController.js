@@ -5,11 +5,10 @@ const { readJson, saveJson } = require('../utils/filesystem');
 module.exports = {
   
   register: (req,res) =>{
-      return res.render('users/register', {title:'Users Profile'})
+      return res.render('users/register', {title:'Cargar Usuario'})
   },
 
   processRegister: function (req, res) {
-
     const users = readJson('../db/users.json')
     const {name, surname, username,email, password} = req.body
 

@@ -1,6 +1,9 @@
 const { readJson } = require('../utils/filesystem');
 const path = require('path')
 const { toThousand, paginator } = require('../utils/index');
+const adminCheck = require('../middlewares/adminCheck');
+const userSessionCheck = require('../middlewares/userSessionCheck')
+
 
 module.exports = {
   index:(req, res, next) => {

@@ -51,5 +51,17 @@
     "validate": true,
     "lock": false,
     "rol": "admin"
+  },
+  {
+    "id": "9025bc1e-a46d-406c-ad32-9af1b28d8fa3",
+    "name": "",
+    "surname": "",
+    "username": "",
+    "email": "",
+    "password": "$2b$10$W/FFAdZ0erVSvP1rltMOc.CEGlw1OnB8XmhUNNacgeduLkFfMx.rW",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "user"
   }
 ]

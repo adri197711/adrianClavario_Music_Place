@@ -54,7 +54,7 @@ input[type="checkbox"]{
 .reg-input[type="number"],
 .reg-input[type="password"],
 select{
-width: 100%;
+width: 80%;
 }
 #check {
   position: relative;

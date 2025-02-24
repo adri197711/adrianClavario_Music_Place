@@ -1,56 +1,34 @@
 <!DOCTYPE html>
-<html>
-  <%- include('../partials/head') %>
+<html lang="es">
+  <!DOCTYPE html>
+  <html lang="en">
+    <%- include('../partials/headAdmin', {title: 'Administrar Usuarios' }) %>
+  <body>
+  
+      <%- include('../partials/headerAdmin', {title: 'Administrar Usuarios' }) %>
 
-<body>
-  <main class="body">
-  <div id="registroForm">
+    <h2 class="reg-titulo">Registro de Usuario</h2>
+    <form action="/users/processRegister" method="POST" class="reg-form">
+        <label for="id" class="reg-label" >ID</label>
+        <input class="reg-input" type="text" id="id" name="id" ><br><br>
 
-    <h2 class="tit-reg">Formulario de registro</h2>
+        <label for="name" class="reg-label" >Nombre</label>
+        <input class="reg-input" type="text" id="name" name="name" ><br><br>
 
-    <form  action="/users/processRegister" methhod="POSt"
-     novalidate>
+        <label for="surname" class="reg-label" >Apellido</label>
+        <input class="reg-input" type="text" id="surname" name="surname" ><br><br>
 
-      <label for="nombre">Nombre</label>
-      <input class="reg-input" type="text" id="nombre" name="nombre" placeholder="Ingrese nombre y apellido" minlength="3" required autocomplete="off">
-      <div class="error" id="errorNombre"></div>
-      <br>
+        <label for="username" class="reg-label" >Nombre de Usuario</label>
+        <input class="reg-input" type="text" id="username" name="username" ><br><br>
 
-      <label for="username">Usuario</label>
-      <input class="reg-input"  type="text" id="username" name="username" placeholder="Nombre de usuario" minlength="3" required autocomplete="off">
-      <div class="error" id="errorApellido"></div>
-      <br>
-       
-      <label for="email">Email</label>
-      <input class="reg-input"  type="email" id="email" name="documento" placeholder="Ingrese su email" required autocomplete="off">
-      <div class="error" id="errorEmail"></div>
-      <br>
-   
-      <label for="password">Password</label>
-      <input  class="reg-input" type="password" id="password" name="password" placeholder="contraseña"  required autocomplete="off">
-      <span id="show-hide">Show/Hide</span>
-      <div class="error" id="errorPassword"></div>
-      <br>
+        <label for="email" class="reg-label">Correo Electrónico</label>
+        <input class="reg-input" type="email" id="email" name="email" ><br><br>
 
-      <label for="confirmPassword">Confirm Password</label>
-      <input class="reg-input"  type="password"  placeholder="Confirmar contraseña"  name="confirmPassword" id="confirmPassword" required autocomplete="off">
-      <span id="show-hide">Show/Hide</span>
-      <div class="errorMessage" id="confirmPasswordError"></div>
-     
-      <div>
-      <label class="inline">Acepto Términos y condiciones</label>
-      <input type="checkbox" name="aceptoTerminos" class="check" id="check"  checked="off"
-         required>
-         
-         <div class="error" id="errorAceptoTerminos"></div>
-        </div>
-         <br>
+        <label for="password" class="reg-label">Contraseña</label>
+        <input class="reg-input" type="password" id="password" name="password" ><br><br>
 
-         <button type="submit" class="add-btn" >Guardar usuario</button>
-
+        <button type="submit">Registrar</button>
     </form>
-  </div>
-
 </body>
-
 </html>
+

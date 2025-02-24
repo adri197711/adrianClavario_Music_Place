@@ -1,17 +1,5 @@
 [
   {
-    "id": 4,
-    "name": "Batería 1",
-    "brand": "Yamaha",
-    "model": "Stage Custom",
-    "color": "Rojo",
-    "image": "bateria1.jpg",
-    "description": "Batería acústica completa",
-    "price": 4500000,
-    "discount": 10,
-    "category": "visited"
-  },
-  {
     "id": 5,
     "name": "Batería",
     "brand": "Roland",
@@ -97,14 +85,14 @@
   },
   {
     "id": 12,
-    "name": "Oferta Especial",
-    "brand": "Variado",
-    "model": "Variado",
-    "color": "Variado",
-    "image": "oferta.jpg",
+    "name": "guitarra",
+    "brand": "casa nuñex",
+    "model": "criolla",
+    "color": "caoba",
+    "price": 1500000,
+    "discount": 0,
+    "image": "imagenHeader.webp",
     "description": "",
-    "price": 5000000,
-    "discount": 20,
-    "category": "in-sale"
+    "category": "visited"
   }
 ]
