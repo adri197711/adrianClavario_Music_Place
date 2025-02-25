@@ -9,7 +9,7 @@
   width: 100%;
 }
 
-header {
+.header {
   padding: 2rem;
   background-image: url('../images/imagenHeader.webp');
   background-repeat: no-repeat;

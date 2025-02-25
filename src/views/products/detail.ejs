@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <%- include('../partials/head', {title:'detail'}) %>
+  <%- include('../partials/head', {title:'detalle del producto'}) %>
   <body>
+   
     <%- include('../partials/header') %>
-    <main>
-      <div class="main-cart">
-        <img width="45px" src="/images/products/<%= image %> " alt="" class="foto-cart"><br>
+   
+    <main >
+<section class="main-detail" >
+   
+  <article class="art-detail">
+        <img  class="foto-detail" src="/images/products/<%= image %> " alt="Foto producto">
+ </article>
+       <article class="art-detail">
+         <h5 class="detail"><%= name %></h5>
+         <h5 class="detail"><%= brand %></h5>
+         <h5 class="detail"><%= model %></h5>
 
-        <div class="marcaCart">
-
-            <p class="name-cart">
-                <%= name  %>
-                <%= brand  %>
-                <%= model  %>
-            </p>
             <% if (discount !=0) { %>
                 <span>
                     <%price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> <span class="tachado">$<%= price%>
                         </span> / <strong><%- discount %>% OFF</strong>
                 </span>
                 <% } %>
-                    <h2>Precio $
+                    <h2 class="price-detail">Precio $
                         <%= (price - price * discount /
                             100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
                     </h2>
-                    <span><i class="fas fa-credit-card"> Paga en 12 cuotas sin interes</i></span>
-                    <span><i class="fas fa-truck"> Envio gratis por pago en efectivo</i></span>
-                    <button class="btn-cart">Comprar ahora</button>
-        </div>
-    </div>
-
+                    <span class="detail" ><i class="fas fa-credit-card"> Paga en 12 cuotas sin interes</i></span>
+                    <span class="detail" ><i class="fas fa-truck"> Envio gratis por pago en efectivo</i></span>
+                   <a href="/products/cart/<%=id%>"> <button class="btn-det">Comprar ahora</button></a>
+                  </article>
+                  </section>
     </main> 
   <%- include('../partials/footer') %>
   </body>

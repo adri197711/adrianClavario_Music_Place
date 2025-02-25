@@ -1,0 +1,33 @@
+.main-detail{
+  margin: 0 auto;
+  padding: .5rem;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+  border-radius: 10px;
+  width: 95%;
+}
+
+.foto-detail{
+  width: 100%;
+}
+.art-detail{
+  width: 60%;
+}
+.btn-det{
+  margin: 1rem 25%;
+  padding: .3rem;
+  width: 50%;
+border: none;
+border-radius: 10px;
+background-color: rgb(48, 176, 59);
+
+}
+.detail{
+  line-height: .8rem;
+  color: rgb(0, 52, 100);
+}
+.price-detail{
+  font-size: 1.2rem;
+  color: rgb(7, 167, 7)  
+}

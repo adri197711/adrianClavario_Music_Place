@@ -18,20 +18,21 @@ body{
 .tit-reg{
   padding: 1rem;
   text-align: center;
-  color: rgb(69, 138, 69);
+  color: rgb(217, 227, 217);
 }
 #registroForm {
   background-color: rgb(171, 168, 156);
   padding: 25px;
   border-radius: 10px;
 
-  box-shadow: 1px 2px 10px black;
 }
 
 label {
+  font-size: 1rem;
   display: block;
   margin-bottom: 5px;
-  color: #2053c9;
+  color: #1aad1a;
+
 }
 
 label.inline{
@@ -99,6 +100,29 @@ input[type="button"]{
   input[type="button"]:hover{
 background-color: rgb(12, 92, 65);
   }
+.btn-reg{
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 1px;
+  color: aliceblue;
+  font-size: 1rem;
+  font-weight: 900;
+  background-color: rgb(38, 194, 36);
+  padding: 10px;
+border-radius: 10px;
+  width: 80%;
 
-
-
+}
+.h2-edit{
+  color: #2053c9;
+  text-align: center;
+}
+#formAddProduct{
+  justify-content: center;
+  align-content: center;
+margin: 0 auto;
+}
+textarea {
+  width: 80%;       height: 5rem;        
+  resize: both;      
+}

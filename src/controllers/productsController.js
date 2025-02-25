@@ -90,7 +90,6 @@ update: (req, res) => {
   })
 
   saveJson('../db/products.json', productsModify)
-console.log('PRODUCTS MODIFY: ',productsModify)
   return res.redirect('/admin')
 },
 
@@ -105,6 +104,17 @@ remove: (req, res) => {
 
   return res.redirect('/admin')
 
+},
+
+cart: (req,res) => {
+
+  const products = readJson('../db/products.json')
+
+   const product = products.find(product => product.id === +req.params.id)
+
+  return res.render('products/cart',{
+    ...product
+  })
 },
 
  search: (req,res) => {

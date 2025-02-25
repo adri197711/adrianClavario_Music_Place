@@ -11,8 +11,8 @@
   margin: 0 auto;
   color: whitesmoke;
 }
-.admin-nav{
-  color: black;
+.menu-admin{
+  padding: .1rem;
 }
 .reg-titulo{
   margin: 0;
@@ -34,4 +34,48 @@
   color: antiquewhite;
   font-size: 16px;
   
+}
+
+table{
+  padding: 1rem;
+}
+th{
+  padding: .5rem;
+  color: black;
+  border-bottom: 1px dotted black;
+  border-right: 1px dotted black;
+}
+
+tr{
+  color: cadetblue;
+  border-right: 1px dotted black;
+  border-bottom: 1px dotted black;
+}
+td{
+  padding: .5rem;
+  border-right: 1px dotted black;
+
+}
+.btn-edit{
+  line-height: 1.5;
+  margin: 1px;
+  color: aliceblue;
+  background-color: rgb(108, 176, 219);
+  padding: 4px;
+border-radius: 10px;
+}
+.btn-new{
+  line-height: 1.5;
+  margin: 1px;
+  color: aliceblue;
+  background-color: rgb(38, 194, 36);
+  padding: 4px;
+border-radius: 10px;
+}
+.btn-del{
+  line-height: 1.5;
+  color: aliceblue;
+  background-color: rgb(196, 61, 61);
+  padding: 4px;
+border-radius: 10px;
 }

@@ -11,8 +11,7 @@
 
     <h2 class="tit-reg">Actualizar Legajo</h2>
 
-    <form  action="/users/update/<%=id%>?_method=PUT" method="POST"
-     novalidate>
+    <form  action="/users/update/<%=id%>?_method=PUT" method="POST" novalidate>
 
       <label for="name">Nombre</label>
       <input class="reg-input" type="text" id="nombre" name="name"
@@ -52,10 +51,6 @@
       <div class="error" id="errorPassword"></div>
       <br>
 
-      <label for="confirmPassword">Confirm Password</label>
-      <input class="reg-input"  type="password" name="confirmPassword" id="confirmPassword" required autocomplete="off">
-      <span id="show-hide">Show/Hide</span>
-      <div class="errorMessage" id="confirmPasswordError"></div>
      
       <div>
       <label class="inline">Acepto Términos y condiciones</label>

@@ -6,7 +6,7 @@
     <main class="body">
       <div id="registroForm">
         
-    <h2>Editar producto</h2>
+    <h2 class="h2-edit" >Editar producto</h2>
     <form action="/products/update/<%= id %>?_method=PUT"
        method="POST" id="formAddProduct">
 
@@ -39,7 +39,7 @@
       <div class="error" id="errordiscount"></div>
       <br>
       <label for="category" class="form-label">Categoría:</label>
-      <select name="category" id="category" class="form-control form-select-lg py-3">
+      <select class="reg-input" name="category" id="category" class="form-control form-select-lg py-3">
         <% categories.forEach(category=> { %>
           <option value="<%= category %>">
             <%= category=="in-sale" ? 'Ofertas' : 'Ultimos agregados' %>
@@ -49,10 +49,10 @@
 <br>
 <br>
       <label for="image" class="form-label">Imagen</label>
-      <input class="form-control form-control-lg" type="file" name="image" id="image">
+      <input class="reg-input" type="file" name="image" id="image">
       <label for="description" class="form-label">Descripción:</label>
       <textarea name="description" id="description"  style="resize: none;"
-        rows="5"><%=description%></textarea>
+        rows="5" cols="2"><%=description%></textarea>
 
 <br>
 <br>

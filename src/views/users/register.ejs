@@ -9,9 +9,7 @@
 
     <h2 class="reg-titulo">Registro de Usuario</h2>
     <form action="/users/processRegister" method="POST" class="reg-form">
-        <label for="id" class="reg-label" >ID</label>
-        <input class="reg-input" type="text" id="id" name="id" ><br><br>
-
+      
         <label for="name" class="reg-label" >Nombre</label>
         <input class="reg-input" type="text" id="name" name="name" ><br><br>
 
@@ -26,8 +24,15 @@
 
         <label for="password" class="reg-label">Contraseña</label>
         <input class="reg-input" type="password" id="password" name="password" ><br><br>
+        <span id="show-hide">Show/Hide</span>
 
-        <button type="submit">Registrar</button>
+        
+      <label class="reg-label" for="confirmPassword">Confirmar Contraseña</label>
+      <input class="reg-input"  type="password" name="confirmPassword" id="confirmPassword" autocomplete="off">
+      <span id="show-hide">Show/Hide</span>
+      <div class="errorMessage" id="confirmPasswordError"></div>
+
+        <button class="btn-reg" type="submit">Registrarse</button>
     </form>
 </body>
 </html>

@@ -66,11 +66,40 @@ module.exports = {
     const { items, total } = paginator(products, page, perPage)
 
     return res.render('admin', {
+      products,
       products: items,
       currentPage: page || 1,
       totalPages: total,
       categories,
       filterCategory: category,
+      search,
+      toThousand
+    })
+  },
+
+  users: (req, res) => {
+    let users = readJson('../db/users.json')
+    const roles = readJson('../db/roles.json')
+
+    const { page, perPage, rol, search } = req.query
+
+    if (rol) {
+      users = users.filter(user => user.rol === rol)
+    }
+
+    if (search) {
+      users = users.filter(user => user.name.toLowerCase().includes(search.toLowerCase().trim()))
+    }
+
+    const { items, total } = paginator(users, page, perPage)
+
+    return res.render('user', {
+      users,
+      users: items,
+      currentPage: page || 1,
+      totalPages: total,
+      roles,
+      filterrol: rol,
       search,
       toThousand
     })
