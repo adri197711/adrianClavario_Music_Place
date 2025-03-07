@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
-
+const adminCheck = require('../middlewares/adminCheck')
+const upload = require('../middlewares/uploadFile')
 const { list, detail, add, create, edit, update, remove, search, cart } = require('../controllers/productsController')
 
 router
@@ -13,6 +13,6 @@ router
     .put('/update/:id', update)
     .delete('/remove/:id', remove)
     .get('/search', search)
-    .get('/cart',cart)
+    .get('/cart', adminCheck,cart)
 
 module.exports = router;

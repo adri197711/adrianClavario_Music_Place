@@ -94,5 +94,39 @@
     "image": "imagenHeader.webp",
     "description": "",
     "category": "visited"
+  },
+  {
+    "id": 13,
+    "name": "afinador",
+    "brand": "korg",
+    "model": "kl-7",
+    "color": "negro",
+    "price": 5000,
+    "discount": 0,
+    "image": "imagenHeader.webp",
+    "description": "",
+    "category": "visited"
+  },
+  {
+    "id": 16,
+    "name": "",
+    "brand": "",
+    "model": "",
+    "color": "",
+    "price": 0,
+    "discount": 0,
+    "description": "",
+    "category": ""
+  },
+  {
+    "id": 17,
+    "name": "",
+    "brand": "",
+    "model": "",
+    "color": "",
+    "price": 0,
+    "discount": 0,
+    "description": "",
+    "category": ""
   }
 ]

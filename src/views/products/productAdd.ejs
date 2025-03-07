@@ -12,7 +12,7 @@
 
         <h2 class="tit-reg">Agregar producto</h2>
 
-        <form action="/products/create" method="POST" id="formAddProduct" >
+        <form action="/products/create" method="POST" id="formAddProduct" enctype="multipart/form-data" >
 
           <br>
           <label for="name">Nombre del producto</label>
@@ -44,7 +44,7 @@
           <div class="error" id="errordiscount"></div>
           <br>
           <label for="category" class="form-label">Categoría:</label>
-          <select name="category" id="category" class="form-control form-select-lg py-3">
+          <select name="category" id="category" class="reg-input">
             <option value="" hidden selected>Elegí la categoría</option>
             <% categories.forEach(category => { %>
               <option value="<%= category %>">
@@ -53,16 +53,16 @@
               <% }) %>
           </select>
 <br>
-<br>
+
           <label for="image" class="form-label">Imagen</label>
-          <input class="form-control form-control-lg" type="file" name="image" id="image">
+          <input class="reg-input" type="file" name="image" id="image">
           <label for="description" class="form-label">Descripción:</label>
-          <textarea name="description" id="description" class="form-control form-control-lg py-3" style="resize: none;"
-            rows="5"></textarea>
+          <textarea name="description" id="description" class="textarea" 
+            rows="8"></textarea>
 
 <br>
 <br>
-<button type="submit" class="btn" >Guardar producto</button>
+<button type="submit" class="btn-reg" >Agregar producto</button>
         </form>
       </div>
 

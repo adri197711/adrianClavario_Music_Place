@@ -63,5 +63,41 @@
     "validate": true,
     "lock": false,
     "rol": "user"
+  },
+  {
+    "id": "7990716d-c850-4200-8760-dff2f9ca0b9d",
+    "name": "alina",
+    "surname": "clavario",
+    "username": "alina Arwen",
+    "email": "ali@gmail",
+    "password": "$2b$10$ITdjh0QMnT0RLF4FGrppiObO1fNjuNrFLzwPo03.BbUAVs3iwUbuG",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "admin"
+  },
+  {
+    "id": "c0bd92d5-7426-4992-98bf-3a71df197b95",
+    "name": "",
+    "surname": "",
+    "username": "",
+    "email": "",
+    "password": "$2b$10$bSeVaw6aWZ4iegijz0zOe.MofCJ0mArmCW/aa45gQSK/An6WBD2Jm",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "user"
+  },
+  {
+    "id": "345a5195-cf2e-4be8-bcd5-2c0cf2187d6a",
+    "name": "jere",
+    "surname": "",
+    "username": "",
+    "email": "jere@gmail",
+    "password": "$2b$10$lOZDBxAlgtnicxB2wtHXq.Bt4.F3MWN7nJ27uYaMWpOLwkw9FbCDS",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "user"
   }
 ]

@@ -2,6 +2,7 @@ const { v4: uuidv4, validate } = require('uuid');
 const bcrypt = require('bcrypt');
 const { readJson, saveJson } = require('../utils/filesystem');
 
+
 module.exports = {
   
   register: (req,res) =>{
@@ -37,26 +38,33 @@ module.exports = {
   
   processLogin: function(req,res){
    const users = readJson('../db/users.json')
-    const {email, password} = req.body
-
-    const user = users.find(user => user.email === email && bcrypt.compareSync(password, user.password))
-
-    if(!user){
-      return res.render('users/login',{
-        error : "Credenciales inválidas"
+   const { email, password } = req.body
+     const user = users.find(user => user.email === email && bcrypt.compareSync(password, user.password))
+      
+   if(!user){
+     return res.render('users/login',{
+       error : "Credenciales inválidas"
       })
     }
-    
-    req.session.userLogin = {
+    const userLogin = {
       id : user.id,
       name : user.name,
       rol : user.rol
     }
 
-    return res.redirect('/')
-    
-  },
+    req.session.userLogin = {
+      id : user.id,
+      name : user.name,
+      rol : user.rol
+    }
+    console.log("RECORDAR: ", req.body.recordar)
+    if(req.body.recordar){
+    res.cookie("user", userLogin, {maxAge: 60000*60*3})
+    }
 
+    return res.redirect('/')
+
+  },
 
   profile: (req, res) => {
     
@@ -99,6 +107,6 @@ module.exports = {
   
   logout: (req,res) => { 
     req.session.destroy();
-    res.clearCookie("userLogin"); 
-    res.redirect("/login")}
+    res.clearCookie('user'); 
+    res.redirect("/")}
 }

@@ -1,10 +1,11 @@
 const { readJson } = require('../utils/filesystem');
 const path = require('path')
 const { toThousand, paginator } = require('../utils/index');
-const adminCheck = require('../middlewares/adminCheck');
+
 
 module.exports = {
-  index:(req, res, next) => {
+  index:(req, res) => {
+    console.log('new index userLogin: ', req.session.userLogin)
     const products = readJson('../db/products.json')
  
     const inSale = products.filter(product => {

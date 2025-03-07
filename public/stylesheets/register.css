@@ -1,10 +1,11 @@
-body{
+body {
   margin: 0;
   padding: 0;
-  
+
 }
+
 .body {
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background-image: url('../images/footer.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -15,11 +16,12 @@ body{
   padding: 3rem;
 }
 
-.tit-reg{
+.tit-reg {
   padding: 1rem;
   text-align: center;
   color: rgb(217, 227, 217);
 }
+
 #registroForm {
   background-color: rgb(171, 168, 156);
   padding: 25px;
@@ -35,17 +37,18 @@ label {
 
 }
 
-label.inline{
-  display:inline-block;
+label.inline {
+  display: inline-block;
 }
 
-input, select{
+input,
+select {
   padding: 8px;
   margin-bottom: 5px;
-box-sizing: border-box;  
+  box-sizing: border-box;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -54,22 +57,24 @@ input[type="checkbox"]{
 .reg-input[type="email"],
 .reg-input[type="number"],
 .reg-input[type="password"],
-select{
-width: 80%;
+select {
+  width: 80%;
 }
+
 #check {
   position: relative;
   padding: 0;
   width: 10px;
-display: flex;
+  display: flex;
 }
-.inline{
+
+.inline {
   position: absolute;
   margin: 0 20px;
   display: flex;
   flex-direction: row;
 }
- 
+
 
 #show-hide {
   position: relative;
@@ -86,7 +91,7 @@ display: flex;
   color: rgb(17, 17, 17);
 }
 
-input[type="button"]{
+input[type="button"] {
   background-color: rgb(62, 144, 62);
   color: seashell;
   padding: 5px;
@@ -95,34 +100,40 @@ input[type="button"]{
   border-radius: 10px;
   width: 100%;
   transition: 0.5s;
-  }
+}
 
-  input[type="button"]:hover{
-background-color: rgb(12, 92, 65);
-  }
-.btn-reg{
+input[type="button"]:hover {
+  background-color: rgb(12, 92, 65);
+}
+
+.btn-reg {
   font-size: 1rem;
   line-height: 1.5;
-  margin: 1px;
+  margin: 1em 10%;
   color: aliceblue;
-  font-size: 1rem;
   font-weight: 900;
   background-color: rgb(38, 194, 36);
   padding: 10px;
-border-radius: 10px;
+  border-radius: 10px;
   width: 80%;
-
+  border: none;
 }
-.h2-edit{
+
+.h2-edit {
   color: #2053c9;
   text-align: center;
 }
-#formAddProduct{
+
+#formAddProduct {
   justify-content: center;
   align-content: center;
-margin: 0 auto;
+  margin: 0 auto;
 }
-textarea {
-  width: 80%;       height: 5rem;        
-  resize: both;      
+
+.textarea {
+  margin: 0;
+  padding: 0%;
+  width: 60%;
+  height: 5rem;
+  resize: both;
 }

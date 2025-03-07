@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const {index, admin,users,usersAdmin, adminProducts, adminUsers } = require('../controllers/indexController');
-const adminCheck = require('../middlewares/adminCheck');
+const {index, admin,users,usersAdmin} = require('../controllers/indexController');
+const adminCheck = require('../middlewares/adminCheck')
 
 
 router
-    .get('/', index)
+    .get('/',index)
     .get('/admin',adminCheck,admin)
     .get('/user',adminCheck,users)
-    .get('/usersAdmin',adminCheck,usersAdmin)
-     .get('/admin/products',adminCheck,admin)
-   .get('/admin/users',adminCheck, adminUsers)
+    .get('/user/admin',usersAdmin)
+     .get('/admin/products',admin)
+   .get('/user/users',users)
 
 module.exports = router;

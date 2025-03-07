@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-<%- include('../partials/head') %>
+<%- include('../partials/head',{title:'Login'}) %>
 
   <body>
     <main class="login-main">
     <div class="login_logo">
-      <img src="/images/logo_music_place.png" alt="Logo Music Place">
+      <a href="/"><img src="/images/logo_music_place.png" alt="Logo Music Place"></a>
     </div>
-    <form class="form-login" id="loginForm" novalidate>
+    <form action="/users/processLogin" method="POST" class="form-login" id="loginForm">
       <label for="email">Email</label>
       <input type="email" name="email" id="email" placeholder="Ingrese email o nombre de usuario" required autocomplete="off">
       <div class="errorMessage" id="emailError"></div>
@@ -17,10 +17,16 @@
       <span id="show-hide">Show/Hide</span>
       <div class="errorMessage" id="passwordError"></div>
 
-
-
-      <a href="/"><input class="login-input" type="button" value="Login"></a>
-
+<% if (locals.error) { %>
+ <div class="alert alert-danger">
+  <%= error %>
+ </div>
+<% } %>
+<div>
+  <label for="recordar">Recordarme</label><input type="checkbox" name="recordar" id="recordar" >
+  
+</div>
+<button type="submit" class="btn-login">Login</button>
       <a href="register"><input type="button" value="Crear cuenta"> </a>
       </div>
     </form>

@@ -2,8 +2,9 @@ const { readJson, saveJson } = require('../utils/filesystem');
 const fs = require('fs');
 const path = require('path')
 const { toThousand, paginator } = require('../utils/index');
+const { start } = require('repl');
 const categories = readJson('../db/categories.json')
-
+const upload = require('../middlewares/uploadFile')
 module.exports = {
 
   list:(req, res) => {
@@ -32,6 +33,10 @@ detail: (req,res) => {
  },
 
  create: (req,res) => {
+
+  const filename = req.file.filename;
+console.log('IMAGEN: ', filename)
+
   const products = readJson('../db/products.json');
 
    const {name, brand, model, color, image, price, discount,category,description} = req.body
@@ -44,7 +49,7 @@ detail: (req,res) => {
     color : color.trim(),
     price : +price,
     discount : +discount,
-    image : "imagenHeader.webp",
+    image : req.file.filename,
     description : description.trim(),
     category 
   }
@@ -112,7 +117,7 @@ cart: (req,res) => {
 
    const product = products.find(product => product.id === +req.params.id)
 
-  return res.render('products/cart',{
+  return res.redirect('products/cart',{
     ...product
   })
 },
