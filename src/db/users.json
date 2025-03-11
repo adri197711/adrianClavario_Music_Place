@@ -99,5 +99,17 @@
     "validate": true,
     "lock": false,
     "rol": "user"
+  },
+  {
+    "id": "433a0b3e-e17a-4143-974d-f433d910592c",
+    "name": "jeremias ezequiel",
+    "surname": "",
+    "username": "",
+    "email": "",
+    "password": "$2b$10$SUJvY7Vz.3mbvby0I99g.uX5LtDg8JLhbeyMyno5RIrKwH6B76Nvm",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "user"
   }
 ]

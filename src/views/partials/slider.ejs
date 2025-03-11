@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Enlazar al archivo CSS de Slick -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  
+  <style>
+    /* Set the size of the images and make them cover the space */
+    .slider img {
+      width: 100%;         /* Makes images fill the width of the container */
+      height: 7.5rem;       /* Set a fixed height for all images */
+      object-fit: cover;   /* Ensures the image fills the area without distorting */
+    }
+
+    /* Optionally, you can add styles to the slider for better appearance */
+    .slider {
+      margin: 0 auto;  /* Centers the slider on the page */
+      padding: 0 15px;
+    }
+  </style>
+  <!-- Incluir jQuery y Slick JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+</head>
+<body>
+  <div class="slider">
+    <div><img src="/images/slider/gibson.jpg" alt="Gibson"></div>
+    <div><img src="/images/slider/peavey.webp" alt="Peavey"></div>
+    <div><img src="/images/slider/boss.webp" alt="Boss"></div>
+    <div><img src="/images/slider/pearl.webp" alt="Pearl"></div>
+    <div><img src="/images/slider/dean.webp" alt="Dean"></div>
+    <div><img src="/images/slider/ibanez.webp" alt="Ibanez"></div>
+    <div><img src="/images/slider/daddario.webp" alt="D'Addario"></div>
+    <div><img src="/images/slider/tama.webp" alt="Tama"></div>
+    <div><img src="/images/slider/marshall.jpg" alt="Marshall"></div>
+    <div><img src="/images/slider/peavey.webp" alt="Peavey"></div>
+    <div><img src="/images/slider/bcrich.webp" alt="B.C. Rich"></div>
+    <div><img src="/images/slider/Ephipone.webp" alt="Ephipone"></div>
+    <div><img src="/images/slider/esp.webp" alt="ESP"></div>
+  </div>
+
+  <script>
+  $(document).ready(function(){
+  $('.slider').slick({
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1000,
+    arrows: true,
+    dots: true,
+    responsive: [
+    
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 5
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
+  });
+});
+
+  </script>
+
+</body>
+</html>

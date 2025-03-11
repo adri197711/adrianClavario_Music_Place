@@ -11,7 +11,7 @@ router
     .post('/processRegister', processRegister)
     .get('/login',validationLogin,login)
     .post('/processLogin',sessionVerify,processLogin)
-    .get('/logout', logout)
     .get('/profile/:id', profile)
     .put('/update/:id', update)
+    .get('/logout', logout)
 module.exports = router;

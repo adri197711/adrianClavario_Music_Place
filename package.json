@@ -18,6 +18,7 @@
     "morgan": "~1.9.1",
     "multer": "^1.4.5-lts.1",
     "session": "^0.1.0",
+    "slick-carousel": "^1.8.1",
     "uuid": "^11.1.0"
   },
   "description": "Bienvenido a **Music-Place**, tu tienda en línea de confianza para todo lo relacionado con la música. Desde **instrumentos musicales**, **accesorios** hasta **discos** y **libros de música**, tenemos lo que necesitas para llevar tu pasión musical al siguiente nivel.",

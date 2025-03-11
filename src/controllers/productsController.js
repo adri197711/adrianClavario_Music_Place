@@ -2,7 +2,6 @@ const { readJson, saveJson } = require('../utils/filesystem');
 const fs = require('fs');
 const path = require('path')
 const { toThousand, paginator } = require('../utils/index');
-const { start } = require('repl');
 const categories = readJson('../db/categories.json')
 const upload = require('../middlewares/uploadFile')
 module.exports = {
@@ -34,7 +33,7 @@ detail: (req,res) => {
 
  create: (req,res) => {
 
-  const filename = req.file.filename;
+  const filename = req.file;
 console.log('IMAGEN: ', filename)
 
   const products = readJson('../db/products.json');
@@ -49,7 +48,7 @@ console.log('IMAGEN: ', filename)
     color : color.trim(),
     price : +price,
     discount : +discount,
-    image : req.file.filename,
+    image :image,
     description : description.trim(),
     category 
   }
@@ -87,7 +86,7 @@ update: (req, res) => {
       product.color = color.trim();
       product.price = +price;
       product.discount = +discount;
-      image : "logo_music_place.png";
+      product.image = image;
       product.description = description.trim();
       product.category = category;
     }

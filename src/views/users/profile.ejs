@@ -11,7 +11,7 @@
 
     <h2 class="tit-reg">Actualizar Legajo</h2>
 
-    <form  action="/users/update/<%=id%>?_method=PUT" method="POST" novalidate>
+    <form  action="/users/update/<%=id%>?_method=PUT" method="POST" enctype="multipart/form-data">
 
       <label for="name">Nombre</label>
       <input class="reg-input" type="text" id="nombre" name="name"
@@ -28,6 +28,12 @@
       <input class="reg-input"  type="text" id="username" name="username"   
       value="<%=username%>">
       <div class="error" id="errorUsername"></div>
+      <br>
+       
+      <label for="avatar">Usuario</label>
+      <input class="reg-input"  type="file" id="avatar" name="avatar"   
+      value="<%=avatar%>">
+      <div class="error" id="errorAvatar"></div>
       <br>
        
       <label for="email">Email</label>

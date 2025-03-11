@@ -11,7 +11,7 @@ module.exports = {
 
   processRegister: function (req, res) {
     const users = readJson('../db/users.json')
-    const {name, surname, username,email, password} = req.body
+    const {name, surname, username,email,avatar, password} = req.body
 
     const newUser = {
       id : uuidv4(),
@@ -19,6 +19,7 @@ module.exports = {
       surname : surname.trim(),
       username : username.trim(),
       email : email.trim(),
+      avatar: avatar,
       password : bcrypt.hashSync(password, 10),
       token : null,
       validate : true,
@@ -59,7 +60,7 @@ module.exports = {
     }
     console.log("RECORDAR: ", req.body.recordar)
     if(req.body.recordar){
-    res.cookie("user", userLogin, {maxAge: 60000*60*3})
+    res.cookie("user", userLogin, {maxAge: 60000*60*30})
     }
 
     return res.redirect('/')
@@ -108,5 +109,6 @@ module.exports = {
   logout: (req,res) => { 
     req.session.destroy();
     res.clearCookie('user'); 
-    res.redirect("/")}
+    res.redirect("/");
+  }
 }

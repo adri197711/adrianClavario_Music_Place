@@ -7,7 +7,7 @@ const storage = multer.diskStorage({
     console.log("ingreso al middlewarefile", file);
     console.log(__dirname);
     
-    cb(null,path.join(__dirname,'../public/images'));
+    cb(null,path.join(__dirname,'../../public/images/products/'));
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = path.basename(file.originalname, path.extname(file.originalname)) + "-" + Date.now() + "-" + uuidv4() + path.extname(file.originalname);

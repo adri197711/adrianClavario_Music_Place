@@ -2,14 +2,14 @@
   {
     "id": 5,
     "name": "Batería",
-    "brand": "Roland",
+    "brand": "tama",
     "model": "TD-17KVX",
     "color": "Negro",
-    "image": "bateria3.jpg",
-    "description": "",
+    "image": "",
+    "description": "bateria",
     "price": 3800000,
-    "discount": 0,
-    "category": "in-sale"
+    "discount": 10,
+    "category": "visited"
   },
   {
     "id": 6,
@@ -85,30 +85,53 @@
   },
   {
     "id": 12,
-    "name": "guitarra",
-    "brand": "casa nuñex",
+    "name": "Guitarra Clasica",
+    "brand": "casa Nuñez",
     "model": "criolla",
     "color": "caoba",
     "price": 1500000,
     "discount": 0,
-    "image": "imagenHeader.webp",
+    "image": "oferta.jpg",
     "description": "",
-    "category": "visited"
+    "category": "in-sale"
   },
   {
     "id": 13,
     "name": "afinador",
     "brand": "korg",
-    "model": "kl-7",
+    "model": "kl-77",
     "color": "negro",
     "price": 5000,
     "discount": 0,
-    "image": "imagenHeader.webp",
+    "image": "teclado.jpg",
     "description": "",
     "category": "visited"
   },
   {
-    "id": 16,
+    "id": 14,
+    "name": "guitarra",
+    "brand": "Gibson",
+    "model": "Les Paul",
+    "color": "Sunburst",
+    "price": 4000000,
+    "discount": 20,
+    "description": "Excelente oportunidad",
+    "category": "in-sale"
+  },
+  {
+    "id": 22,
+    "name": "",
+    "brand": "",
+    "model": "",
+    "color": "",
+    "price": 0,
+    "discount": 0,
+    "description": "guitarra",
+    "category": "visited",
+    "image": "escóndete de lily (4).png"
+  },
+  {
+    "id": 23,
     "name": "",
     "brand": "",
     "model": "",
@@ -119,7 +142,40 @@
     "category": ""
   },
   {
-    "id": 17,
+    "id": 24,
+    "name": "",
+    "brand": "",
+    "model": "",
+    "color": "",
+    "price": 0,
+    "discount": 0,
+    "description": "",
+    "category": ""
+  },
+  {
+    "id": 25,
+    "name": "",
+    "brand": "",
+    "model": "",
+    "color": "",
+    "price": 0,
+    "discount": 0,
+    "description": "",
+    "category": ""
+  },
+  {
+    "id": 27,
+    "name": "",
+    "brand": "",
+    "model": "",
+    "color": "",
+    "price": 0,
+    "discount": 0,
+    "description": "",
+    "category": ""
+  },
+  {
+    "id": 28,
     "name": "",
     "brand": "",
     "model": "",
