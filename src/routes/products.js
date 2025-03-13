@@ -5,7 +5,7 @@ const upload = require('../middlewares/uploadFile')
 const { list, detail, add, create, edit, update, remove, search, cart } = require('../controllers/productsController')
 
 router
-    .get('/', list)
+    .get('/products', list)
     .get('/detail/:id', detail)
     .get('/add', add)
     .post('/create',upload.single('image'), create)

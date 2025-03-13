@@ -14,11 +14,11 @@
 
           <br>
           <label for="name">Nombre del producto</label>
-          <input class="reg-input" type="text" id="name" name="name">
+          <input class="reg-input" type="text" id="name" name="name" required>
           <div class="error" id="errorproduct"></div>
           <br>
           <label for="brand">Marca</label>
-          <input class="reg-input" type="text" id="marcaProduct" name="brand">
+          <input class="reg-input" type="text" id="marcaProduct" name="brand" required>
           <div class="error" id="errorMarca"></div>
           <br>
           <label for="model">Modelo</label>
@@ -34,7 +34,7 @@
 
           <br>
           <label for="price">Precio</label>
-          <input class="reg-input" type="number" id="price" name="price">
+          <input class="reg-input" type="number" id="price" name="price" required>
           <div class="error" id="errorPrice"></div>
           <br>
           <label for="discount">Descuento</label>
@@ -53,7 +53,8 @@
           <br>
 
           <label for="image" class="form-label">Imagen</label>
-          <input class="reg-input" type="file" name="image" id="image">
+          <input class="reg-input" type="file" name="image" id="image" required>
+         
           <label for="description" class="form-label">Descripción:</label>
           <textarea name="description" id="description" class="textarea" rows="8"></textarea>
 

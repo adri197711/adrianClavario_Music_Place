@@ -1,0 +1,26 @@
+<section class="cardSection">
+<div class="cardImage">
+<a href="/products/detail/<%= products.id %>">
+  <img 
+  src="../images/products/<%= products.image %>"
+   alt="Imagen del producto"></a>
+</div>
+<div class="cardDetail">
+    <h5 class="detailCard"><%= products.name %> </h5>
+    <h5 class="detailCard"><%= products.brand %></h5>
+    <h5 class="detailCard"><%= products.model %></h5>
+
+       <% if (products.discount !=0) { %>
+           <span>
+               <%products.price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> <span class="tachado">$<%= products.price%>
+                </span>
+                <span>
+                   <strong class="discountCard">/<%- products.discount %>% OFF</strong>
+           </span>
+           <% } %>
+               <h2 class="priceDetail">Precio $
+                   <%= (products.price - products.price * products.discount /
+                       100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
+               </h2>
+</div>
+</section>

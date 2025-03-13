@@ -32,14 +32,7 @@
     "lock": true,
     "rol": "user"
   },
-  {
-    "id": "0d87eafc-fe80-4dba-8037-493490677fa4",
-    "password": "$2b$10$IJIDx6Ax38Ua5p/3k8pTQ.dVi39wrRYOIWJ8JZqLq6X5NlTpuyc6u",
-    "token": null,
-    "validate": true,
-    "lock": false,
-    "rol": "user"
-  },
+
   {
     "id": "5d01fb9a-26e9-4031-90c2-f1c2c2665baa",
     "name": "adri",
@@ -52,18 +45,7 @@
     "lock": false,
     "rol": "admin"
   },
-  {
-    "id": "9025bc1e-a46d-406c-ad32-9af1b28d8fa3",
-    "name": "",
-    "surname": "",
-    "username": "",
-    "email": "",
-    "password": "$2b$10$W/FFAdZ0erVSvP1rltMOc.CEGlw1OnB8XmhUNNacgeduLkFfMx.rW",
-    "token": null,
-    "validate": true,
-    "lock": false,
-    "rol": "user"
-  },
+
   {
     "id": "7990716d-c850-4200-8760-dff2f9ca0b9d",
     "name": "alina",
@@ -76,18 +58,7 @@
     "lock": false,
     "rol": "admin"
   },
-  {
-    "id": "c0bd92d5-7426-4992-98bf-3a71df197b95",
-    "name": "",
-    "surname": "",
-    "username": "",
-    "email": "",
-    "password": "$2b$10$bSeVaw6aWZ4iegijz0zOe.MofCJ0mArmCW/aa45gQSK/An6WBD2Jm",
-    "token": null,
-    "validate": true,
-    "lock": false,
-    "rol": "user"
-  },
+ 
   {
     "id": "345a5195-cf2e-4be8-bcd5-2c0cf2187d6a",
     "name": "jere",
@@ -105,11 +76,24 @@
     "name": "jeremias ezequiel",
     "surname": "",
     "username": "",
-    "email": "",
+    "email": "jere@gmail",
     "password": "$2b$10$SUJvY7Vz.3mbvby0I99g.uX5LtDg8JLhbeyMyno5RIrKwH6B76Nvm",
     "token": null,
     "validate": true,
     "lock": false,
     "rol": "user"
+  },
+    {
+    "id": "7eec763f-0f70-4e7c-9fc1-56eb9e435c50",
+    "name": "anto",
+    "surname": "",
+    "username": "",
+    "email": "anto@gmail",
+    "avatar": "flyerLOD.png",
+    "password": "$2b$10$R7bXeftkKw2uppqYjDWkXeMBNYptGWDKBibm3RzlfUsK15e4kOD.K",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "admin"
   }
 ]

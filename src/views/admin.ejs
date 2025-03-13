@@ -5,22 +5,26 @@
 
     <%- include('./partials/headerAdmin', {title: 'Administrar Productos' }) %>
 
-  <main>
-  <table border="1" >
+  <main class="mainAdmin">
+  <table border="3" >
     <thead>
       <tr>
-        <th>ID</th>
+        <th class="thId">ID</th>
         <th>Producto</th>
         <th>Marca</th>
         <th>Modelo</th>
         <th>color</th>
         <th>Precio</th>
         <th>Descuento</th>
+        <th>Descripción</th>
         <th>Categoria</th>
+        <th>   <div>
+          <a class="btn btn-sm btn-new " href="/products/add">Agregar producto</a>
+        </div></th>
       </tr>
     </thead>
     <tbody>
-      <% products.forEach(({id,name,price,discount,category,brand,color,model}) => {%>
+      <% products.forEach(({id,name,price,discount,description,category,brand,color,model}) => {%>
         <tr>
           <th scope="row"><%= id %></th>
           <td><%=name%></td>
@@ -29,18 +33,17 @@
           <td><%=color%></td>
           <td><%=price%></td>
           <td><%=discount%></td>
+          <td><%=description%></td>
           <td><%=category%></td>
           <td>
             <div class="d-flex gap-2">
           <div>
-              <a href="/products/edit/<%= id %>" class="btn btn-sm btn-edit">Editar</a>
+              <a href="/products/edit/<%= id %>"><i class="fa-solid fa-pencil btn btn-edit">Editar</i></a>
             </div>			
-              <div>
-								<a class="btn btn-sm btn-new " href="/products/add">Nuevo</a>
-							</div>
+           
               
               <form action="/products/remove/<%=id%>?_method=DELETE" method="POST">
-                <button class="btn btn-sm btn-del" type="submit">Eliminar</button>
+                <button class="btn btn-sm btn-del" type="submit"><i class="fa-solid fa-trash-can">Eliminar</i></button>
               </form>
           
 						

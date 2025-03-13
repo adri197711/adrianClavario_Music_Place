@@ -33,8 +33,7 @@ detail: (req,res) => {
 
  create: (req,res) => {
 
-  const filename = req.file;
-console.log('IMAGEN: ', filename)
+  const filename = req.file.filename;
 
   const products = readJson('../db/products.json');
 
@@ -48,7 +47,7 @@ console.log('IMAGEN: ', filename)
     color : color.trim(),
     price : +price,
     discount : +discount,
-    image :image,
+    image :filename,
     description : description.trim(),
     category 
   }
@@ -76,7 +75,9 @@ edit: (req, res) => {
 update: (req, res) => {
   const products = readJson('../db/products.json')
 
+
   const { name, price, discount, description, category,image,brand,color,model } = req.body
+  
 
   const productsModify = products.map(product => {
     if (product.id === +req.params.id) {
@@ -86,7 +87,7 @@ update: (req, res) => {
       product.color = color.trim();
       product.price = +price;
       product.discount = +discount;
-      product.image = image;
+      product.image = image; 
       product.description = description.trim();
       product.category = category;
     }

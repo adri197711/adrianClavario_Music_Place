@@ -60,7 +60,7 @@ module.exports = {
     }
     console.log("RECORDAR: ", req.body.recordar)
     if(req.body.recordar){
-    res.cookie("user", userLogin, {maxAge: 60000*60*30})
+    res.cookie("user",    req.session.userLogin , {maxAge: 60000*60*30})
     }
 
     return res.redirect('/')

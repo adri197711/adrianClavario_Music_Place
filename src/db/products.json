@@ -1,41 +1,5 @@
 [
   {
-    "id": 5,
-    "name": "Batería",
-    "brand": "tama",
-    "model": "TD-17KVX",
-    "color": "Negro",
-    "image": "",
-    "description": "bateria",
-    "price": 3800000,
-    "discount": 10,
-    "category": "visited"
-  },
-  {
-    "id": 6,
-    "name": "Guitarra B.C. Rich",
-    "brand": "B.C. Rich",
-    "model": "Warlock",
-    "color": "Negro",
-    "image": "bcrich.jpg",
-    "description": "",
-    "price": 3200000,
-    "discount": 15,
-    "category": "visited"
-  },
-  {
-    "id": 7,
-    "name": "Cuerdas",
-    "brand": "Ernie Ball",
-    "model": "Super Slinky",
-    "color": "Plateado",
-    "image": "cuerdas.jpg",
-    "description": "Juego de cuerdas para guitarra eléctrica",
-    "price": 40000,
-    "discount": 0,
-    "category": "visited"
-  },
-  {
     "id": 8,
     "name": "Guitarra Ibanez",
     "brand": "Ibanez",
@@ -116,73 +80,31 @@
     "price": 4000000,
     "discount": 20,
     "description": "Excelente oportunidad",
-    "category": "in-sale"
+    "category": "visited",
+    "image": "lespaul1.jpg"
   },
   {
     "id": 22,
-    "name": "",
-    "brand": "",
-    "model": "",
-    "color": "",
-    "price": 0,
+    "name": "Harmonica",
+    "brand": "honer",
+    "model": "nuevo",
+    "color": "plata",
+    "price": 5000,
     "discount": 0,
-    "description": "guitarra",
+    "description": "harmonica que usa el grupo k4os",
     "category": "visited",
-    "image": "escóndete de lily (4).png"
+    "image": "ampli.jpg"
   },
   {
     "id": 23,
-    "name": "",
-    "brand": "",
-    "model": "",
-    "color": "",
-    "price": 0,
+    "name": "nuevo",
+    "brand": "honer",
+    "model": "stratocaster",
+    "color": "nuevo",
+    "price": 23000,
     "discount": 0,
+    "image": "docDorso-1741775338422-d0edf6eb-4eef-482c-b4ac-de4ca059ec7f.jpg",
     "description": "",
-    "category": ""
-  },
-  {
-    "id": 24,
-    "name": "",
-    "brand": "",
-    "model": "",
-    "color": "",
-    "price": 0,
-    "discount": 0,
-    "description": "",
-    "category": ""
-  },
-  {
-    "id": 25,
-    "name": "",
-    "brand": "",
-    "model": "",
-    "color": "",
-    "price": 0,
-    "discount": 0,
-    "description": "",
-    "category": ""
-  },
-  {
-    "id": 27,
-    "name": "",
-    "brand": "",
-    "model": "",
-    "color": "",
-    "price": 0,
-    "discount": 0,
-    "description": "",
-    "category": ""
-  },
-  {
-    "id": 28,
-    "name": "",
-    "brand": "",
-    "model": "",
-    "color": "",
-    "price": 0,
-    "discount": 0,
-    "description": "",
-    "category": ""
+    "category": "in-sale"
   }
 ]

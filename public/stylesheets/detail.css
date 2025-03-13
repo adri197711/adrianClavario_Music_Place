@@ -23,11 +23,56 @@ border-radius: 10px;
 background-color: rgb(48, 176, 59);
 
 }
+
+
+h3.detail{
+  font-family:'Courier New', Courier, monospace;
+  text-align: center;
+  line-height: 2rem;
+  font-weight: 700;
+  color: rgb(0, 52, 100);
+  text-shadow: 2px 2px 5px rgba(0, 52, 100, 0.8);
+}
 .detail{
-  line-height: .8rem;
+  line-height: 2rem;
   color: rgb(0, 52, 100);
 }
 .price-detail{
   font-size: 1.2rem;
   color: rgb(7, 167, 7)  
+}
+
+.tachado {
+  font-size: 1rem;
+  color: darkgreen;
+  text-decoration: line-through;
+}
+/* Card detail */
+.cardSection{
+  padding: .5rem;
+  display: flex;
+width: 70%;
+  border: 2px solid grey;
+  border-radius: 20px;
+}
+
+.cardImage{
+  width: 50%;
+}
+.cardDetail{
+  margin-left: 2rem;
+padding:.5rem ;
+  width: 60%;
+
+}
+.detailCard{
+  color: rgb(21, 63, 141);
+}
+.priceDetail{
+  color: forestgreen;
+  font-size: 1.2rem;
+}
+.discountCard{
+  color: darkgreen;
+  font-size: 1rem;
 }
