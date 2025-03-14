@@ -6,12 +6,16 @@ const { readJson, saveJson } = require('../utils/filesystem');
 module.exports = {
   
   register: (req,res) =>{
-      return res.render('users/register', {title:'Cargar Usuario'})
+    const roles = readJson('../db/roles.json')
+      return res.render('users/register', {title:'Cargar Usuario',
+        roles
+      })
   },
 
   processRegister: function (req, res) {
+    // const filename = req.file.filename;
     const users = readJson('../db/users.json')
-    const {name, surname, username,email,avatar, password} = req.body
+    const {name, surname, username,email,avatar,rol, password} = req.body
 
     const newUser = {
       id : uuidv4(),
@@ -24,8 +28,8 @@ module.exports = {
       token : null,
       validate : true,
       lock : false,
-      rol : 'user'
-    }
+      rol 
+        }
 
     users.push(newUser)
     saveJson('../db/users.json', users);
@@ -84,31 +88,44 @@ module.exports = {
   update: (req, res) => {
     const users = readJson('../db/users.json')
 
-    const {name, surname, username,email, password,token,validate,lock,rol} = req.body
+    const {name, surname, username,email,avatar, password,token,validate,lock,rol} = req.body
   
     const usersModify = users.map(user => {
-      if (user.id === +req.params.id) {
+      if (user.id === req.params.id) {
         user.name = name.trim();
         user.surname = surname.trim();
         user.username = username.trim();
         user.email = email.trim();
-        user.password = password.trim();
-        token : null;
-        validate : true;
-        lock : false;
-        rol : 'user'
+        user.password = password;
+        user.avatar = avatar;
+        user.token = null;
+        user.validate = true;
+        user.lock = false;
+        user.rol = rol;
       }
               return user
     })
   
     saveJson('../db/users.json', usersModify)
   console.log('users MODIFY: ',usersModify)
-    return res.redirect('/admin')
+    return res.redirect('/user')
   },
   
   logout: (req,res) => { 
     req.session.destroy();
     res.clearCookie('user'); 
     res.redirect("/");
-  }
+  },
+  
+remove: (req, res) => {
+  const users = readJson('../db/users.json')
+  const { id } = req.params;
+
+  const usersModify = users.filter(user => user.id !== id)
+
+  saveJson('../db/users.json',usersModify)
+
+  return res.redirect('/user/users')
+
+}
 }

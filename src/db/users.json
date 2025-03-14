@@ -1,39 +1,5 @@
 [
   {
-    "id": "1",
-    "name": "Admin",
-    "surname": "MercadoLiebre",
-    "email": "admin@ml.com",
-    "password": "$2b$10$JC/h8GORA64DWjcVD96EAeYEFNWCmj19mU2xgwPbfX5ugoazpUsky",
-    "token": null,
-    "validate": true,
-    "lock": false,
-    "rol": "admin"
-  },
-  {
-    "id": "2",
-    "name": "User",
-    "surname": "MercadoLiebre",
-    "email": "user@ml.com",
-    "password": "$2b$10$JC/h8GORA64DWjcVD96EAeYEFNWCmj19mU2xgwPbfX5ugoazpUsky",
-    "token": null,
-    "validate": true,
-    "lock": false,
-    "rol": "user"
-  },
-  {
-    "id": "4",
-    "name": "Locked",
-    "surname": "MercadoLiebre",
-    "email": "locked@ml.com",
-    "password": "$2b$10$JC/h8GORA64DWjcVD96EAeYEFNWCmj19mU2xgwPbfX5ugoazpUsky",
-    "token": null,
-    "validate": true,
-    "lock": true,
-    "rol": "user"
-  },
-
-  {
     "id": "5d01fb9a-26e9-4031-90c2-f1c2c2665baa",
     "name": "adri",
     "surname": "clavario",
@@ -43,9 +9,9 @@
     "token": null,
     "validate": true,
     "lock": false,
+    "avatar": "flyerLOD.png",
     "rol": "admin"
   },
-
   {
     "id": "7990716d-c850-4200-8760-dff2f9ca0b9d",
     "name": "alina",
@@ -56,20 +22,8 @@
     "token": null,
     "validate": true,
     "lock": false,
+    "avatar": "flyerLOD.png",
     "rol": "admin"
-  },
- 
-  {
-    "id": "345a5195-cf2e-4be8-bcd5-2c0cf2187d6a",
-    "name": "jere",
-    "surname": "",
-    "username": "",
-    "email": "jere@gmail",
-    "password": "$2b$10$lOZDBxAlgtnicxB2wtHXq.Bt4.F3MWN7nJ27uYaMWpOLwkw9FbCDS",
-    "token": null,
-    "validate": true,
-    "lock": false,
-    "rol": "user"
   },
   {
     "id": "433a0b3e-e17a-4143-974d-f433d910592c",
@@ -81,19 +35,56 @@
     "token": null,
     "validate": true,
     "lock": false,
+    "avatar": "flyerLOD.png",
     "rol": "user"
   },
-    {
+  {
     "id": "7eec763f-0f70-4e7c-9fc1-56eb9e435c50",
     "name": "anto",
     "surname": "",
     "username": "",
     "email": "anto@gmail",
-    "avatar": "flyerLOD.png",
     "password": "$2b$10$R7bXeftkKw2uppqYjDWkXeMBNYptGWDKBibm3RzlfUsK15e4kOD.K",
     "token": null,
     "validate": true,
     "lock": false,
+    "avatar": "flyerLOD.png",
     "rol": "admin"
+  },
+  {
+    "id": "8b36075e-97e1-45ea-a253-baf40a424ba8",
+    "name": "Viki",
+    "surname": "",
+    "username": "",
+    "email": "viki@gmail",
+    "password": "$2b$10$WP1SG/6ngVINn8Dj9ob1u.kH797YzF2VaR1608izo954Z91ltIrwu",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "avatar": "flyerLOD.png",
+    "rol": "user"
+  },
+  {
+    "id": "632450e0-cb1e-4f67-9269-ca59a03bffe2",
+    "name": "Ada",
+    "surname": "Clavario",
+    "username": "AdaLucia",
+    "email": "ada@gmail",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "user"
+  },
+  {
+    "id": "38f62ef4-8cc9-4c6e-af5e-b822a32f4133",
+    "name": "osvaldo",
+    "surname": "",
+    "username": "",
+    "email": "osvaldo@gmail",
+    "password": "$2b$10$7Kx.Fk/t4d/UsKsF5hilROmjbNpD2nqu8SC0pg/ti8a6aMr9MfXVe",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": "user"
   }
 ]

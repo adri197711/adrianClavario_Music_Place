@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { register, processRegister, login, processLogin, logout, profile, update } = require('../controllers/usersController')
+const { register, processRegister, login, processLogin, logout, profile, update,remove } = require('../controllers/usersController')
 const validationLogin = require('../middlewares/loginVerify')
 const sessionVerify = require('../middlewares/sessionVerify');
 const upload = require('../middlewares/uploadUser');
@@ -9,10 +9,11 @@ const upload = require('../middlewares/uploadUser');
 
 router
     .get('/register', upload.single('avatar'), register)
-    .post('/processRegister', processRegister)
+    .post('/processRegister',upload.single('avatar'), processRegister)
     .get('/login',validationLogin,login)
     .post('/processLogin',sessionVerify,processLogin)
-    .get('/profile/:id', profile)
+    .get('/edit/:id', profile)
     .put('/update/:id', upload.single('avatar'), update)
     .get('/logout', logout)
+    .delete('/remove/:id', remove)
 module.exports = router;

@@ -15,7 +15,7 @@
 
       <label for="name">Nombre</label>
       <input class="reg-input" type="text" id="nombre" name="name"
-      value="<%= nqme %>">
+      value="<%= name %>">
       <div class="error" id="errorNombre"></div>
       <br>
 
@@ -29,12 +29,11 @@
       value="<%=username%>">
       <div class="error" id="errorUsername"></div>
       <br>
-       
-      <label for="avatar">Usuario</label>
-      <input class="reg-input"  type="file" id="avatar" name="avatar"   
-      value="<%=avatar%>">
+<!--        
+      <label for="avatar">Foto Usuario</label>
+      <input class="reg-input"  type="file" id="avatar" name="avatar" value="%=avatar%>">
       <div class="error" id="errorAvatar"></div>
-      <br>
+      <br> -->
        
       <label for="email">Email</label>
       <input class="reg-input"  type="email" id="email" name="email" 
@@ -51,11 +50,11 @@
           <% }) %>
       </select>
 
-      <label for="password">Password</label>
+      <!-- <label for="password">Password</label>
       <input  class="reg-input" type="password" id="password" name="password"   required autocomplete="off">
       <span id="show-hide">Show/Hide</span>
       <div class="error" id="errorPassword"></div>
-      <br>
+      <br> -->
 
      
       <div>
@@ -70,6 +69,9 @@
 
         <button type="submit" class="btn btn-outline-dark">Actualizar Legajo de usuario</button>
       </form>
+
+      <br>
+      <br>
       <form action="/users/remove/<%=id%>?_method.DELETE" method="POST">
         <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
       </form>

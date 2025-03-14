@@ -6,7 +6,7 @@
     <%- include('./partials/headerAdmin', {title: 'Administrar usuarios' }) %>
 
   <main class="menu-admin">
-  <table border="1" >
+  <table border="2" >
     <thead>
       <tr>
         <th>ID</th>
@@ -15,6 +15,9 @@
         <th>Usuario</th>
         <th>email</th>
         <th>Rol</th>
+        <th><div>
+          <a class="btn btn-sm btn-new " href="/users/register">Nuevo registro</a>
+        </div></th>
       </tr>
     </thead>
     <tbody>
@@ -26,17 +29,14 @@
           <td><%=username%></td>
           <td><%=email%></td>
           <td><%=rol%></td>
-          <td>
-            <div class="d-flex gap-2">
+          <td> <div class="d-flex gap-2">
           <div>
-              <a href="/users/edit/<%= id %>" class="btn-edit">Editar</a>
+              <a href="/users/edit/<%= id %>" class=" btn btn-edit">Editar</a>
             </div>			
-              <div>
-								<a class="btn-new" href="/users/register">Nuevo</a>
-							</div>
+            
               
-              <form action="/users/remove/<%=id%>?_method=DELETE" method="POST">
-                <button  type="submit" class="btn-del">Eliminar</button>
+              <form action="/users/remove/<%=id%>?_method=DELETE" method="POST" id="formAddProduct">
+                <button  type="submit" class="btn btn-del">Eliminar</button>
               </form>
           						
             </div>

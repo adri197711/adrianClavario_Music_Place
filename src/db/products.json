@@ -8,8 +8,8 @@
     "image": "ibanez.jpg",
     "description": "Guitarra eléctrica Ibanez RG",
     "price": 2700000,
-    "discount": 0,
-    "category": "visited"
+    "discount": 10,
+    "category": "in-sale"
   },
   {
     "id": 9,
@@ -94,17 +94,5 @@
     "description": "harmonica que usa el grupo k4os",
     "category": "visited",
     "image": "ampli.jpg"
-  },
-  {
-    "id": 23,
-    "name": "nuevo",
-    "brand": "honer",
-    "model": "stratocaster",
-    "color": "nuevo",
-    "price": 23000,
-    "discount": 0,
-    "image": "docDorso-1741775338422-d0edf6eb-4eef-482c-b4ac-de4ca059ec7f.jpg",
-    "description": "",
-    "category": "in-sale"
   }
 ]
