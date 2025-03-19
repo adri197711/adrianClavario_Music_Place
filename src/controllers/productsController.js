@@ -111,16 +111,21 @@ remove: (req, res) => {
 
 },
 
-cart: (req,res) => {
-
+cart: (req, res) => {
   const products = readJson('../db/products.json')
 
-   const product = products.find(product => product.id === +req.params.id)
+  const product = products.find(product => product.id === +req.params.id)
 
-  return res.redirect('products/cart',{
+  return res.render('products/cart',{
     ...product
   })
+
+ },
+
+cartDetail: (req,res) =>  {
+  res.send(req.session.cart)
 },
+
 
  search: (req,res) => {
   return res.render('products/products')

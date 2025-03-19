@@ -86,5 +86,17 @@
     "validate": true,
     "lock": false,
     "rol": "user"
+  },
+  {
+    "id": "1ec21e0f-87ae-448f-a585-5774498511f8",
+    "name": "",
+    "surname": "",
+    "username": "",
+    "email": "",
+    "password": "$2b$10$o8AZoyfpuG1ZlaoYDxxXYu0ZILV3LOV0ZHmlMNBSgTZhHdZ6gvY/y",
+    "token": null,
+    "validate": true,
+    "lock": false,
+    "rol": ""
   }
 ]

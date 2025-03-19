@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<%- include('../partials/head',{title:'products'}) %>
+
+  <body>
+    <%- include('../partials/header') %>
+      <main>
+<% products.forEach((products) => {%>
+
+<%-include('../partials/productCard',{
+products
+}
+)%>
+<%})%>
+      </main>
+      <%- include('../partials/footer') %>
+  </body>
+
+</html>

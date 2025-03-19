@@ -11,6 +11,10 @@
 
           <article class="art-detail">
             <img class="foto-detail" src="/images/products/<%= image %> " alt="Foto producto">
+
+            <p class="detail">
+              <%= description %>
+            </p>
           </article>
           <article class="art-detail">
             <h3 class="detail">
@@ -35,9 +39,8 @@
                 <h2 class="price-detail">Precio $
                   <%= (price - price * discount / 100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
                 </h2>
-                <span class="detail"><i class="fas fa-credit-card"> Paga en 12 cuotas sin interes</i></span>
-                <span class="detail"><i class="fas fa-truck"> Envio gratis por pago en efectivo</i></span>
-                <a href="/products/cart/<%=id%>"> <button class="btn-det">Comprar ahora</button></a>
+              
+                <a href="/products/cart/<%=id%>"> <button class="btn-det">Agregar al carrito</button></a>
           </article>
         </section>
       </main>

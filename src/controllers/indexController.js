@@ -1,29 +1,54 @@
 const { readJson } = require('../utils/filesystem');
 const path = require('path')
+const db = require('../database/models')
 const { toThousand, paginator } = require('../utils/index');
 
 
 module.exports = {
-  index:(req, res) => {
-    console.log('new index userLogin: ', req.session.userLogin)
-    const products = readJson('../db/products.json')
+//   index: async (req, res) => {
+  
+//      console.log('new index userLogin: ', req.session.userLogin)
+//      try {
+
+//       const inSale = await db.Category.findAll(1,{
+//           include : [
+//               {
+//                   association : 'products',
+//                   include : ['images']
+//               }
+//           ]
+//       });
+
+//       const newest = await db.Category.findAll(2,{
+//           include : [
+//               {
+//                   association : 'products',
+//                   include : ['images']
+//               }
+//           ]
+//       })
  
-    const inSale = products.filter(product => {
-      return product.category == "in-sale"
-    })
-    const newest = products.filter(product => {
-      return product.category == "visited"
-    })
-
-    return res.render('index', {
-
-      newest,
-      inSale,
-      toThousand
-    })
-  },
-  usersAdmin: (req,res) => {
-    let products = readJson('../db/products.json')
+//     console.log(error);
+// }
+index:(req,res)=> {
+  const products = readJson('../db/products.json')
+  
+  const inSale = products.filter(product => {
+    return product.category == "in-sale"
+  })
+  const newest = products.filter(product => {
+    return product.category == "visited"
+  })
+  return res.render('index', {
+  
+   newest,
+   inSale,
+   toThousand
+  })
+ 
+},
+usersAdmin: (req,res) => {
+  let products = readJson('../db/products.json')
     const categories = readJson('../db/categories.json')
 
     const { page, perPage, category, search } = req.query

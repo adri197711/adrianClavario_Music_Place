@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --watch ./bin/www"
+    "start": "node --watch ./bin/www",
+    "dbinit": "sequelize db:create && sequelize db:migrate",
+    "dbreset": "sequelize db:drop && sequelize db:create && sequelize db:migrate"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

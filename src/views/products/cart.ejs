@@ -1,21 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <%- include('../partials/head',{title:'Mis Compras'}) %>
+<%- include('../partials/head', {title:'detalle del producto'}) %>
+
   <body>
+
     <%- include('../partials/header') %>
-    <main class="marcaCart" >
-    
-      <img class="art-detail" src="../images/products/oferta.jpg" alt="Imagen del producto">
 
-      <div class="marcaCart">
-        <p>Excelente guitarra de calidad</p>
-        <p>Guitarra Acústica Takamine</p>
-        <p>Precio
-          <i class="fa-solid fa-dollar">100000</i>
-        </p>
-      </div>
+      <main>
+        <section class="main-detail">
 
-    </main> 
-  <%- include('../partials/footer') %>
+          <article class="art-detail">
+            <img class="foto-detail" src="/images/products/<%= image %> " alt="Foto producto">
+
+            <p class="detail">
+              <%= description %>
+            </p>
+          </article>
+          <article class="art-detail">
+            <h3 class="detail">
+              <%= name %>
+            </h3>
+            <h5 class="detail">
+              Marca: <%= brand %>
+            </h5>
+            <h5 class="detail">
+              Modelo: <%= model %>
+            </h5>
+
+            <% if (discount !=0) { %>
+              <span>
+                <%price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> 
+                <span class="tachado">
+                    $<%= price%>
+                </span>
+                  <strong class="discountCard">/<%- discount %>% OFF</strong>
+              </span>
+              <% } %>
+                <h2 class="price-detail">Precio $
+                  <%= (price - price * discount / 100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
+                </h2>
+              
+                <a href="/products/products"> <button class="btn-det">Comprar</button></a>
+          </article>
+        </section>
+      </main>
+      <%- include('../partials/footer') %>
   </body>
-</html>

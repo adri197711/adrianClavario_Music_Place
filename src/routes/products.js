@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const adminCheck = require('../middlewares/adminCheck')
 const upload = require('../middlewares/uploadFile')
-const { list, detail, add, create, edit, update, remove, search, cart } = require('../controllers/productsController')
+const { list, detail, add, create, edit, update, remove, search, cart, cartDetail } = require('../controllers/productsController')
 
 router
     .get('/products', list)
@@ -13,6 +13,7 @@ router
     .put('/update/:id',upload.single('image'), update)
     .delete('/remove/:id', remove)
     .get('/search', search)
-    .get('/cart', adminCheck,cart)
+    .get('/cart/:id',cart)
+    .get('/ofertas',cartDetail)
 
 module.exports = router;
