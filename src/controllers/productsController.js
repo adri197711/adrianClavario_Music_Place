@@ -37,35 +37,54 @@ res.send(product)
 
 
 },
-
- create: async (req, res) => {
+create: async (req, res) => {
   try {
-    
-    const filename = req.file.filename;
+      const { name, price, discount, description } = req.body; // Recuperamos los datos del formulario
 
-   
-    const { Product } = require('../database/models');
+      // Crear un nuevo producto en la base de datos usando Sequelize
+      const newProduct = await Product.create({
+          name,
+          price,
+          discount,
+          description
+      });
 
-    
-    const { name, price, description, discount, categoryId, sectionId, brandId } = req.body;
-
-     const newProduct = await Product.create({
-      name: name.trim(),
-      price: parseFloat(price) ,
-      description: description.trim(),
-      discount:parseFloat(discount) ,
-      categoryId: parseInt(categoryId, 10), 
-      sectionId: parseInt(sectionId, 10), 
-      brandId: parseInt(brandId, 10), 
-      image: filename, 
-    });
-
-    return res.redirect(`/products/detail/${newProduct.id}`);
+      // Enviar la respuesta correctamente con el nuevo producto
+      res.status(201).json({ message: 'Producto creado con éxito', product: newProduct });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: 'Error ocurrió creando el producto.' });
+      res.status(500).json({ message: 'Error al crear el producto', error: error.message });
   }
 },
+
+//  create: async (req, res) => {
+//   try {
+    
+//     const filename = req.file.filename;
+
+   
+//     const { Product } = require('../database/models');
+
+    
+//     const { name, price, description, discount, categoryId, sectionId, brandId } = req.body;
+
+//      const newProduct = {
+//       name: name.trim(),
+//       price: parseFloat(price) ,
+//       description: description.trim(),
+//       discount:parseFloat(discount) ,
+//       categoryId: parseInt(categoryId, 10), 
+//       sectionId: parseInt(sectionId, 10), 
+//       brandId: parseInt(brandId, 10), 
+//       image: filename, 
+//     };
+//     await Product.create({newProduct})
+
+//     return res.redirect(`/products/detail/${newProduct.id}`);
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ error: 'Error ocurrió creando el producto.' });
+//   }
+// },
 
 edit: (req, res) => {
 

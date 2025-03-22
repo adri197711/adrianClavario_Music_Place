@@ -19,30 +19,8 @@
   <br>
 
   <!-- Marca -->
-  <label for="brand">Marca</label>
-  <select class="reg-input" name="brandId" id="brandId" required>
-    <option value="" hidden selected>Elegí la marca</option>
-    <!-- Aquí se cargarían las marcas disponibles desde tu base de datos -->
-    % brands.forEach(brand => { %>
-      <option value="<%= brand.id %>">
-        <%= brand.name %>
-      </option>
-    % }) %>
-  </select>
-  <div class="error" id="errorBrand"></div>
-  <br>
+  
 
-  <!-- Modelo -->
-  <label for="model">Modelo</label>
-  <input class="reg-input" type="text" id="model" name="model">
-  <div class="error" id="errorModel"></div>
-  <br>
-
-  <!-- Color -->
-  <label for="color">Color</label>
-  <input class="reg-input" type="text" name="color" id="color">
-  <div class="errorMessage" id="errorColor"></div>
-  <br>
 
   <!-- Precio -->
   <label for="price">Precio</label>
@@ -56,32 +34,9 @@
   <div class="error" id="errorDiscount"></div>
   <br>
 
-  <!-- Categoría -->
-  <label for="category" class="form-label">Categoría:</label>
-  <select name="categoryId" id="categoryId" class="reg-input" required>
-    <option value="" hidden selected>Elegí la categoría</option>
-    <!-- Aquí se cargarían las categorías disponibles desde tu base de datos -->
-    % categories.forEach(category => { %>
-      <option value="<%= category.id %>">
-        <%= category.name %>
-      </option>
-    % }) %>
-  </select>
-  <br> 
-
+  
   <!-- Sección -->
-  <label for="section" class="form-label">Sección:</label>
-  <select name="sectionId" id="sectionId" class="reg-input" required>
-    <option value="" hidden selected>Elegí la sección</option>
-    <!-- Aquí se cargarían las secciones disponibles desde tu base de datos -->
-    % sections.forEach(section => { %>
-      <option value="<%= section.id %>">
-        <%= section.name %>
-      </option>
-    % }) %>
-  </select>
-  <br>
-
+  
   <!-- Imagen -->
   <label for="image" class="form-label">Imagen</label>
   <input class="reg-input" type="file" name="image" id="image" required>
