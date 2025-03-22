@@ -11,8 +11,12 @@ const paginator = (items = [], page = 1, perPage = 10) => {
     }
 }
 
+const randomNumber = (limit) => {
+    return Math.floor(Math.random()*limit)+1;
+}
 
 module.exports =  {
     toThousand,
-    paginator
+    paginator,
+    randomNumber
 }

@@ -30,7 +30,7 @@ module.exports = {
       validated: {
         type: Sequelize.BOOLEAN
       },
-      lock: {
+      locked: {
         type: Sequelize.BOOLEAN
       },
       token: {

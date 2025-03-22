@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Address.belongsTo(models.User, {
-        as: "address",
+        as: "user",
         foreignKey: "userId",
+        onDelete: 'CASCADE',
       });
     }
   }

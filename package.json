@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node --watch ./bin/www",
     "dbinit": "sequelize db:create && sequelize db:migrate",
-    "dbreset": "sequelize db:drop && sequelize db:create && sequelize db:migrate"
+    "dbreset": "sequelize db:drop && sequelize db:create && sequelize db:migrate && sequelize db:seed:all"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

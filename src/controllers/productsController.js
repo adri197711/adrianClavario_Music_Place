@@ -1,61 +1,70 @@
-const { readJson, saveJson } = require('../utils/filesystem');
+const {Product} =  require('../database/models')
 const fs = require('fs');
+const {readJson, saveJson} = require('../utils/filesystem')
 const path = require('path')
 const { toThousand, paginator } = require('../utils/index');
-const categories = readJson('../db/categories.json')
-const upload = require('../middlewares/uploadFile')
+
+const upload = require('../middlewares/uploadFile');
+const product = require('../database/models/product');
 module.exports = {
 
-  list:(req, res) => {
-    const products = readJson('../db/products.json')
+  list:async (req, res) => {
+    const products = await Product.findAll()
+  //  return res.send(products)
+    return res.render('products/products',{
   
-return res.render('products/products',{
   products,
   toThousand})
 },
 
-detail: (req,res) => {
-  const products = readJson('../db/products.json')
+detail: async(req,res) => {
+  try{
+const {Product} =  require('../database/models')
+const id = req.params.id
 
-  const product = products.find(product => product.id === +req.params.id)
-
-  return res.render('products/detail',{
-    ...product
-  })
- },
-
+const product = await Product.findByPk(id)
+  console.log(product)
+res.send(product)
+ 
+} catch (error) {
+  console.error(error);
+}
+},
+ 
  add: (req,res) => {
  
-  return res.render('products/productAdd',{
-    categories
-  })
- },
+  return res.render('products/productAdd'),{title:'Agregar Producto'}
 
- create: (req,res) => {
 
-  const filename = req.file.filename;
+},
 
-  const products = readJson('../db/products.json');
+ create: async (req, res) => {
+  try {
+    
+    const filename = req.file.filename;
 
-   const {name, brand, model, color, image, price, discount,category,description} = req.body
+   
+    const { Product } = require('../database/models');
 
-   const newProduct = {
-    id : products[products.length -1].id +1,        
-    name : name.trim(),
-    brand : brand.trim(),
-    model : model.trim(),
-    color : color.trim(),
-    price : +price,
-    discount : +discount,
-    image :filename,
-    description : description.trim(),
-    category 
+    
+    const { name, price, description, discount, categoryId, sectionId, brandId } = req.body;
+
+     const newProduct = await Product.create({
+      name: name.trim(),
+      price: parseFloat(price) ,
+      description: description.trim(),
+      discount:parseFloat(discount) ,
+      categoryId: parseInt(categoryId, 10), 
+      sectionId: parseInt(sectionId, 10), 
+      brandId: parseInt(brandId, 10), 
+      image: filename, 
+    });
+
+    return res.redirect(`/products/detail/${newProduct.id}`);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Error ocurrió creando el producto.' });
   }
-  products.push(newProduct)
-
-  saveJson('../db/products.json',products)
-
-  return res.redirect('/products/detail/' + newProduct.id)
 },
 
 edit: (req, res) => {

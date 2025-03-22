@@ -21,6 +21,15 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
+      sectionId: {
+        type: Sequelize.INTEGER,
+        references : {
+          model: {
+            tableName : 'Sections'
+          },
+          key : 'id'
+        }
+        },
       brandId: {
         type: Sequelize.INTEGER,
         references : {

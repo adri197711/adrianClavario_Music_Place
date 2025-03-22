@@ -5,34 +5,21 @@
   <body>
     <%- include('./partials/header') %>
       <main class="main-index">
-        <%- include('./partials/slider') %>
-        <h2>Ultimos Agregados</h2>
+        <%- include('./partials/slider') %>         
+        
+        
+        <article class="fotos">
+          <% products.forEach((product) => {%>
 
-        <section>
-<article class="fotos">
-          <% newest.forEach(({id,image,brand,model,price,discount}) => {%>
-
-<a href="../products/detail/<%= id %>">
+ <a href="../products/detail/<%= product.id %>"> 
   <img 
-  src="../images/products/<%= image %>"
+  src="../images/products/<%= product.image %>"
    alt="Imagen del producto"></a>
 
 <%})%>
 </article>
-<article class="fotos">
-<h2>Ofertas</h2>
-<% inSale.forEach(({id,image,brand,model,price,discount}) => {%>
-
-<a href="../products/detail/<%= id %>">
-  <img 
-  src="../images/products/<%= image %>"
-   alt="Imagen del producto"></a>
-
-<%})%>
-</article>
-        </section>
-      </main>
-      <%- include('./partials/footer') %>
-  </body>
-
-</html>
+           
+        <%- include('./partials/footer') %>
+      </body>
+    
+    </html>

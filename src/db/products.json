@@ -1,98 +1,59 @@
 [
-  {
-    "id": 8,
-    "name": "Guitarra Ibanez",
-    "brand": "Ibanez",
-    "model": "RG550",
-    "color": "Azul",
-    "image": "ibanez.jpg",
+  {"name": "Guitarra Ibanez",
     "description": "Guitarra eléctrica Ibanez RG",
     "price": 2700000,
     "discount": 10,
-    "category": "in-sale"
+  "image":"/images/products/ibanez.jpg"
+    
   },
   {
-    "id": 9,
     "name": "Guitarra Les Paul 1",
-    "brand": "Gibson",
-    "model": "Les Paul Standard",
-    "color": "Sunburst",
-    "image": "lespaul1.jpg",
     "description": "Guitarra eléctrica Gibson Les Paul",
     "price": 3500000,
     "discount": 0,
-    "category": "visited"
-  },
+  "image":"/images/products/lespaul1.jpg"
+
+    },
   {
-    "id": 10,
     "name": "Guitarra Les Paul 2",
-    "brand": "Gibson",
-    "model": "Les Paul Custom",
-    "color": "Negro",
-    "image": "lespaul2.jpg",
     "description": "Otra versión de Gibson Les Paul",
     "price": 3600000,
     "discount": 5,
-    "category": "visited"
+  "image":"/images/products/lespaul2.jpg"
+
   },
   {
-    "id": 11,
     "name": "Amplificador Marshall",
-    "brand": "Marshall",
-    "model": "DSL40CR",
-    "color": "Negro",
-    "image": "marshall.jpg",
     "description": "Amplificador Marshall clásico",
     "price": 1500000,
     "discount": 0,
-    "category": "visited"
+  "image":"/images/products/ampli.jpg"
+
   },
   {
-    "id": 12,
     "name": "Guitarra Clasica",
-    "brand": "casa Nuñez",
-    "model": "criolla",
-    "color": "caoba",
-    "price": 1500000,
     "discount": 0,
-    "image": "oferta.jpg",
-    "description": "",
-    "category": "in-sale"
+    "description": "Excelente oportunidad para principiantes.",
+  "image":"/images/products/oferta.jpg"
   },
   {
-    "id": 13,
-    "name": "afinador",
-    "brand": "korg",
-    "model": "kl-77",
-    "color": "negro",
-    "price": 5000,
+    "name": "Teclado",
     "discount": 0,
-    "image": "teclado.jpg",
-    "description": "",
-    "category": "visited"
+    "description":"",
+    "image":"/images/products/teclado.jpg"
   },
   {
-    "id": 14,
     "name": "guitarra",
-    "brand": "Gibson",
-    "model": "Les Paul",
-    "color": "Sunburst",
-    "price": 4000000,
     "discount": 20,
     "description": "Excelente oportunidad",
-    "category": "visited",
-    "image": "lespaul1.jpg"
+  "image":"/images/products/strato.jpg"
   },
   {
-    "id": 22,
-    "name": "Harmonica",
-    "brand": "honer",
-    "model": "nuevo",
-    "color": "plata",
-    "price": 5000,
+    "name": "Marshall",
+    "brandId": 1,
+    "price": 5000000,
     "discount": 0,
-    "description": "harmonica que usa el grupo k4os",
-    "category": "visited",
-    "image": "ampli.jpg"
+    "description": "Amplificador para guitarra eléctrica",
+    "image":"/images/products/marshall.jpg"
   }
 ]

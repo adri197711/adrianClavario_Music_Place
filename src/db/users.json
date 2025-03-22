@@ -1,102 +1,61 @@
 [
   {
-    "id": "5d01fb9a-26e9-4031-90c2-f1c2c2665baa",
     "name": "adri",
     "surname": "clavario",
     "username": "adrian",
     "email": "adri@gmail",
     "password": "$2b$10$6CU48txuqaKRhPunDFGdLuhoKzZB6tN.5k.G5i16FRQdf92oK1a9G",
     "token": null,
-    "validate": true,
-    "lock": false,
+    "validated": true,
+    "locked": false,
     "avatar": "flyerLOD.png",
-    "rol": "admin"
+    "rolId": 1
   },
   {
-    "id": "7990716d-c850-4200-8760-dff2f9ca0b9d",
     "name": "alina",
     "surname": "clavario",
     "username": "alina Arwen",
     "email": "ali@gmail",
     "password": "$2b$10$ITdjh0QMnT0RLF4FGrppiObO1fNjuNrFLzwPo03.BbUAVs3iwUbuG",
     "token": null,
-    "validate": true,
-    "lock": false,
+    "validated": true,
+    "locked": false,
     "avatar": "flyerLOD.png",
-    "rol": "admin"
+    "rolId": 2
   },
   {
-    "id": "433a0b3e-e17a-4143-974d-f433d910592c",
     "name": "jeremias ezequiel",
     "surname": "",
     "username": "",
     "email": "jere@gmail",
     "password": "$2b$10$SUJvY7Vz.3mbvby0I99g.uX5LtDg8JLhbeyMyno5RIrKwH6B76Nvm",
     "token": null,
-    "validate": true,
-    "lock": false,
+    "validated": true,
+    "locked": false,
     "avatar": "flyerLOD.png",
-    "rol": "user"
+    "rolId": 3
   },
   {
-    "id": "7eec763f-0f70-4e7c-9fc1-56eb9e435c50",
-    "name": "anto",
-    "surname": "",
-    "username": "",
-    "email": "anto@gmail",
-    "password": "$2b$10$R7bXeftkKw2uppqYjDWkXeMBNYptGWDKBibm3RzlfUsK15e4kOD.K",
-    "token": null,
-    "validate": true,
-    "lock": false,
-    "avatar": "flyerLOD.png",
-    "rol": "admin"
-  },
-  {
-    "id": "8b36075e-97e1-45ea-a253-baf40a424ba8",
-    "name": "Viki",
-    "surname": "",
-    "username": "",
-    "email": "viki@gmail",
-    "password": "$2b$10$WP1SG/6ngVINn8Dj9ob1u.kH797YzF2VaR1608izo954Z91ltIrwu",
-    "token": null,
-    "validate": true,
-    "lock": false,
-    "avatar": "flyerLOD.png",
-    "rol": "user"
-  },
-  {
-    "id": "632450e0-cb1e-4f67-9269-ca59a03bffe2",
-    "name": "Ada",
-    "surname": "Clavario",
-    "username": "AdaLucia",
+    "name": "ada",
+    "surname": "clavario",
+    "username": "adita",
     "email": "ada@gmail",
+    "password": "$2b$10$NxP1rwcHXTvBCqHqi4ixV.VQCmsAuVPoYjntC0c4LN8gcOI9k.xp6",
     "token": null,
-    "validate": true,
-    "lock": false,
-    "rol": "user"
+    "validated": true,
+    "locked": false,
+    "rolId": 1
   },
   {
-    "id": "38f62ef4-8cc9-4c6e-af5e-b822a32f4133",
-    "name": "osvaldo",
-    "surname": "",
-    "username": "",
-    "email": "osvaldo@gmail",
-    "password": "$2b$10$7Kx.Fk/t4d/UsKsF5hilROmjbNpD2nqu8SC0pg/ti8a6aMr9MfXVe",
-    "token": null,
-    "validate": true,
-    "lock": false,
-    "rol": "user"
-  },
-  {
-    "id": "1ec21e0f-87ae-448f-a585-5774498511f8",
-    "name": "",
+    
+    "name": "ada",
     "surname": "",
     "username": "",
     "email": "",
-    "password": "$2b$10$o8AZoyfpuG1ZlaoYDxxXYu0ZILV3LOV0ZHmlMNBSgTZhHdZ6gvY/y",
+    "password": "$2b$10$njd5FomX/HUPeiU75zLt0.XDPf8tg3a/IHjLpzdIDzW364Sm0zGy6",
     "token": null,
-    "validate": true,
-    "lock": false,
-    "rol": ""
+    "validated": true,
+    "locked": false,
+    "rolId": 1
   }
 ]

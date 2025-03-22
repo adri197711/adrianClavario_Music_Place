@@ -1,19 +1,20 @@
 const { v4: uuidv4, validate } = require('uuid');
 const bcrypt = require('bcrypt');
-const { readJson, saveJson } = require('../utils/filesystem');
-
+const {User}=require('../database/models')
 
 module.exports = {
   
   register: (req,res) =>{
+    const {readJson, saveJson} = require('../utils/filesystem')
     const roles = readJson('../db/roles.json')
-      return res.render('users/register', {title:'Cargar Usuario',
-        roles
-      })
+    return res.render('users/register', {title:'Cargar Usuario',
+      roles
+    })
   },
-
+  
   processRegister: function (req, res) {
-    // const filename = req.file.filename;
+    const {readJson, saveJson} = require('../utils/filesystem')
+    //const filename = req.file.filename;
     const users = readJson('../db/users.json')
     const {name, surname, username,email,avatar,rol, password} = req.body
 
@@ -40,50 +41,64 @@ module.exports = {
   login:function(req,res){
       return res.render('users/login',{title:'Login'})
   },
+  processLogin: async function(req, res) {
+    const { email, password } = req.body; // Asegúrate de obtener el 'password' también
   
-  processLogin: function(req,res){
-   const users = readJson('../db/users.json')
-   const { email, password } = req.body
-     const user = users.find(user => user.email === email && bcrypt.compareSync(password, user.password))
-      
-   if(!user){
-     return res.render('users/login',{
-       error : "Credenciales inválidas"
-      })
-    }
-    const userLogin = {
-      id : user.id,
-      name : user.name,
-      rol : user.rol
-    }
-
-    req.session.userLogin = {
-      id : user.id,
-      name : user.name,
-      rol : user.rol
-    }
-    console.log("RECORDAR: ", req.body.recordar)
-    if(req.body.recordar){
-    res.cookie("user",    req.session.userLogin , {maxAge: 60000*60*30})
-    }
-
-    return res.redirect('/')
-
-  },
-
-  profile: (req, res) => {
+    try {
+      const { User } = require('../database/models');
     
-  const { id } = req.params
-  const users = readJson('../db/users.json')
-  const roles = readJson('../db/roles.json')
-
-  const user = users.find(user => user.id === id)
-
-  return res.render('users/profile', {
-    ...user,
-    roles
-  })
+      // Buscar el usuario por su correo electrónico
+      const user = await User.findOne({
+        where: { email },
+        attributes: ['id', 'name', 'surname', 'username', 'email', 'password', 'avatar', 'validated', 'locked', 'token', 'createdAt', 'updatedAt']
+      });
+  
+      // Si no se encuentra el usuario o la contraseña no coincide
+      if (!user || !bcrypt.compareSync(password, user.password)) {
+        return res.render('users/login', {
+          error: "Credenciales inválidas"
+        });
+      }
+  
+      // Si las credenciales son válidas, guardar los detalles del usuario en la sesión
+      const userLogin = {
+        id: user.id,
+        name: user.name,
+        rolId: user.rolId
+      };
+  
+      req.session.userLogin = userLogin;
+  
+      // Si el usuario seleccionó "recordarme"
+      console.log("RECORDAR: ", req.body.recordar);
+      if (req.body.recordar) {
+        res.cookie("user", userLogin, { maxAge: 60000 * 60 * 30 }); // 30 minutos
+      }
+  
+      // Redirigir al dashboard o página de inicio después del login exitoso
+      return res.send(user); // O la ruta que desees
+  
+    } catch (error) {
+      console.error('Error during login:', error);
+      return res.status(500).render('users/login', {
+        error: "Ocurrió un error al procesar tu solicitud"
+      });
+    }
   },
+  
+  // profile: (req, res) => {
+    
+  // const { id } = req.params
+  // const users = readJson('../db/users.json')
+  // const roles = readJson('../db/roles.json')
+
+  // const user = users.find(user => user.id === id)
+
+  // return res.render('users/profile', {
+  //   ...user,
+  //   roles
+  // })
+  // },
 
   update: (req, res) => {
     const users = readJson('../db/users.json')
