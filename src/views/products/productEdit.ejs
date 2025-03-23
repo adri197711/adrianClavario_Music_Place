@@ -16,18 +16,6 @@
       <div class="error" id="errorproduct"></div>
       <br>
        
-      <label for="brand">Marca</label>
-      <input class="reg-input"  type="text" value="<%= brand %>" id="marcaProduct" name="brand" >
-      <div class="error" id="errorMarca"></div>
-     
-      <label for="model">Modelo</label>
-      <input class="reg-input"  type="text" value="<%= model %>" id="productModel" name="model" >
-      <div class="error" id="errorModel"></div>
- 
-      <label for="color">Color</label>
-      <input class="reg-input"  type="text" value="<%= color %>" id="productColor" name="color" >
-      <div class="error" id="errorColor"></div>
-       
       <br>
       
       <label for="price">Precio</label>
@@ -38,14 +26,14 @@
       <input class="reg-input" type="text" value="<%= discount %>"  id="discount" name="discount" autocomplete="off">
       <div class="error" id="errordiscount"></div>
       <br>
-      <label for="category" class="form-label">Categoría:</label>
+      <!-- <label for="category" class="form-label">Categoría:</label>
       <select class="reg-input" name="category" id="category" class="form-control form-select-lg py-3">
-        <% categories.forEach(category=> { %>
-          <option value="<%= category %>">
-            <%= category=="in-sale" ? 'Ofertas' : 'Ultimos agregados' %>
+        % categories.forEach(category=> { %>
+          <option value="%= category %>">
+            %= category=="in-sale" ? 'Ofertas' : 'Ultimos agregados' %>
           </option>
-          <% }) %>
-      </select>
+          % }) %> 
+      </select>-->
 <br>
 <br>
       <label for="image" class="form-label">Imagen</label>

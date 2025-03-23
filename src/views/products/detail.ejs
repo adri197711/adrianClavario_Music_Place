@@ -13,34 +13,28 @@
             <img class="foto-detail" src="/images/products/<%= product.image %> " alt="Foto producto">
 
             <p class="detail">
-              <%= description %>
+              <%= product.description %>
             </p>
           </article>
           <article class="art-detail">
             <h3 class="detail">
-              <%= name %>
+              <%= product.name %>
             </h3>
-            <h5 class="detail">
-              Marca: <%= brand %>
-            </h5>
-            <h5 class="detail">
-              Modelo: <%= model %>
-            </h5>
-
-            <% if (discount !=0) { %>
+          
+            <% if (product.discount !=0) { %>
               <span>
-                <%price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> 
+                <%product.price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> 
                 <span class="tachado">
-                    $<%= price%>
+                    $<%= product.price%>
                 </span>
-                  <strong class="discountCard">/<%- discount %>% OFF</strong>
+                  <strong class="discountCard">/<%- product.discount %>% OFF</strong>
               </span>
               <% } %>
                 <h2 class="price-detail">Precio $
-                  <%= (price - price * discount / 100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
+                  <%= (product.price - product.price * product.discount / 100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
                 </h2>
               
-                <a href="/products/cart/<%=id%>"> <button class="btn-det">Agregar al carrito</button></a>
+                <a href="/products/cart/<%=product.id%>"> <button class="btn-det">Agregar al carrito</button></a>
           </article>
         </section>
       </main>
