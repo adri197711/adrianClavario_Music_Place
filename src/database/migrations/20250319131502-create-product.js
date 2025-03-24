@@ -13,39 +13,42 @@ module.exports = {
         type: Sequelize.STRING
       },
       price: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.INTEGER
       },
       discount: {
         type: Sequelize.INTEGER
+      },
+      image: {
+        type: Sequelize.STRING
       },
       description: {
         type: Sequelize.STRING
       },
       sectionId: {
         type: Sequelize.INTEGER,
-        references : {
+        references: {
           model: {
-            tableName : 'Sections'
+            tableName: 'Sections' 
           },
-          key : 'id'
+          key: 'id'
         }
-        },
+      },
       brandId: {
         type: Sequelize.INTEGER,
-        references : {
+        references: {
           model: {
-            tableName : 'Brands'
+            tableName: 'Brands' 
           },
-          key : 'id'
+          key: 'id'
         }
       },
       categoryId: {
         type: Sequelize.INTEGER,
-        references : {
+        references: {
           model: {
-            tableName : 'Categories'
+            tableName: 'Categories' 
           },
-          key : 'id'
+          key: 'id'
         }
       },
       createdAt: {

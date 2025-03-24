@@ -78,6 +78,7 @@ edit: async (req, res) => {
 
 
 update: async(req, res) => {
+  const {Product} =  require('../database/models')
   const { id } = req.params;
   const { name, price, discount, description, image } = req.body;
 try{
@@ -85,7 +86,7 @@ const productModify = await Product.update({
       name: name.trim(),
       price: +price,
       discount:  +discount,
-      image: image, 
+      image: image.trim(), 
       description: description.trim()
     },
   { where: { id } });

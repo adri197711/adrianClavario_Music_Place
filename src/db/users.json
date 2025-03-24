@@ -47,7 +47,6 @@
     "rolId": 1
   },
   {
-    
     "name": "ada",
     "surname": "",
     "username": "",
@@ -58,4 +57,5 @@
     "locked": false,
     "rolId": 1
   }
+  
 ]

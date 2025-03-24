@@ -1,40 +1,74 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
-      static associate(models) {
-       Product.belongsTo(models.Category,{
+    static associate(models) {
+      // Relación entre Product y Category
+      Product.belongsTo(models.Category, {
         as: 'category',
-        foreignKey: 'categoryId'
-      });
-      Product.belongsTo(models.Section,{
-        as: 'section',
-        foreignKey: 'sectionId'
+        foreignKey: 'categoryId',
       });
 
-      Product.belongsTo(models.Brand,{
-         as: 'brands',
-         foreignKey: 'brandId'
+    
+      Product.belongsTo(models.Section, {
+        as: 'section',
+        foreignKey: 'sectionId',
       });
-      Product.hasMany(models.Image, {
-        as: 'images',
-        foreignKey: 'productId',
+
+     
+      Product.belongsTo(models.Brand, {
+        as: 'brand',
+        foreignKey: 'brandId',
       });
-    };
+ 
+     
     }
+  }
+
+  Product.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false, 
+      },
+      price: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      discount: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+    
+      image: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+    
+      categoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
   
-  Product.init({
-    name: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    description: DataTypes.STRING,
-    discount: DataTypes.INTEGER,
-    categoryId: DataTypes.INTEGER,
-    sectionId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Product',
-  });
+      sectionId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      brandId: {
+        type: DataTypes.INTEGER,
+        allowNull: false, 
+      },
+    },
+    {
+      sequelize,
+      modelName: 'Product',
+    }
+  );
+
   return Product;
 };

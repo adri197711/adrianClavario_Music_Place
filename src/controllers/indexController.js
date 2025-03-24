@@ -5,13 +5,15 @@ const { toThousand, paginator } = require('../utils/index');
 
 module.exports = {
   index: async (req, res) => {
+    const db = require('../database/models')
     try {
       const products = await db.Product.findAll();
-      //return res.send(products)
+      console.log('PRODUCTS PRODUCT: ', products)
       return res.render('index',
         {
           products,
         });
+        
     } catch (error) {
       console.error('Error fetching products:', error);
       return res.status(500).send('Something went wrong');

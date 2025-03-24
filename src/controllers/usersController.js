@@ -42,41 +42,37 @@ module.exports = {
       return res.render('users/login',{title:'Login'})
   },
   processLogin: async function(req, res) {
-    const { email, password } = req.body; // Asegúrate de obtener el 'password' también
-  
+    const { email, password } = req.body;
     try {
       const { User } = require('../database/models');
     
-      // Buscar el usuario por su correo electrónico
       const user = await User.findOne({
         where: { email },
         attributes: ['id', 'name', 'surname', 'username', 'email', 'password', 'avatar', 'validated', 'locked', 'token', 'createdAt', 'updatedAt']
       });
   
-      // Si no se encuentra el usuario o la contraseña no coincide
       if (!user || !bcrypt.compareSync(password, user.password)) {
         return res.render('users/login', {
           error: "Credenciales inválidas"
         });
       }
   
-      // Si las credenciales son válidas, guardar los detalles del usuario en la sesión
       const userLogin = {
         id: user.id,
         name: user.name,
-        rolId: user.rolId
+        rolId: user.rolId,
+        avatar: user.avatar,
+        email: user.email
       };
   
       req.session.userLogin = userLogin;
   
-      // Si el usuario seleccionó "recordarme"
       console.log("RECORDAR: ", req.body.recordar);
       if (req.body.recordar) {
         res.cookie("user", userLogin, { maxAge: 60000 * 60 * 30 }); // 30 minutos
       }
   
-      // Redirigir al dashboard o página de inicio después del login exitoso
-      return res.send(user); // O la ruta que desees
+      return res.render('/'); 
   
     } catch (error) {
       console.error('Error during login:', error);

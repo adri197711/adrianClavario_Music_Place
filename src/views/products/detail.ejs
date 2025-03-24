@@ -10,7 +10,7 @@
         <section class="main-detail">
 
           <article class="art-detail">
-            <img class="foto-detail" src="/images/products/<%= product.image %> " alt="Foto producto">
+            <img class="foto-detail" src="<%= product.image %> " alt="Foto producto">
 
             <p class="detail">
               <%= product.description %>
@@ -23,7 +23,7 @@
           
             <% if (product.discount !=0) { %>
               <span>
-                <%product.price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> 
+                <% product.price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> 
                 <span class="tachado">
                     $<%= product.price%>
                 </span>

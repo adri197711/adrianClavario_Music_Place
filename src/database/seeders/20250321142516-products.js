@@ -1,12 +1,13 @@
 'use strict';
 const productsJson = require('../../db/products.json');
 const {randomNumber} = require('../../utils')
-const products=productsJson.map(({name,description,price,discount}) =>{
+const products=productsJson.map(({name,description,price,discount,image}) =>{
 return {
   name,
   description,
   price,
   discount,
+  image,
   categoryId:randomNumber(2),
   sectionId:randomNumber(2),
   createdAt: new Date,
