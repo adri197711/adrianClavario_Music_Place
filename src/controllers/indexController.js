@@ -21,9 +21,7 @@ module.exports = {
 
   },
   usersAdmin: (req, res) => {
-    let products = readJson('../db/products.json')
-    const categories = readJson('../db/categories.json')
-
+  
     const { page, perPage, category, search } = req.query
 
     if (category) {
@@ -46,15 +44,12 @@ module.exports = {
     })
   },
 
-  admin: (req, res) => {
-    let products = require('../db/products.json')
-    const categories = require('../db/categories.json')
-
+  admin: async(req, res) => {
+    const db = require('../database/models')
+    try {
+      const products = await db.Product.findAll();
     const { page, perPage, category, search } = req.query
 
-    if (category) {
-      products = products.filter(product => product.category === category)
-    }
 
     if (search) {
       products = products.filter(product => product.name.toLowerCase().includes(search.toLowerCase().trim()))
@@ -63,7 +58,6 @@ module.exports = {
     const { items, total } = paginator(products, page, perPage)
 
     return res.render('admin', {
-      products,
       products: items,
       currentPage: page || 1,
       totalPages: total,
@@ -71,31 +65,38 @@ module.exports = {
       filterCategory: category,
       search,
       toThousand
-    })
-  },
+    });
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return res.status(500).send('An error occurred while fetching products');
+  }
+},
 
-  users: (req, res) => {
-    let users = readJson('../db/users.json')
-    const roles = readJson('../db/roles.json')
+  users: async(req, res) => {
 
-    const { page, perPage, rol, search } = req.query
+    const { User, Rol } = require('../database/models'); 
+    const { page, perPage, rol, search } = req.query;
+
+    let whereCondition = {};
 
     if (rol) {
-      users = users.filter(user => user.rol === rol)
+      whereCondition.rol = rol;
     }
 
     if (search) {
-      users = users.filter(user => user.name.toLowerCase().includes(search.toLowerCase().trim()))
+     whereCondition.name = {
+        [Sequelize.Op.iLike]: `%${search.toLowerCase().trim()}%`
+     };
     }
 
-    const { items, total } = paginator(users, page, perPage)
+    const { items, total } = paginator(User, page, perPage)
 
     return res.render('user', {
-      users,
-      users: items,
+      User,
+      User: items,
       currentPage: page || 1,
       totalPages: total,
-      roles,
+      Rols,
       filterrol: rol,
       search,
       toThousand

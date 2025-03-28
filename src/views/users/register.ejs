@@ -32,17 +32,17 @@
         <input class="reg-input"  type="password" name="confirmPassword" id="confirmPassword" autocomplete="off">
         <span id="show-hide">Show/Hide</span>
         <div class="errorMessage" id="confirmPasswordError"></div><br>
-
+<!-- 
         <label for="rol" class="form-label">Rol</label>
           <select name="rol" id="rol" class="reg-input">
             <option value="" hidden selected>Rol del usuario</option>
-            <% roles.forEach(rol=> { %>
-              <option value="<%= rol %>">
-                <%= rol=="user" ? 'Usuario' : 'Administrador' %>
+            % Rol.forEach(rol=> { %>
+              <option value="%= rolId %>">
+                %= rolId == 1 ? 'Usuario' : 'Administrador' %>
               </option>
-              <% }) %>
+              % }) %>
           </select>
-          <br>
+          <br> -->
 
         <br>
         <label for="avatar" class="reg-label" >Imagen de Usuario</label>
