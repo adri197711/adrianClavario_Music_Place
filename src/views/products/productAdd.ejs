@@ -36,10 +36,34 @@
 
   
   <!-- Sección -->
+   <select name="sectionId" id="">
+    <option value="" hidden selected>Seleccione...</option>
+    <% sections.forEach(s => { %>
+     <option value="<%= s.id %>"><%= s.name %></option>
+    <% }) %>
+   </select>
+
+     
+  <!-- Categoría -->
+  <select name="categoryId" id="">
+    <option value="" hidden selected>Seleccione...</option>
+    <% categories.forEach(c => { %>
+     <option value="<%= c.id %>"><%= c.name %></option>
+    <% }) %>
+   </select>
+
+     
+  <!-- Marca -->
+  <select name="brandId" id="">
+    <option value="" hidden selected>Seleccione...</option>
+    <% brands.forEach(b => { %>
+     <option value="<%= b.id %>"><%= b.name %></option>
+    <% }) %>
+   </select>
   
   <!-- Imagen -->
   <label for="image" class="form-label">Imagen</label>
-  <input class="reg-input" type="file" name="image" id="image" required>
+  <input class="reg-input" type="file" name="image" id="image">
   
   <!-- Descripción -->
   <label for="description" class="form-label">Descripción:</label>

@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     locked: DataTypes.BOOLEAN,
     token: DataTypes.STRING,
     rolId: DataTypes.INTEGER,
-    orderId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'User',

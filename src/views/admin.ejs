@@ -12,29 +12,27 @@
         <th class="thId">ID</th>
         <th>Producto</th>
         <th>Marca</th>
-        <th>Modelo</th>
-        <th>color</th>
+        <th>Categoria</th>
+        <th>Sección</th>
         <th>Precio</th>
         <th>Descuento</th>
         <th>Descripción</th>
-        <th>Categoria</th>
         <th>   <div>
           <a class="btn btn-sm btn-new " href="/products/add">Agregar producto</a>
         </div></th>
       </tr>
     </thead>
     <tbody>
-      <% products.forEach(({id,name,price,discount,description,category,brand,color,model}) => {%>
+      <% products.forEach(({id,name,price,discount,description,category,brand,section}) => {%>
         <tr>
           <th scope="row"><%= id %></th>
           <td><%=name%></td>
-          <td><%=brand%></td>
-          <td><%=model%></td>
-          <td><%=color%></td>
+          <td><%=brand.name%></td>
+          <td><%=category.name%></td>
+          <td><%=section.name%></td>
           <td><%=price%></td>
           <td><%=discount%></td>
           <td><%=description%></td>
-          <td><%=category%></td>
           <td>
             <div class="d-flex gap-2">
           <div>
@@ -54,11 +52,7 @@
   </tbody>
   </table>
   <tfoot>
-    <%- include('./partials/pager', {
-    path : '/admin/products',
-    currentPage,
-    totalPages
-  }) %>
+   
 </tfoot>
 </main>
 

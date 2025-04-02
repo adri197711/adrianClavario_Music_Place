@@ -10,26 +10,31 @@ module.exports = {
 
   processRegister: async (req, res) => {
     try {
-      const { name, surname, username, email, password,token,validated,locked,rolId,createdAt,updatedAt } = req.body;
+      const { name, surname, username, email, password} = req.body;
       const avatar = req.file ? req.file.filename : null;
 
-      const newUser = await User.create({
+      // TODO : VALIDAR LOS DATOS INGRESADOS EN EL FORMULARIO
+
+      await User.create({
         name,
         surname,
         username,
         email,
         avatar,
         password: bcrypt.hashSync(password, 10),
-        token,
-        validated,
-        locked,
-        rolId,
-        createdAt,
-        updatedAt
+        token : null,
+        validated : false,
+        locked : false,
+        rolId : 3,
       });
-      res.status(201).json({ message: 'Usuario agregado con éxito', user: newUser });
+      // !ERROR: NO ESTÁS CONSTRUYENDO UNA API REST PARA DEVOLVER UN JSON 
+      // res.status(201).json({ message: 'Usuario agregado con éxito', user: newUser });
+      return res.redirect('/users/login')
     } catch (error) {
-      res.status(500).json({ message: 'Error al crear el Usuario', error: error.message });
+      // !ERROR: NO ESTÁS CONSTRUYENDO UNA API REST PARA DEVOLVER UN JSON 
+      //res.status(500).json({ message: 'Error al crear el Usuario', error: error.message });
+      // TODO: ENVIAR ERRORES DE VALIDACIÓN
+      return res.render('users/register')
     }
   },
 
@@ -44,7 +49,7 @@ module.exports = {
 
       const user = await User.findOne({
         where: { email },
-        attributes: ['id', 'name', 'surname', 'username', 'email', 'password', 'avatar', 'validated', 'locked', 'token', 'createdAt', 'updatedAt']
+        attributes: ['id', 'name', 'surname', 'username', 'email', 'password', 'avatar', 'validated', 'locked', 'token', 'rolId']
       });
 
       if (!user || !bcrypt.compareSync(password, user.password)) {
@@ -79,18 +84,16 @@ module.exports = {
   },
 
   profile: async (req, res) => {
-    const { id } = req.params
 
-    const user = await User.findByPk(id);
+    const user = await User.findByPk(req.session.userLogin.id);
 
     return res.render('users/profile', {
-      ...user
+      ...user.dataValues
     })
   },
 
   update: async(req, res) => {
-    const { User } = require('../database/models')
-    const { name, surname, username, email, avatar, password }
+    const { name, surname, username, email }
       = req.body;
 
     try {
@@ -99,19 +102,16 @@ module.exports = {
         surname : surname.trim(),
         username : username.trim(),
         email : email.trim(),
-        password : password,
-        avatar : avatar,
-        token : null,
-        validated : true,
-        locked : false,
-        rolId : rolId
       },
-        { where: { id } });
+        { where: { id: req.session.userLogin.id } });
       console.log('users MODIFY: ', usersModify)
 
-      return res.redirect('/user')
+      return res.redirect('/users/profile')
     } catch (error) {
-      return res.status(500).send('Internal Server Error');
+      return res.render('users/profile')
+      
+      // !ERROR: NO ESTÁS CONSTRUYENDO UNA API REST PARA DEVOLVER UN JSON 
+      // return res.status(500).send('Internal Server Error');
     }
   },
 
@@ -129,13 +129,15 @@ module.exports = {
     const user = await User.findByPk(id);
    
       if (!user) {
-        return res.status(404).send('Usuario no encontrado');
+        // !ERROR: NO ESTÁS CONSTRUYENDO UNA API REST PARA DEVOLVER UN JSON 
+        // return res.status(404).send('Usuario no encontrado');
       }
   
       await user.destroy();
-      return res.redirect('/admin');
+      return res.redirect('/');
     } catch (error) {
-      return res.status(500).send('Internal Server Error');
+      // !ERROR: NO ESTÁS CONSTRUYENDO UNA API REST PARA DEVOLVER UN JSON 
+      // return res.status(500).send('Internal Server Error');
     }
   }
 }    

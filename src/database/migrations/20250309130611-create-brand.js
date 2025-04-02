@@ -12,15 +12,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      model: {
-        type: Sequelize.STRING
-      },
-      color: {
-        type: Sequelize.STRING
-      },
-      productId: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

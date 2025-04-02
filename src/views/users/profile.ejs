@@ -40,15 +40,6 @@
       value="<%= email %>">
       <div class="error" id="errorEmail"></div>
       <br>
-   
-      <label for="" class="form-label">Rol</label>
-      <select name="rol" id="rol" class="form-control form-select-lg py-3">
-        <% roles.forEach(rol=> { %>
-          <option value="<%= rol %>">
-            <%= rol=="user" ? 'Usuario' : 'Administrador' %>
-          </option>
-          <% }) %>
-      </select>
 
       <!-- <label for="password">Password</label>
       <input  class="reg-input" type="password" id="password" name="password"   required autocomplete="off">
