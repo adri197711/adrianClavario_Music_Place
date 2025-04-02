@@ -8,6 +8,7 @@ return {
   price,
   discount,
   image,
+  brandId : randomNumber(5),
   categoryId:randomNumber(2),
   sectionId:randomNumber(2),
   createdAt: new Date,

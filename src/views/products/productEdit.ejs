@@ -1,53 +1,75 @@
 <!DOCTYPE html>
 <html>
-  <%- include('.././partials/headAdmin', {title:'Editar producto'}) %>
+
+<%- include('../partials/head',{ title:'Editar producto' }) %>
+
   <body>
-    <%- include('.././partials/headAdmin', {title:'Editar producto'}) %>
     <main class="body">
+
       <div id="registroForm">
-        
-    <h2 class="h2-edit" >Editar producto</h2>
-    <form action="/products/update/<%= id %>?_method=PUT"
-       method="POST" id="formAddProduct">
+
+        <h2 class="tit-reg">Editar producto</h2>
+<form action="/products/update/<%= id %>?_method=PUT" method="POST" id="formAddProduct" enctype="multipart/form-data">
+  <br>
+  
+  <!-- Nombre del producto -->
+  <label for="name">Nombre del producto</label>
+  <input class="reg-input" type="text" id="name" name="name" required value="<%= name %>">
+  <div class="error" id="errorProduct"></div>
+  <br>
+
+  <!-- Marca -->
+  
 
 
-      <label for="name">Producto</label>
-      <input class="reg-input"  type="text" value="<%= name %>"  id="productname" name="name" >
-      <div class="error" id="errorproduct"></div>
-      <br>
-       
-      <br>
-      
-      <label for="price">Precio</label>
-      <input  class="reg-input" type="number" value="<%= price %>" id="price" name="price" >
-      <div class="error" id="errorPrice"></div>
-      <br>
-      <label for="discount">Descuento</label>
-      <input class="reg-input" type="text" value="<%= discount %>"  id="discount" name="discount" autocomplete="off">
-      <div class="error" id="errordiscount"></div>
-      <br>
-      <!-- <label for="category" class="form-label">Categoría:</label>
-      <select class="reg-input" name="category" id="category" class="form-control form-select-lg py-3">
-        % categories.forEach(category=> { %>
-          <option value="%= category %>">
-            %= category=="in-sale" ? 'Ofertas' : 'Ultimos agregados' %>
-          </option>
-          % }) %> 
-      </select>-->
-<br>
-<br>
-      <label for="image" class="form-label">Imagen</label>
-      <input class="reg-input" type="file" name="image" id="image">
+  <!-- Precio -->
+  <label for="price">Precio</label>
+  <input class="reg-input" type="number" id="price" name="price" required value="<%= price %>">
+  <div class="error" id="errorPrice"></div>
+  <br>
 
-      <label for="description" class="form-label">Descripción:</label>
-      <textarea name="description" id="description"  style="resize: none;"
-        rows="5" cols="2"><%=description%></textarea>
+  <!-- Descuento -->
+  <label for="discount">Descuento</label>
+  <input class="reg-input" type="number" id="discount" name="discount" value="<%= discount %>">
+  <div class="error" id="errorDiscount"></div>
+  <br>
 
-<br>
-        <button type="submit" class="btn btn-outline-dark">Actualizar Producto</button>
-    </form>
-    
-  </div>
+  
+  <!-- Sección -->
+   <select name="sectionId" id="">
+    <% sections.forEach(s => { %>
+     <option value="<%= s.id %>" <%= sectionId == s.id && 'selected' %>><%= s.name %></option>
+    <% }) %>
+   </select>
+
+     
+  <!-- Categoría -->
+  <select name="categoryId" id="">
+    <% categories.forEach(c => { %>
+     <option value="<%= c.id %>" <%= categoryId == c.id && 'selected' %>><%= c.name %></option>
+    <% }) %>
+   </select>
+
+     
+  <!-- Marca -->
+  <select name="brandId" id="">
+    <% brands.forEach(b => { %>
+     <option value="<%= b.id %>" <%= brandId == b.id && 'selected' %>><%= b.name %></option>
+    <% }) %>
+   </select>
+  
+  <!-- Imagen -->
+  <label for="image" class="form-label">Imagen</label>
+  <input class="reg-input" type="file" name="image" id="image">
+  
+  <!-- Descripción -->
+  <label for="description" class="form-label">Descripción:</label>
+  <textarea name="description" id="description" class="textarea" rows="8"><%= description %></textarea>
+  <br>
+  
+  <button type="submit" class="reg-button">Actualizar producto</button>
+</form>
+</div>
 
 </body>
 

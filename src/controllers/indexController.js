@@ -1,92 +1,88 @@
-const { readJson } = require('../utils/filesystem');
-const path = require('path')
 const db = require('../database/models')
-const { toThousand, paginator } = require('../utils/index');
+const { toThousand, paginator } = require('../utils/index')
 
 module.exports = {
   index: async (req, res) => {
-    const db = require('../database/models')
     try {
-      const products = await db.Product.findAll();
-      console.log('PRODUCTS PRODUCT: ', products)
+      const products = await db.Product.findAll()
       return res.render('index',
         {
-          products,
-        });
-        
+          products
+        })
     } catch (error) {
-      console.error('Error fetching products:', error);
-      return res.status(500).send('Something went wrong');
+      console.error('Error fetching products:', error)
+      return res.status(500).send('Something went wrong')
     }
-
   },
-  usersAdmin: (req, res) => {
-  
-    const { page, perPage, category, search } = req.query
+  usersAdmin: async (req, res) => {
+    try {
+      const { page, perPage, category, search } = req.query
 
-    if (category) {
-      products = products.filter(product => product.category === category)
+      let options
+
+      if (category) {
+        options = {
+          where : {
+            categoryId : category
+          }
+        }
+      }
+      const [products, categories] =  await Promise.all([
+        db.Product.findAll(options),
+        db.Category.findAll()
+      ]) 
+
+
+      const { items, total } = paginator(products, page, perPage)
+      return res.render('usersAdmin', {
+        products: items,
+        currentPage: page || 1,
+        totalPages: total,
+        categories,
+        products,
+        toThousand
+      })
+    } catch (error) {
+      console.log(error); 
     }
-
-    if (search) {
-      products = products.filter(product => product.name.toLowerCase().includes(search.toLowerCase().trim()))
-    }
-
-    const { items, total } = paginator(products, page, perPage)
-
-    return res.render('usersAdmin', {
-      products: items,
-      currentPage: page || 1,
-      totalPages: total,
-      categories,
-      products,
-      toThousand
-    })
   },
 
-  admin: async(req, res) => {
+  admin: async (req, res) => {
     const db = require('../database/models')
     try {
-      const products = await db.Product.findAll();
-    const { page, perPage, category, search } = req.query
+     
+      const [products, categories] =  await Promise.all([
+        db.Product.findAll({
+          include : ['category','section', 'brand']
+        }),
+        db.Category.findAll()
+      ]) 
 
-
-    if (search) {
-      products = products.filter(product => product.name.toLowerCase().includes(search.toLowerCase().trim()))
+      return res.render('admin', {
+        products,
+        toThousand
+      })
+    } catch (error) {
+      console.error('Error fetching products:', error)
+      return res.status(500).send('An error occurred while fetching products')
     }
+  },
 
-    const { items, total } = paginator(products, page, perPage)
+  users: async (req, res) => {
 
-    return res.render('admin', {
-      products: items,
-      currentPage: page || 1,
-      totalPages: total,
-      categories,
-      filterCategory: category,
-      search,
-      toThousand
-    });
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    return res.status(500).send('An error occurred while fetching products');
-  }
-},
+    const { User, Rol } = require('../database/models')
+    const { page, perPage, rol, search } = req.query
 
-  users: async(req, res) => {
-
-    const { User, Rol } = require('../database/models'); 
-    const { page, perPage, rol, search } = req.query;
-
-    let whereCondition = {};
+    let whereCondition = {}
 
     if (rol) {
-      whereCondition.rol = rol;
+      whereCondition.rol = rol
     }
 
     if (search) {
-     whereCondition.name = {
+      whereCondition.name = {
         [Sequelize.Op.iLike]: `%${search.toLowerCase().trim()}%`
-     };
+      }
     }
 
     const { items, total } = paginator(User, page, perPage)
