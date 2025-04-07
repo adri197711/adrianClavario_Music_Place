@@ -45,36 +45,48 @@ detail: async(req,res) => {
 },
 create: async (req, res) => {
   try {
-      const { name, price, discount, description } = req.body; 
+      const { name, price, discount, description, categoryId,sectionId } = req.body; 
       const image = req.file ? req.file.filename : null; 
       const newProduct = await Product.create({
           name,
           price,
           discount,
           description,
+          categoryId:1,
+          sectionId:1,
           image,
       });
-
-      res.status(201).json({ message: 'Producto creado con éxito', product: newProduct });
-  } catch (error) {
+      
+res.redirect('/admin')
+    } catch (error) {
       res.status(500).json({ message: 'Error al crear el producto', error: error.message });
-  }
-},
-
-edit: async (req, res) => {
-  try {
-    const { Product } = require('../database/models');
+    }
+  },
+  
+  edit: async (req, res) => {
+    try {
+      const { Product } = require('../database/models');
     const id = req.params.id;
 
+    
     const product = await Product.findByPk(id);
+
+    if (!product) {
+      return res.status(404).render('errors/404', { message: 'Product not found' });
+    }
+
     console.log(product);
-    
-    res.send(product)
-    
+
+    res.render('products/productEdit', { product });
+
   } catch (error) {
     console.error(error);
+   
+    res.status(500).render('errors/500', { message: 'Internal Server Error' });
   }
 },
+
+
 
 
 update: async(req, res) => {

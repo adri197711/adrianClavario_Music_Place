@@ -11,37 +11,25 @@
         <h2 class="tit-reg">Agregar producto</h2>
 <form action="/products/create" method="POST" id="formAddProduct" enctype="multipart/form-data">
   <br>
-  
-  <!-- Nombre del producto -->
+ 
   <label for="name">Nombre del producto</label>
   <input class="reg-input" type="text" id="name" name="name" required>
   <div class="error" id="errorProduct"></div>
   <br>
 
-  <!-- Marca -->
-  
-
-
-  <!-- Precio -->
   <label for="price">Precio</label>
   <input class="reg-input" type="number" id="price" name="price" required>
   <div class="error" id="errorPrice"></div>
   <br>
 
-  <!-- Descuento -->
   <label for="discount">Descuento</label>
   <input class="reg-input" type="number" id="discount" name="discount">
   <div class="error" id="errorDiscount"></div>
   <br>
 
-  
-  <!-- Sección -->
-  
-  <!-- Imagen -->
   <label for="image" class="form-label">Imagen</label>
   <input class="reg-input" type="file" name="image" id="image" required>
   
-  <!-- Descripción -->
   <label for="description" class="form-label">Descripción:</label>
   <textarea name="description" id="description" class="textarea" rows="8"></textarea>
   <br>

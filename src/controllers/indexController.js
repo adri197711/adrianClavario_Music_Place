@@ -1,14 +1,13 @@
 const { readJson } = require('../utils/filesystem');
 const path = require('path')
 const db = require('../database/models')
-const { toThousand, paginator } = require('../utils/index');
+const { toThousand, paginator } = require('../utils/index.js');
 
 module.exports = {
   index: async (req, res) => {
     const db = require('../database/models')
     try {
       const products = await db.Product.findAll();
-      console.log('PRODUCTS PRODUCT: ', products)
       return res.render('index',
         {
           products,
@@ -44,60 +43,66 @@ module.exports = {
     })
   },
 
-  admin: async(req, res) => {
-    const db = require('../database/models')
+  admin: async (req, res) => {
+    const db = require('../database/models');
     try {
-      const products = await db.Product.findAll();
-    const { page, perPage, category, search } = req.query
-
-
-    if (search) {
-      products = products.filter(product => product.name.toLowerCase().includes(search.toLowerCase().trim()))
+      let products = await db.Product.findAll();
+      
+      const { page, perPage, category, search } = req.query;
+      const categories = await db.Category.findAll(); 
+  
+      if (category) {
+        products = products.filter(product => product.categoryId === parseInt(category));
+      }
+  
+      if (search) {
+        products = products.filter(product =>
+          product.name.toLowerCase().includes(search.toLowerCase().trim())
+        );
+      }
+  
+      const { items, total } = paginator(products, page, perPage);
+  
+      return res.render('admin', {
+        products: items,
+        currentPage: page || 1,
+        totalPages: total,
+        categories,
+        filterCategory: category,
+        search,
+        toThousand, 
+      });
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      return res.status(500).send('An error occurred while fetching products');
     }
-
-    const { items, total } = paginator(products, page, perPage)
-
-    return res.render('admin', {
-      products: items,
-      currentPage: page || 1,
-      totalPages: total,
-      categories,
-      filterCategory: category,
-      search,
-      toThousand
-    });
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    return res.status(500).send('An error occurred while fetching products');
-  }
-},
-
+  },
+  
   users: async(req, res) => {
 
-    const { User, Rol } = require('../database/models'); 
-    const { page, perPage, rol, search } = req.query;
+    const { User, Rol} = require('../database/models'); 
+    const { page, perPage, rolId, search } = req.query;
 
     let whereCondition = {};
 
-    if (rol) {
-      whereCondition.rol = rol;
+    if (rolId) {
+      whereCondition.rolId = rolId;
     }
 
     if (search) {
      whereCondition.name = {
-        [Sequelize.Op.iLike]: `%${search.toLowerCase().trim()}%`
+        [Sequelize.Op.Like]: `%${search.toLowerCase().trim()}%`
      };
     }
 
     const { items, total } = paginator(User, page, perPage)
 
-    return res.render('user', {
+    return res.render('User', {
       User,
       User: items,
       currentPage: page || 1,
       totalPages: total,
-      Rols,
-      filterrol: rol,
+      filterrol: rolId,
       search,
       toThousand
     })

@@ -6,35 +6,31 @@
     <%- include('./partials/headerAdmin', {title: 'Administrar Productos' }) %>
 
   <main class="mainAdmin">
-  <table border="3" >
+  <table border="1">
     <thead>
       <tr>
-        <th class="thId">ID</th>
+        <th class="">ID</th>
         <th>Producto</th>
-        <th>Marca</th>
-        <th>Modelo</th>
-        <th>color</th>
         <th>Precio</th>
         <th>Descuento</th>
         <th>Descripción</th>
-        <th>Categoria</th>
+        <th>Categoría</th>
+        <th>Sección</th>
         <th>   <div>
           <a class="btn btn-sm btn-new " href="/products/add">Agregar producto</a>
         </div></th>
       </tr>
     </thead>
     <tbody>
-      <% products.forEach(({id,name,price,discount,description,category,brand,color,model}) => {%>
+      <% products.forEach(({id,name,price,discount,description,categoryId,sectionId, image}) => {%>
         <tr>
           <th scope="row"><%= id %></th>
           <td><%=name%></td>
-          <td><%=brand%></td>
-          <td><%=model%></td>
-          <td><%=color%></td>
           <td><%=price%></td>
           <td><%=discount%></td>
           <td><%=description%></td>
-          <td><%=category%></td>
+          <td><%=categoryId%></td>
+          <td><%=sectionId%></td>
           <td>
             <div class="d-flex gap-2">
           <div>
