@@ -21,7 +21,7 @@
       </tr>
     </thead>
     <tbody>
-      <% users.forEach(({id,name,surname,username,email,rol}) => {%>
+      <% users.forEach(({id,name,surname,username,email,rolId}) => {%>
         <tr>
           <th scope="row"><%= id %></th>
           <td><%=name%></td>
@@ -31,7 +31,7 @@
           <td><%=rolId%></td>
           <td> <div class="d-flex gap-2">
           <div>
-              <a href="/users/edit/<%= id %>" class=" btn btn-edit">Editar</a>
+              <a href="/users/profile/<%=id%>" class=" btn btn-edit">Editar</a>
             </div>			
             
               

@@ -4,13 +4,13 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     
     static associate(models) {
-      // define association here
       User.belongsTo(models.Rol,{
         as: 'rol',
         foreignKey: 'rolId'
       });
       }
   }
+
   User.init({
     name: DataTypes.STRING,
     surname: DataTypes.STRING,
@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     locked: DataTypes.BOOLEAN,
     token: DataTypes.STRING,
     rolId: DataTypes.INTEGER,
-    orderId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'User',

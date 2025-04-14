@@ -33,6 +33,16 @@ module.exports = {
           key: 'id'
         }
       },
+      brandId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Brands',  
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      },
       categoryId: {
         type: Sequelize.INTEGER,
         references: {

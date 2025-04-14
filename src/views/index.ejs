@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html>
-<%- include('./partials/head',{title:'index'}) %>
+<%- include('./partials/head', { title: 'index' }) %>
 
-  <body>
-    <%- include('./partials/header') %>
-      <main class="main-index">
-        <%- include('./partials/slider') %>         
-        
-        
-        <article class="fotos">
-          <% products.forEach((product) => {%>
+<body>
+  <%- include('./partials/header') %>
 
- <a href="../products/detail/<%= product.id %>"> 
-  <img 
-  src="<%= product.image %>"
-   alt="Imagen del producto"></a>
+  <main class="main-index">
+    <%- include('./partials/slider') %>
 
-<%})%>
-</article>
-           
-        <%- include('./partials/footer') %>
-      </body>
-    
-    </html>
+      <% products.forEach((product) => { %>
+        <a href="../products/detail/<%= product.id %>"> 
+          
+        <section class="index-container">
+        <article class="index-card">
+          <img class="index-fotos" src="<%= product.image %>" alt="<%= product.name %>">
+
+          <div class="index-info">
+            <h3 class="index-detail"><%= product.name %></h3>
+            <p class="detail"><%= product.description %></p>
+
+            <% if (product.discount != 0) { %>
+              <p>
+                <span class="tachado">
+                  $<%= product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %>
+                </span>
+                <strong class="discountCard"> / <%= product.discount %>% OFF</strong>
+              </p>
+            <% } %>
+
+            <h2 class="price-detail">
+              Precio $
+              <%= (product.price - product.price * product.discount / 100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %>
+            </h2>
+          </div>
+        </article>
+      </section>
+      <% }) %>
+  </main>
+
+  <%- include('./partials/footer') %>
+</body>
+</html>

@@ -5,7 +5,8 @@ const { User } = require('../database/models')
 module.exports = {
 
   register: (req, res) => {
-    return res.render('users/register'), { title: 'Cargar Usuario' }
+    return res.render('users/register'), {
+      title: 'Cargar Usuario' }
   },
 
   processRegister: async (req, res) => {
@@ -13,7 +14,7 @@ module.exports = {
       const { name, surname, username, email, password,token,validated,locked,rolId,createdAt,updatedAt } = req.body;
       const avatar = req.file ? req.file.filename : null;
 
-      const newUser = await User.create({
+      await User.create({
         name,
         surname,
         username,
@@ -27,9 +28,9 @@ module.exports = {
         createdAt,
         updatedAt
       });
-      res.status(201).json({ message: 'Usuario agregado con éxito', user: newUser });
+      return res.redirect('/users/login')
     } catch (error) {
-      res.status(500).json({ message: 'Error al crear el Usuario', error: error.message });
+      return res.redirect('/users/login')
     }
   },
 
@@ -37,6 +38,7 @@ module.exports = {
   login: function (req, res) {
     return res.render('users/login', { title: 'Login' })
   },
+
   processLogin: async function (req, res) {
     const { email, password } = req.body;
     try {
@@ -44,7 +46,7 @@ module.exports = {
 
       const user = await User.findOne({
         where: { email },
-        attributes: ['id', 'name', 'surname', 'username', 'email', 'password', 'avatar', 'validated', 'locked', 'token', 'createdAt', 'updatedAt']
+        attributes: ['id', 'name', 'surname', 'username', 'email', 'password', 'avatar', 'validated', 'locked', 'token', 'rolId']
       });
 
       if (!user || !bcrypt.compareSync(password, user.password)) {
@@ -63,7 +65,6 @@ module.exports = {
 
       req.session.userLogin = userLogin;
 
-      console.log("RECORDAR: ", req.body.recordar);
       if (req.body.recordar) {
         res.cookie("user", userLogin, { maxAge: 60000 * 60 * 30 }); // 30 minutos
       }
@@ -79,38 +80,43 @@ module.exports = {
   },
 
   profile: async (req, res) => {
-    const { id } = req.params
-
-    const user = await User.findByPk(id);
+   const id = req.session.userLogin.id;
+const user = await
+User.findByPk(id);
 
     return res.render('users/profile', {
-      ...user
+      user: user.get({ plain: true })
+ 
     })
   },
 
-  update: async(req, res) => {
-    const { User } = require('../database/models')
-    const { name, surname, username, email, avatar, password }
+  update: async (req, res) => {
+    const { id } = req.params;
+    const { name, surname, username, email, avatar, password , rolId}
       = req.body;
+  try {
+    const existingUser = await User.findByPk(id);
 
-    try {
+    if (!existingUser) {
+      return res.status(404).send('Usuario no encontrado');
+    }
       const usersModify = await User.update({
         name : name.trim(),
         surname : surname.trim(),
         username : username.trim(),
         email : email.trim(),
         password : password,
-        avatar : avatar,
+        avatar: req.file ? req.file.filename : existingUser.avatar,
         token : null,
         validated : true,
         locked : false,
         rolId : rolId
       },
-        { where: { id } });
-      console.log('users MODIFY: ', usersModify)
-
+      { where: { id } });
+      console.log('USERS MODIFY' , usersModify)
       return res.redirect('/user')
     } catch (error) {
+      console.error('ERROR EN UPDATE USER:', error)
       return res.status(500).send('Internal Server Error');
     }
   },
@@ -131,12 +137,13 @@ module.exports = {
       if (!user) {
         return res.status(404).send('Usuario no encontrado');
       }
-  
-      await user.destroy();
-      return res.redirect('/admin');
-    } catch (error) {
-      return res.status(500).send('Internal Server Error');
+        await user.destroy();
+        return res.redirect('/');
+     } catch (error) {
+        return res.status(500).send('Internal Server Error');
     }
   }
-}    
+}
+  
+     
     

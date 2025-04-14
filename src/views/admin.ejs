@@ -9,28 +9,27 @@
   <table border="1">
     <thead>
       <tr>
-        <th class="">ID</th>
+        <th class="thId">ID</th>
         <th>Producto</th>
+        <th>Marca</th>
+       
         <th>Precio</th>
         <th>Descuento</th>
         <th>Descripción</th>
-        <th>Categoría</th>
-        <th>Sección</th>
         <th>   <div>
           <a class="btn btn-sm btn-new " href="/products/add">Agregar producto</a>
         </div></th>
       </tr>
     </thead>
     <tbody>
-      <% products.forEach(({id,name,price,discount,description,categoryId,sectionId, image}) => {%>
+      <% products.forEach(({id,name,brandId,categoryId,sectionId,price,discount,description, image}) => {%>
         <tr>
-          <th scope="row"><%= id %></th>
+          <th scope=""><%= id %></th>
           <td><%=name%></td>
+           <td><%=brandId%></td>
           <td><%=price%></td>
           <td><%=discount%></td>
           <td><%=description%></td>
-          <td><%=categoryId%></td>
-          <td><%=sectionId%></td>
           <td>
             <div class="d-flex gap-2">
           <div>

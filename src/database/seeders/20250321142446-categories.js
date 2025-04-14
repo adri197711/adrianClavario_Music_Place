@@ -4,7 +4,7 @@ const { DATE } = require('sequelize');
 const categoriesJson = require('../../db/categories.json');
 const categories = categoriesJson.map(category => {
   return {
-    name: category.name,
+    name: category,
     createdAt: new Date,
     updatedAt: new Date,
   }

@@ -16,6 +16,28 @@
   <input class="reg-input" type="text" id="name" name="name" required>
   <div class="error" id="errorProduct"></div>
   <br>
+  <label for="sectionId">Sección</label>
+  <select name="sectionId" id="section">
+    <option value="" hidden selected>Seleccione sección...</option>
+    <% sections.forEach(s => { %>
+     <option value="<%= s.id %>"><%= s.name %></option>
+    <% }) %>
+   </select>
+   <label for="brand">Marca</label>
+   <select name="brandId" id="brand">
+     <option value="" hidden selected>Seleccione marca...</option>
+     <% brands.forEach(b => { %>
+      <option value="<%= b.id %>"><%= b.name %></option>
+     <% }) %>
+    </select>
+    <label for="category">Categoría</label>
+  <select name="categoryId" id="category">
+    <option value="" hidden selected>Seleccione categoria...</option>
+    <% categories.forEach(c => { %>
+     <option value="<%= c.id %>"><%= c.name %></option>
+    <% }) %>
+   </select>
+  <br>
 
   <label for="price">Precio</label>
   <input class="reg-input" type="number" id="price" name="price" required>
@@ -28,7 +50,7 @@
   <br>
 
   <label for="image" class="form-label">Imagen</label>
-  <input class="reg-input" type="file" name="image" id="image" required>
+  <input class="reg-input" type="file" name="image" id="image">
   
   <label for="description" class="form-label">Descripción:</label>
   <textarea name="description" id="description" class="textarea" rows="8"></textarea>

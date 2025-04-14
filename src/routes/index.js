@@ -7,7 +7,7 @@ const adminCheck = require('../middlewares/adminCheck')
 router
     .get('/',index)
     .get('/admin',admin)
-    .get('/user',adminCheck,users)
+    .get('/user',users)
     .get('/user/admin',usersAdmin)
      .get('/admin/products',admin)
    .get('/user/users',users)

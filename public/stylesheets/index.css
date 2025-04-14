@@ -5,7 +5,7 @@ main {
   margin: 0 auto;
   padding: 2rem;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
   align-content: center;
   justify-content:center;
   align-items: center;
@@ -13,20 +13,35 @@ main {
 .main-index{
   background: #000;
 }
-.fotos{
-  margin: 0 auto;
+.index-container{
+  display: flex;
+  flex-direction: row;
 }
-.fotos img{
-  width: 18%;
+.index-card{
+  margin: 0 auto;
+  padding: .5rem;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+  border-radius: 10px;
+  width: 55%;
+}
+
+
+.index-fotos{
+  width: 50%;
   height: 30%;
   border-radius: 20px;
   margin: 1rem ;
   text-align: center;
-  border: none;
+  border: 1px solid white;
 }
 
-.fotos img:hover{
+.index-fotos:hover{
   box-shadow: 1px 2px 8px 15px rgba(255, 255, 255, 0.891);
+}
+.index-detail{
+  color: brown;
 }
 
 

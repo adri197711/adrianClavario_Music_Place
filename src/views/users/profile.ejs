@@ -1,62 +1,38 @@
 <!DOCTYPE html>
 <html>
   <%- include('.././partials/headAdmin', {title:'Editar usuario'}) %>
-  <body>
-    <%- include('.././partials/headAdmin', {title:'Editar usuario'}) %>
  
-
 <body>
   <main class="body">
   <div id="registroForm">
 
-    <h2 class="tit-reg">Actualizar Legajo</h2>
+    <h2 class="tit-reg">Actualizar Legajo de usuario</h2>
 
-    <form  action="/users/update/<%=id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <form  action="/users/update/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
       <label for="name">Nombre</label>
       <input class="reg-input" type="text" id="nombre" name="name"
-      value="<%= name %>">
+      value="<%=user.name%>">
       <div class="error" id="errorNombre"></div>
       <br>
 
       <label for="surname">Apellido</label>
       <input class="reg-input"  type="text" id="surname" name="surname" 
-      value="<%=surname%>">
+      value="<%=user.surname%>">
       <div class="error" id="errorApellido"></div>
 
       <label for="username">Usuario</label>
       <input class="reg-input"  type="text" id="username" name="username"   
-      value="<%=username%>">
+      value="<%=user.username%>">
       <div class="error" id="errorUsername"></div>
       <br>
-<!--        
-      <label for="avatar">Foto Usuario</label>
-      <input class="reg-input"  type="file" id="avatar" name="avatar" value="%=avatar%>">
-      <div class="error" id="errorAvatar"></div>
-      <br> -->
-       
+
       <label for="email">Email</label>
       <input class="reg-input"  type="email" id="email" name="email" 
-      value="<%= email %>">
+      value="<%=user.email%>">
       <div class="error" id="errorEmail"></div>
       <br>
    
-      <label for="" class="form-label">Rol</label>
-      <select name="rol" id="rol" class="form-control form-select-lg py-3">
-        <% roles.forEach(rol=> { %>
-          <option value="<%= rol %>">
-            <%= rol=="user" ? 'Usuario' : 'Administrador' %>
-          </option>
-          <% }) %>
-      </select>
-
-      <!-- <label for="password">Password</label>
-      <input  class="reg-input" type="password" id="password" name="password"   required autocomplete="off">
-      <span id="show-hide">Show/Hide</span>
-      <div class="error" id="errorPassword"></div>
-      <br> -->
-
-     
       <div>
       <label class="inline">Acepto Términos y condiciones</label>
       <input type="checkbox" name="aceptoTerminos" class="check" id="check"  checked="off"
@@ -67,12 +43,12 @@
          <br>
          
 
-        <button type="submit" class="btn btn-outline-dark">Actualizar Legajo de usuario</button>
+        <button type="submit" class="btn btn-outline-dark">Actualizar usuario</button>
       </form>
 
       <br>
       <br>
-      <form action="/users/remove/<%=id%>?_method.DELETE" method="POST">
+      <form action="/users/remove/<%=user.id%>?_method=DELETE" method="POST">
         <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
       </form>
     </div>

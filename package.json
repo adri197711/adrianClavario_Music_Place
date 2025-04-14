@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --watch ./bin/www",
+    "start": "node ./bin/www",
+    "dev": "node --watch ./bin/www",
     "dbinit": "sequelize db:create && sequelize db:migrate",
     "dbreset": "sequelize db:drop && sequelize db:create && sequelize db:migrate && sequelize db:seed:all"
   },
@@ -45,9 +46,7 @@
   },
   "homepage": "https://github.com/adri197711/adrianClavario_Music_Place#readme",
   "devDependencies": {
+    "sequelize-cli": "^6.6.2",
     "standard": "^17.1.2"
-  },
-  "eslintConfig": {
-    "extends": "standard"
   }
 }
