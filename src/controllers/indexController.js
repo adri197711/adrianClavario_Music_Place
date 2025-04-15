@@ -7,7 +7,7 @@ module.exports = {
     try {
       const products = await db.Product.findAll(
         {
-          attributes: ['id', 'name', 'price','image', 'description'],
+          attributes: ['id', 'name', 'price','discount','image', 'description'],
           include: [
             {
               model: db.Brand,

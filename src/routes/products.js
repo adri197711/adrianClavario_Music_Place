@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const adminCheck = require('../middlewares/adminCheck')
+const path = require('path');
 const upload = require('../middlewares/uploadFile')
 const { list, detail, add, create, edit, update, remove, search, cart, cartDetail } = require('../controllers/productsController')
 

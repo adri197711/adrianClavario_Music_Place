@@ -106,11 +106,11 @@ module.exports = {
       update: async (req, res) => {
         const { Product } = require('../database/models');
         const { id } = req.params;
-        const { name, price, discount, description, brandId, sectionId, categoryId } = req.body;
-      
+        const { name, price, discount = 0, description, brandId, sectionId, categoryId } = req.body;
+        console.log('REQ.FILE:', req.file);
         try {
           const existingProduct = await Product.findByPk(id);
-      
+      console.log('EXISTING PRODUCT:', existingProduct.image)
           if (!existingProduct) {
             return res.status(404).send('Producto no encontrado');
           }
