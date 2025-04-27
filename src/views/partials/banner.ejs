@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>slideBannerr Casa de Música</title>
+ 
+</head>
+<body>
+<main class="class bannerMain">
+<div class="sliderBanner" id="slider">
+  <div class="slidesBanner">
+    <!-- slideBanner 1 -->
+    <div class="slideBanner">
+      <img src="images/products/bannerNovedad.jpg" alt="Novedades Musicales">
+      <div class="slideBanner-content">
+        <h2>🎉 ¡Novedades que inspiran!</h2>
+        <p>Descubrí lo último en tecnología musical</p>
+        <a href="#">Ver novedades</a>
+      </div>
+    </div>
+
+    <!-- slideBanner 2 -->
+    <div class="slideBanner">
+      <img src="images/products/guitarFila.jpg" alt="Guitarras en Oferta">
+      <div class="slideBanner-content">
+        <h2>🎸 Hasta 40% OFF en guitarras</h2>
+        <p>El sonido que amás, al precio que querés.</p>
+        <a href="#">Ver guitarras</a>
+      </div>
+    </div>
+
+    <!-- slideBanner 3 -->
+    <div class="slideBanner">
+      <img src="images/products/drumBanner.webp" alt="Baterías">
+      <div class="slideBanner-content">
+        <h2>🥁 Ritmo sin límites</h2>
+        <p>Conseguí tu batería desde $999.990.</p>
+        <a href="#">Ver baterías</a>
+      </div>
+    </div>
+
+    <!-- slideBanner 4 -->
+    <div class="slideBanner">
+      <img src="images/products/tecladoBanner.jpg" alt="Teclados Digitales">
+      <div class="slideBanner-content">
+        <h2>🎹 Tecnología que suena</h2>
+        <p>Teclados digitales para todos los niveles.</p>
+        <a href="#">Ver teclados</a>
+      </div>
+    </div>
+
+    <!-- slideBanner 5 -->
+    <div class="slideBanner">
+      <img src="images/products/bajoBanner.jpg" alt="Bajos">
+      <div class="slideBanner-content">
+        <h2>🔊 Bajos con cuerpo</h2>
+        <p>Desde $699.990 en nuestra tienda.</p>
+        <a href="#">Ver bajos</a>
+      </div>
+    </div>
+
+    <!-- slideBanner 6 -->
+    <div class="slideBanner">
+      <img src="images/products/accesoriosBanner.png" alt="Accesorios">
+      <div class="slideBanner-content">
+        <h2>🎧 Accesorios que potencian</h2>
+        <p>Auriculares, cables y más para tu setup musical.</p>
+        <a href="#">Ver accesorios</a>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<script>
+  // Banner
+  let currentIndex = 0;
+  const slidesBanner = document.querySelector('.slidesBanner');
+  const slideBanners = document.querySelectorAll('.slideBanner');
+  const totalSlides = slideBanners.length;
+
+  // el primer slide lo agrego al final
+  const firstClone = slideBanners[0].cloneNode(true);
+  slidesBanner.appendChild(firstClone);
+
+  const updatedTotalSlides = totalSlides + 1; // Ahora tenemos uno más
+
+  setInterval(() => {
+    currentIndex++;
+    slidesBanner.style.transition = 'transform 0.5s ease';
+    slidesBanner.style.transform = `translateX(-${100 * currentIndex}%)`;
+
+    if (currentIndex === totalSlides) {
+      //espero a que termine la transición
+      setTimeout(() => {
+        slidesBanner.style.transition = 'none'; // Quito la transición
+        slidesBanner.style.transform = `translateX(0%)`; // sin animación al inicio
+        currentIndex = 0;
+      }, 500); 
+    }
+  }, 5000);
+</script>
+
+</body>
+</html>

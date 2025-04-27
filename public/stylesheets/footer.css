@@ -5,13 +5,17 @@ footer{
   padding: 2rem;
 }
 
-footer p,h4{
+footer h4{
 
    color: rgb(247, 248, 251);
-   box-shadow: 10px 10px 15px 20px gray;
-text-shadow: 5px 1px  20px 5px
+    /* box-shadow: 0px 10px 0px 20px rgb(36, 36, 36);  */
+text-shadow:  0px 1px  20px 5px
 }
-
+footer p{
+  color: rgb(247, 248, 251);
+  box-shadow: 0px 10px 20px rgb(36, 36, 36);
+text-shadow: 0px 1px  20px 5px
+}
 
 .icon-size{
   font-size: 30px;

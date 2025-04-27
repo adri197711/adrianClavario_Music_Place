@@ -1,5 +1,6 @@
 const db = require('../database/models')
 const { toThousand, paginator } = require('../utils/index.js')
+const { Op } = require('sequelize');
 
 module.exports = {
   index: async (req, res) => {
@@ -68,46 +69,47 @@ module.exports = {
       console.log(error);
     } 
   },
-
+  
   admin: async (req, res) => {
     const db = require('../database/models')
     try {
-      let products = await db.Product.findAll()
-      
-      const { page, perPage, category, brand, search } = req.query
-      const categories = await db.Category.findAll() 
+      const { page = 1, perPage = 10, category, brand, section, search } = req.query
+  
+      const where = {}
+  
+      if (brand) where.brandId = brand.name
+      if (section) where.sectionId = +section
+      if (category) where.categoryId = +category
+      if (search) where.name = { [db.Sequelize.Op.like]: `%${search.trim()}%` }
+  
+      const products = await db.Product.findAll({
+        where,
+        include: ['brand', 'section', 'category']
+      })
+  
+      const categories = await db.Category.findAll()
       const brands = await db.Brand.findAll()
+      const sections = await db.Section.findAll()
   
-      if (brand) {
-        products = products.filter(product => product.brandId ===(+brand))
-      }
-      if (category) {
-        products = products.filter(product => product.categoryId === parseInt(category))
-      }
-  
-      if (search) {
-        products = products.filter(product =>
-          product.name.toLowerCase().includes(search.toLowerCase().trim())
-        )
-      }
-  
-      const { items, total } = paginator(products, page, perPage);
+      const { items, total } = paginator(products, page, perPage)
   
       return res.render('admin', {
         products: items,
-        currentPage: page || 1,
+        currentPage: page,
         totalPages: total,
         brands,
+        sections,
         categories,
         filterCategory: category,
         search,
-        toThousand, 
-      });
+        toThousand
+      })
     } catch (error) {
-      console.error('Error fetching products:', error);
-      return res.status(500).send('An error occurred while fetching products');
+      console.error('Error fetching products:', error)
+      return res.status(500).send('An error occurred while fetching products')
     }
   },
+  
   users: async(req, res) => {
       const db = require('../database/models')
       try {

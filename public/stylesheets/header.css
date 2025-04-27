@@ -173,7 +173,7 @@ header form {
   border-radius: 5px;
   background-color: hsla(261, 33%, 23%, 0.9);
   align-items: center;
-  padding: 30px 20px;
+  padding: 1px 20px;
   transition: all .5s ease-out;
 }
 
@@ -216,11 +216,12 @@ top: 22rem;
   flex-direction: row;
 text-align: center;
 padding: .5rem;
-background-color: #007BFF;
+background-color: #0a0a0a;
 }
+
 .nav-bar li:not(:last-child)  {
   align-self: center;
-  /* background-color: #007BFF; */
+  background-color: #0c0c0c;
   padding: 0 5px;
   border-right: 2px solid  #C0C0C0 
 }

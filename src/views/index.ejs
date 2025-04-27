@@ -7,12 +7,14 @@
 
       <main class="main-index">
         <%- include('./partials/slider') %>
+        <%- include('./partials/banner') %>
 
-          <% products.forEach((product)=> { %>
-            <section class="index-container">
+        <% products.forEach((product)=> { %>
+          <section class="index-container">
               <article class="index-card">
                 <a href="../products/detail/<%= product.id %>">
-                  <img class="index-fotos" src="/images/products/<%= product.image %>" alt="<%= product.name %>"></a>
+               
+                  <img class="index-fotos" src="<%= product.image %>" alt="<%= product.name %>"></a>
                 <div class="index-info">
                   <h3 class="index-detail">
                     <%= product.name %>
@@ -22,10 +24,11 @@
                   </p>
                   <% if (product.discount != 0) { %>
                     <p>
+                      <strong class="index-discountCard"><%= product.discount %>% OFF</strong>
                       <span class="tachado">
                         $<%= product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
                       </span>
-                      <strong class="index-discountCard">/<%= product.discount %>% OFF</strong>
+                      
                     </p>
                     <h2 class="price-detail">
                       Precio $<%= (product.price - (product.price * product.discount / 100)).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %>
@@ -40,7 +43,7 @@
                 </div>
               </article>
             </section>
-            <% }) %>
+              <% }) %>
       </main>
 
       <%- include('./partials/footer') %>

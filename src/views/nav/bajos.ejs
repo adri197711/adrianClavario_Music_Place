@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<%- include('../partials/head', {title:'Listado de Guitarras'}) %>
+
+<body>
+
+  <%- include('../partials/slider') %><br>
+  <%- include('../partials/navbar') %><br>
+  <br>
+  <br>
+
+  <main>
+    <h1>Listado de Bajos</h1>
+
+    <% products.forEach(product => { %>
+      <div style="margin-bottom: 20px;">
+        <h2><%= product.name %></h2>
+        <p>Precio: $<%= product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %></p>
+        <img src="<%= product.image %>" alt="<%= product.name %>" style="width: 200px;">
+      </div>
+    <% }) %>
+
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+
+</html>

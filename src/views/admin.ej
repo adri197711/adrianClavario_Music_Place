@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/headAdmin', {title: 'Administrar Productos' }) %>
+<body>
+
+    <%- include('./partials/headerAdmin', {title: 'Administrar Productos' }) %>
+
+  <main class="mainAdmin">
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Producto</th>
+        <th>Marca</th>
+        <th>Precio</th>
+        <th>Descuento</th>
+        <th>Descripción</th>
+        <th>   <div>
+          <a class="btn btn-sm btn-new " href="/products/add">Agregar producto</a>
+        </div></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.forEach(({id,name,brand,categoryId,sectionId,price,discount,description, image}) => {%>
+        <tr>
+          <th><%= id %></th>
+          <td><%=name%></td>
+           <td><%=brand?.name %></td>
+          <td><%=price%></td>
+          <td><%=discount%></td>
+          <td><%=description%></td>
+          <td>
+            <div class="d-flex gap-2">
+          <div>
+              <a href="/products/edit/<%= id %>"><i class="btn btn-edit">Editar</i></a>
+            </div>			
+           
+              
+              <form action="/products/remove/<%=id%>?_method=DELETE" method="POST">
+                <button class="btn btn-sm btn-del" type="submit">Eliminar</button>
+              </form>
+          
+						
+            </div>
+          </td>
+        </tr>
+     <% }) %>
+  </tbody>
+  </table>
+  <tfoot>
+    <%- include('./partials/pager', {
+    path : '/admin/products',
+    currentPage,
+    totalPages
+  }) %>
+</tfoot>
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+crossorigin="anonymous"></script>
+</body>
+</html>

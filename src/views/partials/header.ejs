@@ -9,30 +9,24 @@
         <ul class="ul-flex-usuarios">
           <% if(locals.userLogin) { %>
             <span>
-              <li><a href="/users/profile"><i class="fa-regular fa-user"></i></li></a>
+              <li><a href="/users/register"><i class="fa-regular fa-user"></i></li></a>
             </span>
             <span>
-            <li><a href="/users/logout"><i class="fa-solid fa-right-from-bracket"></i></li> </a>
-            </span>  
-            
-          <span>
-            <li><a href="/"><i class="fa-solid fa-shopping-cart"></i></li></a>
-          </span>
-          <% }else{ %>
-           
-          <span>
-            <li><a href="/users/register"><i class="fa-regular fa-user"></i></li></a>
-          </span>
-          <span>
-            
-            <li><a href="/users/login"><i class="fa-solid fa-right-to-bracket"></i></li> </a>
-            
-          </span>
-          
-          <!-- <span>
-            <li><a href="../products/ofertas"><i class="fa-solid fa-shopping-cart"></i></li></a>
-          </span> -->
-          <% } %>
+              <li><a href="/users/logout"><i class="fa-solid fa-right-from-bracket"></i></li> </a>
+            </span>
+
+            <span>
+              <li><a href="/"><i class="fa-solid fa-shopping-cart"></i></li></a>
+            </span>
+            <% }else{ %>
+
+              <span>
+                <li><a href="/users/register"><i class="fa-regular fa-user"></i></li></a>
+              </span>
+              <span>
+                <li><a href="/users/login"><i class="fa-solid fa-right-to-bracket"></i></li> </a>
+              </span>
+              <% } %>
         </ul>
       </div>
     </div>
@@ -46,23 +40,21 @@
       </div>
     </div>
   </form>
-
-
-
+  
   <input type="checkbox" name="checkbox" id="menu-toggle">
   <label for="menu-toggle" class="menu-icon-action">
     <div class='fa-solid fa-bars' id="menu-icon"></div>
   </label>
-
   <ul class="nav-bar">
     <li><a href="/">Home</a></li>
-    <li><a href="/products/detail/:id">Instrumentos</a></li>
-    <li><a href="#accesorios">Accesorios</a></li>
-    <li><a href="#amplis">Amplificadores</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-    <li><a href="/admin/">Adm productos</a></li>
-    <li><a href="/user/">Adm usuarios</a></li>
+    <li><a href="/nav/guitarras">Guitarras</a></li>
+    <li><a href="/nav/bajos">Bajos</a></li>
+    <li><a href="/nav/baterias">Baterias</a></li>
+    <li><a href="/nav/teclados">Teclados</a></li>
+    <li><a href="/nav/accesorios">Accesorios</a></li>
+    <li><a href="/nav//amplis">Amplificadores</a></li>
+    <li><a href="/nav/audio">Audio</a></li>
+    <li><a href="admin">Administración</a></li>
   </ul>
 
-    
 </header>

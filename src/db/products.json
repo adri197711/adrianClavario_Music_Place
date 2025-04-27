@@ -4,6 +4,8 @@
     "name": "Guitarra Ibanez",
     "description": "Guitarra eléctrica Ibanez RG",
     "price": 2700000,
+    "sectionId": 1,
+    "brandId": null,
     "discount": 10,
     "image": "/images/products/ibanez.jpg"
   },
@@ -12,6 +14,8 @@
     "name": "Guitarra Les Paul 1",
     "description": "Guitarra eléctrica Gibson Les Paul",
     "price": 3500000,
+    "sectionId": 1,
+    "brandId": null,
     "discount": 0,
     "image": "/images/products/lespaul1.jpg"
   },
@@ -20,6 +24,8 @@
     "name": "Guitarra Les Paul 2",
     "description": "Otra versión de Gibson Les Paul",
     "price": 3600000,
+    "sectionId": 1,
+    "brandId": null,
     "discount": 5,
     "image": "/images/products/lespaul2.jpg"
   },
@@ -28,41 +34,49 @@
     "name": "Amplificador Marshall",
     "description": "Amplificador Marshall clásico",
     "price": 1500000,
+    "sectionId": 6,
+    "brandId": null,
     "discount": 0,
     "image": "/images/products/ampli.jpg"
   },
   {
     "id": 5,
     "name": "Guitarra Clasica",
-    "discount": 0,
-    "price": 5000000,
     "description": "Excelente oportunidad para principiantes.",
+    "price": 5000000,
+    "sectionId": 1,
+    "brandId": null,
+    "discount": 0,
     "image": "/images/products/oferta.jpg"
   },
   {
     "id": 6,
     "name": "Teclado",
-"price": 5000000,
-    "discount": 0,
     "description": "",
+    "price": 5000000,
+    "sectionId": 4,
+    "brandId": null,
+    "discount": 0,
     "image": "/images/products/teclado.jpg"
   },
-  { 
-       "id": 7,
-  "name": "Strato",
-  "brandId": 1,
-  "price": 5000000,
-  "discount": 0,
-  "description": "guitarra eléctrica",
-  "image": "/images/products/strato.jpg"
+  {
+    "id": 7,
+    "name": "Strato",
+    "description": "Guitarra eléctrica",
+    "price": 5000000,
+    "sectionId": 1,
+    "brandId": 1,
+    "discount": 0,
+    "image": "/images/products/strato.jpg"
   },
   {
     "id": 8,
     "name": "Marshall",
-    "brandId": 1,
-    "price": 5000000,
-    "discount": 0,
     "description": "Amplificador para guitarra eléctrica",
+    "price": 5000000,
+    "sectionId": 6,
+    "brandId": 1,
+    "discount": 0,
     "image": "/images/products/marshall.jpg"
   }
 ]

@@ -1,4 +1,6 @@
 const { Product, Category, Section, Brand } = require("../database/models");
+const fs = require('fs');
+const path = require('path');
 const { toThousand, paginator } = require('../utils/index');
 const upload = require('../middlewares/uploadFile');
 const product = require('../database/models/product');
@@ -8,6 +10,13 @@ module.exports = {
   list: async (req, res) => {
     try {
       const products = await Product.findAll({
+        include: [
+          {
+            model: db.Brand, 
+            as: 'brand'    
+          }  
+        ]
+ 
       });
   
       return res.render('products/products', {
@@ -22,9 +31,16 @@ module.exports = {
   },
   
   detail: async (req, res) => {
+    const { Product, Category, Section, Brand } = require("../database/models");
     try {
       const id = req.params.id;
-      const product = await Product.findByPk(id);
+      const product = await Product.findByPk(id,{
+        include: [
+          { model: Brand, as: 'brand' },
+          { model: Category, as: 'category' },
+          { model: Section, as: 'section' }
+        ]
+      });
 
       if (!product) {
         return res.status(404).send('Producto no encontrado');
@@ -32,7 +48,7 @@ module.exports = {
 
       return res.render("products/detail", {
         title: "Detalle del Producto",
-        product,
+        product
       });
     } catch (error) {
       console.error(error);
@@ -62,8 +78,8 @@ module.exports = {
     
     create: async (req, res) => {
       try {
-        const { name, price, discount, description, brandId, categoryId, sectionId } = req.body;
-        const image = req.file ? req.file.filename : null;
+        const { name, price, discount = 0, description, brandId, categoryId, sectionId } = req.body;
+        const image = req.file ? "/images/products/" + req.file.filename : null;
         await Product.create({
           name,
           price,
@@ -72,11 +88,10 @@ module.exports = {
           brandId,
           sectionId,
           categoryId,
-          image,
+          image: image,
         });
         res.redirect('/admin')
       } catch (error) {
-        res.status(500).json({ message: 'Error al crear el producto', error: error.message });
       }
     },
 
@@ -104,23 +119,39 @@ module.exports = {
       },
 
       update: async (req, res) => {
+        const fs = require('fs');
+const path = require('path');
         const { Product } = require('../database/models');
         const { id } = req.params;
         const { name, price, discount = 0, description, brandId, sectionId, categoryId } = req.body;
         console.log('REQ.FILE:', req.file);
+       
         try {
           const existingProduct = await Product.findByPk(id);
-      console.log('EXISTING PRODUCT:', existingProduct.image)
           if (!existingProduct) {
             return res.status(404).send('Producto no encontrado');
           }
       
+          let image = existingProduct.image;
+        
+          if (req.file) {
+           const oldImagePath = "/images/products/" + existingProduct.image;
+          //  const oldImagePath = path.join(__dirname, '..', '..', 'public', 'images', 'products', existingProduct.image);
+      
+
+          if (fs.existsSync(oldImagePath)) {
+            fs.unlinkSync(oldImagePath);
+          }
+    
+          image = "/images/products/" + req.file.filename;
+        }
+    
           await Product.update({
             name: name.trim(),
             price: +price,
             discount: +discount,
             description: description.trim(),
-            image: req.file ? req.file.filename : existingProduct.image,
+            image,
             brandId,
             sectionId,
             categoryId
@@ -136,6 +167,7 @@ module.exports = {
       },
       
           remove: async (req, res) => {
+            const { Product } = require('../database/models');
             const { id } = req.params;
 
             try {
@@ -145,9 +177,17 @@ module.exports = {
                 return res.status(404).send('Producto no encontrado');
               }
 
+              const imagePath = path.join(__dirname, '..', '..', 'public', 'images', 'products', product.image);
+
+              if (fs.existsSync(imagePath)) {
+                fs.unlinkSync(imagePath);
+              }
+          
+
               await product.destroy();
               return res.redirect('/admin');
             } catch (error) {
+              console.error('ERROR EN PRODUCT REMOVE:', error);
               return res.status(500).send('Internal Server Error');
             }
           },

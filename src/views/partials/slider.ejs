@@ -18,7 +18,6 @@
     /* Optionally, you can add styles to the slider for better appearance */
     .slider {
       margin: 0 auto;  /* Centers the slider on the page */
-      padding: 0 15px;
     }
   </style>
   <!-- Incluir jQuery y Slick JS -->
@@ -48,28 +47,28 @@
   $(document).ready(function(){
   $('.slider').slick({
     infinite: true,
-    slidesToShow: 1,
+    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 500,
     arrows: true,
     dots: true,
     responsive: [
     
       {
-        breakpoint: 1300,
+        breakpoint: 1200,
         settings: {
-          slidesToShow: 5
+          slidesToShow: 4
         }
       },
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 5
+          slidesToShow: 3
         }
       },
       {
-        breakpoint: 768,
+        breakpoint: 600,
         settings: {
           slidesToShow: 2
         }

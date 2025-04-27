@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <%- include('../partials/head', {title:'Editar producto'}) %>
+<%- include('../partials/head', {title:'Editar producto'}) %>
+
   <body>
     <main class="body">
       <div id="registroForm">
-        
+
         <h2 class="h2-edit">Editar producto</h2>
 
-        <form action="/products/update/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data" id="formAddProduct">
+        <form action="/products/update/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data"
+          id="formAddProduct">
           <br>
 
           <!-- Nombre del producto -->
@@ -19,27 +21,30 @@
           <!-- Categoría -->
           <label for="categoryId">Categoría</label>
           <select name="categoryId" id="categoryId">
-            <% categories.forEach(c => { %>
-              <option value="<%= c.id %>" <%= product.categoryId == c.id ? 'selected' : '' %>><%= c.name %></option>
-            <% }) %>
+            <% categories.forEach(c=> { %>
+              <option value="<%= c.id %>" <%=product.categoryId==c.id ? 'selected' : '' %>><%= c.name %>
+              </option>
+              <% }) %>
           </select>
           <br>
 
           <!-- Marca -->
           <label for="brandId">Marca</label>
           <select name="brandId" id="brandId">
-            <% brands.forEach(b => { %>
-              <option value="<%= b.id %>" <%= product.brandId == b.id ? 'selected' : '' %>><%= b.name %></option>
-            <% }) %>
+            <% brands.forEach(b=> { %>
+              <option value="<%= b.id %>" <%=product.brandId==b.id ? 'selected' : '' %>><%= b.name %>
+              </option>
+              <% }) %>
           </select>
           <br>
 
           <!-- Sección -->
           <label for="sectionId">Sección</label>
           <select name="sectionId" id="sectionId">
-            <% sections.forEach(s => { %>
-              <option value="<%= s.id %>" <%= product.sectionId == s.id ? 'selected' : '' %>><%= s.name %></option>
-            <% }) %>
+            <% sections.forEach(s=> { %>
+              <option value="<%= s.id %>" <%=product.sectionId==s.id ? 'selected' : '' %>><%= s.name %>
+              </option>
+              <% }) %>
           </select>
           <br>
 
@@ -51,22 +56,26 @@
 
           <!-- Descuento -->
           <label for="discount">Descuento</label>
-          <input class="reg-input" type="text" id="discount" name="discount" value="<%= product.discount %>">
+          <input class="reg-input" type="number" id="discount" name="discount" value="<%= product.discount %>">
           <div class="error" id="errordiscount"></div>
           <br>
-
-          <!-- Imagen -->
-          <!-- <label for="image" class="form-label">Imagen actual:</label>
+          <!-- Imagen actual -->
+          <label for="image" class="form-label">Imagen actual:</label>
           <div>
-            <img src="/images/products/<%= product.image %>" alt="Imagen actual" style="max-width: 100px;">
-          </div> -->
+            <img src="<%= product.image %>" alt="Imagen actual"
+              style="max-width: 150px; margin-bottom: 10px;">
+          </div>
+
+          <!-- Cambiar imagen -->
           <label for="image" class="form-label">Cambiar imagen</label>
           <input class="reg-input" type="file" name="image" id="image">
-          <br>
+
+
 
           <!-- Descripción -->
           <label for="description" class="form-label">Descripción:</label>
-          <textarea name="description" id="description" style="resize: none;" rows="5" cols="2"><%= product.description %></textarea>
+          <textarea name="description" id="description" style="resize: none;" rows="5"
+            cols="2"><%= product.description %></textarea>
 
           <br>
           <button type="submit" class="btn btn-outline-dark">Actualizar Producto</button>
@@ -75,4 +84,5 @@
       </div>
     </main>
   </body>
+
 </html>

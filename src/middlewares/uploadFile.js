@@ -6,7 +6,6 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     console.log("ingreso al middlewarefile", file);
     console.log(__dirname);
-    
     cb(null,path.join(__dirname,'../../public/images/products/'));
   },
   filename: function (req, file, cb) {

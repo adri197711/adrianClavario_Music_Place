@@ -10,16 +10,25 @@
         <section class="main-detail">
 
           <article class="art-detail">
-            <img class="foto-detail" src="/images/products/<%= product.image %> " alt="Foto producto">
+            <img class="foto-detail" src="<%= product.image %> " alt="Foto producto">
 
-            <p class="detail">
-              <%= product.description %>
-            </p>
           </article>
           <article class="art-detail">
             <h3 class="detail">
               <%= product.name %>
             </h3>
+            <p class="detail">
+              <strong>Marca: <%= product.brand ? product.brand.name : 'Sin marca' %>
+              </strong>
+            </p>
+          
+            <p class="detail">
+              <strong> <%= product.category ? product.category.name : 'Sin categoría' %>
+              </strong>
+            </p>
+            <p class="detail">
+              <%= product.description %>
+            </p>
           
             <% if (product.discount !=0) { %>
               <span>
