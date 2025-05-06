@@ -241,7 +241,7 @@ console.log('reqBODY: ' , req.body)
 
   remove: async (req, res) => {
     try {
-      const product = await db.Product.findByPk(req.params.id, {
+      const product = await Product.findByPk(req.params.id, {
         include: [
           { association: 'images' }
         ]
@@ -249,7 +249,7 @@ console.log('reqBODY: ' , req.body)
       if (product.images.length) {
         const pathFile = path.join(__dirname, '../../public/images/products', product.images[0].file)
         fs.existsSync(pathFile) && fs.unlinkSync(pathFile)
-        await db.Image.destroy({
+        await Image.destroy({
           where: {
             productId: product.id
           }
