@@ -80,15 +80,18 @@ module.exports = {
   },
 
   profile: async (req, res) => {
-   const id = req.session.userLogin.id;
+   const id = req.session.userLogin;
 const user = await
 User.findByPk(id);
-
-    return res.render('users/profile', {
-      user: user.get({ plain: true })
- 
-    })
-  },
+if (user) {
+  return res.render('users/profile', {
+    user: user.get({ plain: true })
+  });
+} else {
+  // Manejar el caso en que el usuario no se encuentra
+  return res.redirect('/login'); // O mostrar un mensaje de error
+}
+},
 
   update: async (req, res) => {
     const { id } = req.params;

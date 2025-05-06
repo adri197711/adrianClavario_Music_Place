@@ -9,7 +9,7 @@ module.exports = {
   const db = require('../database/models');
   try {
     const products = await db.Product.findAll({
-      attributes: ['id', 'name', 'price', 'discount', 'image', 'description'],
+      attributes: ['id', 'name', 'price', 'discount',  'description'],
       include: [
         {
           model: db.Brand,
@@ -26,7 +26,13 @@ module.exports = {
           as: 'section',
           attributes: ['id', 'name'],
           where: { name: 'Guitarras' } 
-        }
+        },
+        {
+          model: db.Image,
+          as: 'images',
+          attributes: ['id', 'file'],
+       
+         association: 'images', attributes: ['file'] },
       ]
     });
 
@@ -42,7 +48,7 @@ module.exports = {
   try {
     const products = await db.Product.findAll(
       {
-        attributes: ['id', 'name', 'price','discount','image', 'description'],
+        attributes: ['id', 'name', 'price','discount', 'description'],
         include: [
           {
             model: db.Brand,
@@ -59,7 +65,13 @@ module.exports = {
             as: 'section',
             attributes: ['id', 'name'],
             where: { name: 'Baterias' } 
-          }
+          },
+          {
+            model: db.Image,
+            as: 'images',
+            attributes: ['id', 'file'],
+         
+           association: 'images', attributes: ['file'] }
         ]
       });
 
@@ -80,7 +92,7 @@ module.exports = {
   try {
     const products = await db.Product.findAll(
       {
-        attributes: ['id', 'name', 'price','discount','image', 'description'],
+        attributes: ['id', 'name', 'price','discount','description'],
         include: [
           {
             model: db.Brand,
@@ -97,12 +109,18 @@ module.exports = {
             as: 'section',
             attributes: ['id', 'name'],
             where: { name: 'Amplificadores' } 
-          }
+          },
+          {
+            model: db.Image,
+            as: 'images',
+            attributes: ['id', 'file'],
+         
+           association: 'images', attributes: ['file'] }
         ]
       });
 
     
-    return res.render('index',
+    return res.render('nav/amplis',
       {
       products
       });
@@ -118,7 +136,7 @@ module.exports = {
   try {
     const products = await db.Product.findAll(
       {
-        attributes: ['id', 'name', 'price','discount','image', 'description'],
+        attributes: ['id', 'name', 'price','discount','description'],
         include: [
           {
             model: db.Brand,
@@ -135,7 +153,13 @@ module.exports = {
             as: 'section',
             attributes: ['id', 'name'],
             where: { name: 'Bajos' } 
-          }
+          },
+          {
+            model: db.Image,
+            as: 'images',
+            attributes: ['id', 'file'],
+         
+           association: 'images', attributes: ['file'] }
         ]
       });
 
@@ -156,7 +180,7 @@ module.exports = {
   try {
     const products = await db.Product.findAll(
       {
-        attributes: ['id', 'name', 'price','discount','image', 'description'],
+        attributes: ['id', 'name', 'price','discount','description'],
         include: [
           {
             model: db.Brand,
@@ -173,7 +197,13 @@ module.exports = {
             as: 'section',
             attributes: ['id', 'name'],
             where: { name: 'Teclados' } 
-          }
+          },
+          {
+            model: db.Image,
+            as: 'images',
+            attributes: ['id', 'file'],
+         
+           association: 'images', attributes: ['file'] }
         ]
       });
 
@@ -194,7 +224,7 @@ module.exports = {
   try {
     const products = await db.Product.findAll(
       {
-        attributes: ['id', 'name', 'price','discount','image', 'description'],
+        attributes: ['id', 'name', 'price','discount','description'],
         include: [
           {
             model: db.Brand,
@@ -211,7 +241,13 @@ module.exports = {
             as: 'section',
             attributes: ['id', 'name'],
             where: { name: 'Audio' } 
-          }
+          },
+          {
+            model: db.Image,
+            as: 'images',
+            attributes: ['id', 'file'],
+         
+           association: 'images', attributes: ['file'] }
         ]
       });
 
@@ -232,7 +268,7 @@ module.exports = {
     try {
       const sectionName = req.query.section;
       const products = await db.Product.findAll({
-        attributes: ['id', 'name', 'price', 'discount', 'image', 'description'],
+        attributes: ['id', 'name', 'price', 'discount', 'description'],
         include: [
           {
             model: db.Brand,
@@ -248,8 +284,14 @@ module.exports = {
             model: db.Section,
             as: 'section',
             attributes: ['id', 'name'],
-            where: { name: 'Accesorios' } 
-          }
+            where: { name: 'Accesorios' }
+           } ,
+            {
+              model: db.Image,
+              as: 'images',
+              attributes: ['id', 'file'],
+           
+             association: 'images', attributes: ['file'] }
         ]
       });
   

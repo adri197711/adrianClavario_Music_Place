@@ -7,7 +7,6 @@
   height: 30px;
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
   background-color: hsla(261, 33%, 23%, 0.9);
   align-items: center;
   padding: 1px 20px;
@@ -114,7 +113,7 @@
   
   .nav-bar-partial {
     position: absolute;
-  top:8rem;
+  top:4rem;
     left:0;
     width: 100%;
     display: flex;
@@ -125,7 +124,8 @@
   }
   
   .nav-bar-partial li:not(:last-child)  {
-    align-self: center;
+    align-self:center;
+    text-align: center;
     background-color: #0c0c0c;
     padding: 0 5px;
     border-right: 2px solid  #C0C0C0 
@@ -146,10 +146,5 @@
   header span li a{
     color: rgb(5, 5, 5);
   }
-  
-
-
-
-  
   
   }  

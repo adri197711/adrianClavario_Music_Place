@@ -17,21 +17,23 @@
   <div class="error" id="errorProduct"></div>
   <br>
   <label for="sectionId">Sección</label>
-  <select name="sectionId" id="section">
+  <select name="section" id="section">
     <option value="" hidden selected>Seleccione sección...</option>
     <% sections.forEach(s => { %>
      <option value="<%= s.id %>"><%= s.name %></option>
     <% }) %>
    </select>
+
    <label for="brand">Marca</label>
-   <select name="brandId" id="brand">
-     <option value="" hidden selected>Seleccione marca...</option>
-     <% brands.forEach(b => { %>
-      <option value="<%= b.id %>"><%= b.name %></option>
-     <% }) %>
-    </select>
+<select name="brand" id="brand">
+  <option value="" hidden selected>Seleccione marca...</option>
+  <% brands.forEach(b => { %>
+    <option value="<%= b.id %>"><%= b.name %></option>
+  <% }) %>
+</select>
+
     <label for="category">Categoría</label>
-  <select name="categoryId" id="category">
+  <select name="category" id="category">
     <option value="" hidden selected>Seleccione categoria...</option>
     <% categories.forEach(c => { %>
      <option value="<%= c.id %>"><%= c.name %></option>
@@ -49,8 +51,8 @@
   <div class="error" id="errorDiscount"></div>
   <br>
 
-  <label for="image" class="form-label">Imagen</label>
-  <input class="reg-input" type="file" name="image" id="image">
+  <label for="image" class="form-label">Imagenes</label>
+  <input class="reg-input" type="file" name="image" id="image" >
   
   <label for="description" class="form-label">Descripción:</label>
   <textarea name="description" id="description" class="textarea" rows="8"></textarea>

@@ -21,8 +21,11 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     try {
+      // Eliminar las marcas que están en el archivo marcas.json.
       await queryInterface.bulkDelete('brands', {
-        name: marcasJSON
+        name: {
+          [Sequelize.Op.in]: marcasJSON, // Buscar todas las marcas en el array marcasJSON.
+        },
       }, {});
       console.log('Brands deleted.');
     } catch (error) {

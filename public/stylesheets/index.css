@@ -1,67 +1,95 @@
 main {
   color: rgb(199, 212, 224);
-  background-repeat:no-repeat ; 
-  background-size: cover; 
+  background-repeat: no-repeat;
+  background-size: cover;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   flex-wrap: wrap;
   flex-direction: row;
   align-content: center;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
 }
-.main-index{
+
+.main-index {
   background: #000;
 }
-.index-container{
+
+.index-container {
   display: flex;
   flex-direction: row;
 }
-.index-card{
+
+.index-card {
   margin: 0 auto;
   padding: .5rem;
   display: flex;
   flex-direction: row;
   border: 1px solid grey;
   border-radius: 10px;
-  width: 60%;
+  width: 70%;
 }
 
+.main-product-foto {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+  border-radius: 10px;
+  width: 95%;
+}
 
-.index-fotos{
+.index-fotos {
   width: 80%;
   height: 80%;
   border-radius: 5px;
-  margin: .5rem ;
+  margin: .5rem;
+  padding: .5rem;
   text-align: center;
   border: 1px solid white;
 }
 
-.index-fotos:hover{
+.main-product-foto:hover {
   box-shadow: 1px 2px 8px 15px rgba(255, 255, 255, 0.891);
 }
-.index-detail{
+
+.index-info {
+  padding: 3rem;
+margin: 0;
+
+background: radial-gradient(
+  rgba(164, 161, 161, 0.9),
+  rgba(139, 138, 138, 0.7),
+  rgba(89, 88, 88, 0.5),
+  rgba(0, 0, 0, 0.3),
+  rgba(0, 0, 0, 0)
+);
+
+}
+
+.index-detail {
   color: rgb(253, 252, 252);
 }
-.index-detail h3{
+
+.index-h1{
+  font-size: 2rem;
   text-decoration: none;
 }
-.index-discountCard{
-  color: rgb(97, 230, 97);
+
+.index-discountCard {
+  padding-left: .3rem;
+  color: rgb(156, 230, 156);
+  font-size: 1.2rem;
+}
+
+.price-index {
+  color: rgb(39, 214, 39);
+  font-size: 1.5em;
+
+}
+
+.tachado-index {
   font-size: 1rem;
+  color: rgb(111, 222, 111);
+  text-decoration: line-through;
 }
-
-
-.marca {
-  margin: 0;
-  padding-left:10px;
-  font-size: 10px;
-  font-weight: bold;
-  width: 80%;
-}
-
-.img:hover {
-  opacity: 1;
-  animation: typing 4s steps(40, end) 1, blink-caret 0.75s step-end infinite;
-}
-

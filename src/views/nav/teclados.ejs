@@ -1,28 +1,55 @@
 <!DOCTYPE html>
 <html>
-<%- include('../partials/head', {title:'Listado de Guitarras'}) %>
+<%- include('../partials/head', {title:'Teclados'}) %>
 
-<body>
+  <body class="body-grid">
 
-  <%- include('../partials/slider') %><br>
-  <%- include('../partials/navbar') %><br>
-  <br>
-  <br>
+    <%- include('../partials/slider') %><br>
+    <%- include('../partials/navbar') %><br>
 
-  <main>
-    <h1>Listado de Teclados</h1>
+        <h1 class="h1-grid">Listado de Teclados</h1>
+        <main class="guitar-grid">
 
-    <% products.forEach(product => { %>
-      <div style="margin-bottom: 20px;">
-        <h2><%= product.name %></h2>
-        <p>Precio: $<%= product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %></p>
-        <img src="<%= product.image %>" alt="<%= product.name %>" style="width: 200px;">
-      </div>
-    <% }) %>
+            <% products.forEach(product=> { %>
+              <div class="guitar-card">
 
-  </main>
+                <div class="image-container">
+                  <img
+                    src="/images/products/<%= product.images && product.images.length > 0 ? product.images[0].file : 'default.webp' %>"
+                    alt="<%= product.name %>">
 
-  <%- include('../partials/footer') %>
-</body>
+                  <% if (product.discount> 0) { %>
+                    <div class="badge offer">¡OFERTA!</div>
+                    <% } else { %>
+                      <div class="badge new">NUEVO</div>
+                      <% } %>
+                </div>
+
+                <h2 class="h2-grid">
+                  <%= product.name %>
+                </h2>
+                <h2 class="h3-grid">
+                  <%= product.description %>
+                </h2>
+                <% if (product.discount !=0) { %>
+                  <span>
+                    <%product.price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> <span class="tachado">$<%=
+                          product.price%>
+                      </span>
+                      <span>
+                        <strong class="discountCard">/<%- product.discount %>% OFF</strong>
+                      </span>
+                      <% } %>
+                        <h2 class="priceDetailGrid">Precio $
+                          <%= (product.price - product.price * product.discount /
+                            100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
+                        </h2>
+
+              </div>
+              <% }) %>
+          </main>
+
+          <%- include('../partials/footer') %>
+  </body>
 
 </html>

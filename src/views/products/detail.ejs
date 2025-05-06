@@ -4,32 +4,39 @@
 
   <body>
 
-    <%- include('../partials/header') %>
+    <%- include('../partials/slider') %>
+    <%- include('../partials/navbar') %>
 
       <main>
-        <section class="main-detail">
+        <section class="detail-container">
+          <% if (product.images && product.images.length > 0) { %>
+            <% product.images.forEach(image => { %>
+              <img class="main-detail-foto"
+              src="/images/products/<%= product.images && product.images.length > 0 ? product.images[0].file : 'default.webp' %>"
+              alt="<%= product.name %>" style="width: 16rem" 
+              />
+            <% }) %>
+          <% } else { %>
+            <p>No hay imágenes disponibles para este producto.</p>
+          <% } %>
 
-          <article class="art-detail">
-            <img class="foto-detail" src="<%= product.image %> " alt="Foto producto">
-
-          </article>
-          <article class="art-detail">
-            <h3 class="detail">
+          <article class="detail-info">
+            <h1 class="h1-detail">
               <%= product.name %>
-            </h3>
-            <p class="detail">
-              <strong>Marca: <%= product.brand ? product.brand.name : 'Sin marca' %>
+            </h1>
+            <p class="detail-data">
+              <strong>Marca: <%= product.brand.name  %>
               </strong>
             </p>
-          
-            <p class="detail">
-              <strong> <%= product.category ? product.category.name : 'Sin categoría' %>
-              </strong>
-            </p>
-            <p class="detail">
+            
+            <p class="detail-data">
               <%= product.description %>
             </p>
           
+            <p class="detail-data" >
+              <strong> <%= product.category.name %>
+              </strong>
+            </p>
             <% if (product.discount !=0) { %>
               <span>
                 <% product.price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> 

@@ -4,11 +4,11 @@ const { Op } = require('sequelize');
 
 module.exports = {
   index: async (req, res) => {
-    const db = require('../database/models')
+    // const db = require('../database/models')
     try {
       const products = await db.Product.findAll(
         {
-          attributes: ['id', 'name', 'price','discount','image', 'description'],
+          attributes: ['id', 'name', 'price','discount', 'description'],
           include: [
             {
               model: db.Brand,
@@ -24,6 +24,11 @@ module.exports = {
               model: db.Section,
               as: 'section',
               attributes: ['id', 'name']
+            },
+            {
+              model: db.Image, 
+              as: 'images', 
+              attributes: ['file'] 
             }
           ]
         });

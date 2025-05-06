@@ -1,4 +1,4 @@
-.main-detail{
+.main-detail {
   margin: 0 auto;
   padding: .5rem;
   display: flex;
@@ -8,38 +8,64 @@
   width: 95%;
 }
 
-.foto-detail{
+.detail-container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+
+.main-detail-foto {
+  margin: 0 3rem;
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid grey; */
+  border-radius: 10px;
+  width: 45%;
+}
+
+
+.foto-detail {
   width: 100%;
 }
-.art-detail{
+
+.art-detail {
   width: 60%;
 }
-.btn-det{
-  margin: 1rem 25%;
-  padding: .3rem;
-  width: 50%;
-border: none;
-border-radius: 10px;
-background-color: rgb(48, 176, 59);
 
+.h1-detail {
+  color: blue;
+  text-align: center;
 }
 
-
-h3.detail{
-  font-family:'Courier New', Courier, monospace;
+h3.detail {
   text-align: center;
   line-height: 2rem;
   font-weight: 700;
   color: rgb(0, 52, 100);
   text-shadow: 2px 2px 5px rgba(0, 52, 100, 0.8);
 }
-.detail{
+
+.detail {
   line-height: 2rem;
   color: rgb(0, 52, 100);
 }
-.price-detail{
+
+.price-detail {
   font-size: 1.2rem;
-  color: rgb(7, 167, 7)  
+  color: rgb(7, 167, 7)
+}
+
+.detail-info {
+  background: #c3c0c0bc;
+  padding: 1rem 4rem;
+  margin: 0;
+  width: 50%;
+}
+
+.detail-data {
+  font-size: 16px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(0, 0, 0);
 }
 
 .tachado {
@@ -47,32 +73,45 @@ h3.detail{
   color: darkgreen;
   text-decoration: line-through;
 }
+
 /* Card detail */
-.cardSection{
+.cardSection {
   padding: .5rem;
   display: flex;
-width: 70%;
+  width: 70%;
   border: 2px solid grey;
   border-radius: 20px;
 }
 
-.cardImage{
+.cardImage {
   width: 50%;
 }
-.cardDetail{
-  margin-left: 2rem;
-padding:.5rem ;
-  width: 60%;
 
+.cardDetail {
+  margin-left: 2rem;
+  padding: .5rem;
+  width: 60%;
 }
-.detailCard{
+
+.detailCard {
   color: rgb(21, 63, 141);
 }
-.priceDetail{
+
+.discountCard {
+  color: darkgreen;
+  font-size: 1rem;
+}
+.priceDetail {
   color: forestgreen;
   font-size: 1.2rem;
 }
-.discountCard{
-  color: darkgreen;
-  font-size: 1rem;
+
+
+.btn-det {
+  margin: 1rem 25%;
+  padding: .3rem;
+  width: 50%;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(48, 176, 59);
 }

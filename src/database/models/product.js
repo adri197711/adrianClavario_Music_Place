@@ -4,6 +4,12 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
+
+      Product.belongsTo(models.Brand, {
+        as: 'brand',
+        foreignKey: 'brandId',
+      });
+
    
       Product.belongsTo(models.Category, {
         as: 'category',
@@ -16,9 +22,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'sectionId',
       });
 
-      Product.belongsTo(models.Brand, {
-        as: 'brand',
-        foreignKey: 'brandId',
+    
+      Product.hasMany(models.Image, {
+        as: "images",
+        foreignKey:'productId',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       });
     }
   }
@@ -28,30 +37,29 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false, 
+        validate: {
+          len: [1, 255], 
+        },
       },
-      brandId: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
-     
       price: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      },
-      description: {
-        type: DataTypes.STRING,
-        allowNull: true,
       },
       discount: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-    
-      image: {
+     
+      description: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-    
+      
+      brandId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+     
       categoryId: {
         type: DataTypes.INTEGER,
         allowNull: false,

@@ -61,6 +61,36 @@ select {
   width: 80%;
 }
 
+.reg-input[type="file"] {
+  padding: 0.5rem 3rem;
+  font-family: inherit;
+  display:none;
+}
+.custom-file-upload {
+  /* display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background-color: #444;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease; */
+  margin: 0 4rem;
+  width: 9.5rem;
+  padding: 0.2rem 1rem;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.custom-file-upload:hover {
+  background-color: #222;
+  color: antiquewhite;
+}
+
 #check {
   position: relative;
   padding: 0;

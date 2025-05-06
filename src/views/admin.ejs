@@ -16,6 +16,7 @@
       <thead class="table-light">
         <tr>
           <th>ID</th>
+          <th>Imagen</th>
           <th>Producto</th>
           <th>Marca</th>
           <th>Precio</th>
@@ -25,9 +26,23 @@
         </tr>
       </thead>
       <tbody>
-        <% products.forEach(({ id, name, brand, price, discount, section, description }) => { %>
+        <% products.forEach(({ id, name, images, brand, price, discount, section, description }) => { %>
           <tr>
             <th scope="row"><%= id %></th>
+            <td>
+              <% if (images && images.length > 0 && images[0].file) { %>
+                <img 
+                  src="/images/products/<%= images[0].file || 'default.webp' %>" 
+                  alt="<%= name %>" 
+                  style="width: 60px; height: auto; object-fit: cover; border-radius: 4px;">
+              <% } else { %>
+                <img 
+                  src="/images/products/default.webp" 
+                  alt="<%= name %>" 
+                  style="width: 60px; height: auto; object-fit: cover; border-radius: 4px;">
+              <% } %>
+            </td>
+            
             <td><%= name %></td>
             <td><%= brand?.name || '--' %></td>
             <td>$<%= toThousand ? toThousand(price) : price %></td>

@@ -1,32 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Enlazar al archivo CSS de Slick -->
+
+  <!-- Slick CSS -->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-  
+
   <style>
-    /* Set the size of the images and make them cover the space */
-    .slider img {
-      width: 100%;         /* Makes images fill the width of the container */
-      height: 7.5rem;       /* Set a fixed height for all images */
-      object-fit: cover;   /* Ensures the image fills the area without distorting */
+    body {
+      margin: 0;
+      background-color: #111;
     }
 
-    /* Optionally, you can add styles to the slider for better appearance */
     .slider {
-      margin: 0 auto;  /* Centers the slider on the page */
+      width: 100%;
+      margin: auto;
+    }
+
+    .slider img {
+      width: 100%;
+      height: 4rem;
+      object-fit: contain;
+      padding: 0.5rem;
+      background-color: #ffffff;
+    }
+
+    .slider .slick-slide {
+      display: inline-block;
+    }
+
+    .slick-dots li button:before {
+      color: white;
     }
   </style>
-  <!-- Incluir jQuery y Slick JS -->
+
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Slick JS -->
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-
 </head>
 <body>
+
   <div class="slider">
     <div><img src="/images/slider/gibson.jpg" alt="Gibson"></div>
     <div><img src="/images/slider/peavey.webp" alt="Peavey"></div>
@@ -37,52 +49,46 @@
     <div><img src="/images/slider/daddario.webp" alt="D'Addario"></div>
     <div><img src="/images/slider/tama.webp" alt="Tama"></div>
     <div><img src="/images/slider/marshall.jpg" alt="Marshall"></div>
-    <div><img src="/images/slider/peavey.webp" alt="Peavey"></div>
     <div><img src="/images/slider/bcrich.webp" alt="B.C. Rich"></div>
-    <div><img src="/images/slider/Ephipone.webp" alt="Ephipone"></div>
+    <div><img src="/images/slider/Ephipone.webp" alt="Epiphone"></div>
     <div><img src="/images/slider/esp.webp" alt="ESP"></div>
   </div>
 
   <script>
-  $(document).ready(function(){
-  $('.slider').slick({
-    infinite: true,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 500,
-    arrows: true,
-    dots: true,
-    responsive: [
-    
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 4
-        }
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1
-        }
-      }
-    ]
-  });
-});
-
+    $(document).ready(function(){
+      $('.slider').slick({
+        infinite: true,
+        speed: 3000,
+        autoplay: true,
+        autoplaySpeed: 0,
+        cssEase: 'linear',
+        slidesToShow: 8,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: false,
+        pauseOnHover: false,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 6
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 3
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1
+            }
+          }
+        ]
+      });
+    });
   </script>
 
 </body>

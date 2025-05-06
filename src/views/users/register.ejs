@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-  <!DOCTYPE html>
-  <html lang="en">
-    <%- include('../partials/headAdmin', {title: 'Administrar Usuarios' }) %>
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/headAdmin', {title: 'Administrar Usuarios' }) %>
+
   <body>
-  
-      <%- include('../partials/headerAdmin', {title: 'Administrar Usuarios' }) %>
 
-    <h2 class="reg-titulo">Registro de Usuario</h2>
-    <form action="/users/processRegister" method="POST" class="reg-form" enctype="multipart/form-data">
-      
-        <label for="name" class="reg-label" >Nombre</label>
-        <input class="reg-input" type="text" id="name" name="name" ><br><br>
+    <%- include('../partials/headerAdmin', {title: 'Administrar Usuarios' }) %>
 
-        <label for="surname" class="reg-label" >Apellido</label>
-        <input class="reg-input" type="text" id="surname" name="surname" ><br><br>
+      <h2 class="reg-titulo">Registro de Usuario</h2>
+      <form action="/users/processRegister" method="POST" class="reg-form" enctype="multipart/form-data">
 
-        <label for="username" class="reg-label" >Nombre de Usuario</label>
-        <input class="reg-input" type="text" id="username" name="username" ><br><br>
+        <label for="name" class="reg-label">Nombre</label>
+        <input class="reg-input" type="text" id="name" name="name"><br><br>
 
-        
+        <label for="surname" class="reg-label">Apellido</label>
+        <input class="reg-input" type="text" id="surname" name="surname"><br><br>
+
+        <label for="username" class="reg-label">Nombre de Usuario</label>
+        <input class="reg-input" type="text" id="username" name="username"><br><br>
+
+
         <label for="email" class="reg-label">Correo Electrónico</label>
-        <input class="reg-input" type="email" id="email" name="email" ><br><br>
-        
+        <input class="reg-input" type="email" id="email" name="email"><br><br>
+
         <label for="password" class="reg-label">Contraseña</label>
-        <input class="reg-input" type="password" id="password" name="password" ><br><br>
+        <input class="reg-input" type="password" id="password" name="password"><br><br>
         <span id="show-hide">Show/Hide</span>
-        
-        
+
+
         <label class="reg-label" for="confirmPassword">Confirmar Contraseña</label>
-        <input class="reg-input"  type="password" name="confirmPassword" id="confirmPassword" autocomplete="off">
+        <input class="reg-input" type="password" name="confirmPassword" id="confirmPassword" autocomplete="off">
         <span id="show-hide">Show/Hide</span>
         <div class="errorMessage" id="confirmPasswordError"></div><br>
-<!-- 
+        <!-- 
         <label for="rol" class="form-label">Rol</label>
           <select name="rol" id="rol" class="reg-input">
             <option value="" hidden selected>Rol del usuario</option>
@@ -45,11 +46,15 @@
           <br> -->
 
         <br>
-        <label for="avatar" class="reg-label" >Imagen de Usuario</label>
-        <input class="reg-input" type="file" id="avatar" name="avatar" ><br><br>
+        <label for="avatar" class="reg-label">Imagen de Usuario</label>
+
+        <div class="file-upload-wrapper">
+          <label for="avatar" class="custom-file-upload">Subir imagen</label>
+          <input type="file" id="avatar" name="avatar" class="reg-input">
+        </div><br><br>
 
         <button class="btn-reg" type="submit">Registrarse</button>
-    </form>
-</body>
-</html>
+      </form>
+  </body>
 
+</html>

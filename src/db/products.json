@@ -5,7 +5,7 @@
     "description": "Guitarra eléctrica Ibanez RG",
     "price": 2700000,
     "sectionId": 1,
-    "brandId": null,
+    "brandId": 1,
     "discount": 10,
     "image": "/images/products/ibanez.jpg"
   },
@@ -15,7 +15,7 @@
     "description": "Guitarra eléctrica Gibson Les Paul",
     "price": 3500000,
     "sectionId": 1,
-    "brandId": null,
+    "brandId": 6,
     "discount": 0,
     "image": "/images/products/lespaul1.jpg"
   },
@@ -25,7 +25,7 @@
     "description": "Otra versión de Gibson Les Paul",
     "price": 3600000,
     "sectionId": 1,
-    "brandId": null,
+    "brandId": 6,
     "discount": 5,
     "image": "/images/products/lespaul2.jpg"
   },
@@ -35,7 +35,7 @@
     "description": "Amplificador Marshall clásico",
     "price": 1500000,
     "sectionId": 6,
-    "brandId": null,
+    "brandId": 2,
     "discount": 0,
     "image": "/images/products/ampli.jpg"
   },
@@ -45,7 +45,7 @@
     "description": "Excelente oportunidad para principiantes.",
     "price": 5000000,
     "sectionId": 1,
-    "brandId": null,
+    "brandId": 0,
     "discount": 0,
     "image": "/images/products/oferta.jpg"
   },
@@ -55,7 +55,7 @@
     "description": "",
     "price": 5000000,
     "sectionId": 4,
-    "brandId": null,
+    "brandId": 0,
     "discount": 0,
     "image": "/images/products/teclado.jpg"
   },
@@ -65,7 +65,7 @@
     "description": "Guitarra eléctrica",
     "price": 5000000,
     "sectionId": 1,
-    "brandId": 1,
+    "brandId": 0,
     "discount": 0,
     "image": "/images/products/strato.jpg"
   },
@@ -75,7 +75,7 @@
     "description": "Amplificador para guitarra eléctrica",
     "price": 5000000,
     "sectionId": 6,
-    "brandId": 1,
+    "brandId": 2,
     "discount": 0,
     "image": "/images/products/marshall.jpg"
   }

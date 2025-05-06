@@ -3,19 +3,25 @@
 <%- include('../partials/head', {title:'detalle del producto'}) %>
 
   <body>
+    <main>
 
-    <%- include('../partials/header') %>
+    <%- include('../partials/banner') %>
 
-      <main>
-        <section class="main-detail">
+    
 
-          <article class="art-detail">
-            <img class="foto-detail" src="/images/products/<%= product.image %> " alt="Foto producto">
-
-            <p class="detail">
-              <%= product.description %>
-            </p>
-          </article>
+            <section class="detail-container">
+              <article class="art-detail">
+              <% if (product.images && product.images.length > 0) { %>
+                <% product.images.forEach(image => { %>
+                  <img class="main-detail-foto"
+                  src="/images/products/<%= product.images && product.images.length > 0 ? product.images[0].file : 'default.webp' %>"
+                  alt="<%= product.name %>" style="width: 16rem" 
+                  />
+                <% }) %>
+              <% } else { %>
+                <p>No hay imágenes disponibles para este producto.</p>
+              <% } %>
+            </article>
           <article class="art-detail">
             <h3 class="detail">
               <%= product.name %>
