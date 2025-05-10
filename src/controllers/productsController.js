@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const { Product, Category, Section, Brand, Image } = require("../database/models");
 const fs = require('fs');
 const path = require('path');
@@ -81,20 +82,24 @@ module.exports = {
 
   add: async (req, res) => {
     try {
-      const [sections, brands, categories] = await Promise.all([
-        Section.findAll({
-          order: [['name']]
-        }),
+      const [sections, brands, categories] = await Promise.all
 
-        Brand.findAll({
-          order: [['name']]
-        }),
-        Category.findAll({
-          order: [['name']]
-        })
-      ]);
+        ([
+          Section.findAll({
+            order: [['name']]
+          }),
+
+          Brand.findAll({
+            order: [['name']]
+          }),
+          Category.findAll({
+            order: [['name']]
+          })
+        ]);
 
       return res.render('products/productAdd', {
+        old: {},
+        errors: {},
         sections,
         brands,
         categories
@@ -103,20 +108,39 @@ module.exports = {
       console.log(error)
     }
   },
-
+  
   create: async (req, res) => {
-    console.log("BODY:", req.body);
-    const { Product, Category, Section, Brand, Image } = require("../database/models");
-    const { name, price, discount, description, brand, category, section } = req.body; 
+    
     try {
+    const { Product, Category, Section, Brand, Image } = require("../database/models");
+    const errors = validationResult(req);
+    console.log("BODY:", req.body);
+    
+    if (!errors.isEmpty()) {
+      const [sections, brands, categories] = await Promise.all([
+        Section.findAll({ order: [['name']] }),
+        Brand.findAll({ order: [['name']] }),
+        Category.findAll({ order: [['name']] })
+      ]);
+      
+      return res.render('products/productAdd', {
+        errors: errors.mapped(),
+        old: req.body,
+        sections,
+        categories,
+        brands
+      });
+    }else{
+    
+    const { name, price, discount, description, brand, category, section } = req.body;
       const newProduct = await Product.create({
         name: name.trim(),
         price: +price,
         discount: +discount,
         description: description.trim(),
-        brandId: brand,  
-        categoryId:category,
-        sectionId:section,  
+        brandId: brand,
+        categoryId: category,
+        sectionId: section,
       });
 
       if (req.file) {
@@ -132,16 +156,16 @@ module.exports = {
         }
       }
       return res.redirect('/admin');
-
+    }
     } catch (error) {
       console.error("Error al crear el producto:", error);
       return res.status(500).send("Error al crear el producto");
     }
   },
-  
+
   edit: async (req, res) => {
     const { Product, Category, Section, Brand, Image } = require('../database/models');
-  
+
     try {
       const product = await Product.findByPk(req.params.id, {
         include: [
@@ -150,54 +174,76 @@ module.exports = {
           { association: 'brand' },
           { association: 'images' }
         ],
-    })
+      })
 
       if (!product) {
         return res.status(404).send('Producto no encontrado');
       }
-  
+
       const [categories, sections, brands] = await Promise.all([
         Category.findAll(),
         Section.findAll(),
         Brand.findAll()
       ]);
-  
+
       return res.render('products/productEdit', {
         product,
         categories,
         sections,
-        brands
+        brands,
+        old: req.body,
+        errors: {}
       });
-  
+
     } catch (error) {
       console.error(error);
       return res.status(500).send('Error al cargar el producto');
     }
   },
-  
+
   update: async (req, res) => {
+
+    const errors = validationResult(req);
+    const { name, price, discount, description, categoryId, sectionId, brandId } = req.body;
+    console.log('reqBODY: ', req.body)
+
+    if (!errors.isEmpty()) {
+      const [brands, categories, sections] = await Promise.all([
+        Brand.findAll({ order: [['name']] }),
+        Category.findAll({ order: [['name']] }),
+        Section.findAll({ order: [['name']] })
+      ]);
+
+      return res.render('products/productEdit', {
+   product: { ...req.body, id: req.params.id },
+        errors: errors.mapped(),
+        old: req.body,
+        categories,
+        brands,
+        sections,
+      });
+    }
+
+    const { id } = req.params;
+    if (isNaN(id)) {
+      return res.status(400).render('error', { message: 'ID inválido' });
+    }
+    console.log("ID recibido:", id);
+    const [product, brands, categories, sections] = await Promise.all([
+      Product.findByPk(id, {
+        include: [{ association: 'images' }]
+      }),
+      Brand.findAll({ order: [['name']] }),
+      Category.findAll({ order: [['name']] }),
+      Section.findAll({ order: [['name']] })
+    ]);
+
+    if (!product) {
+      return res.status(404).render('error', {
+        message: 'Producto no encontrado'
+      });
+    }
     try {
-
-      const { id } = req.params;
-        console.log("ID recibido:", id);
-        const [product, brands, categories, sections] = await Promise.all([
-          Product.findByPk(id, {
-            include: [{ association: 'images' }]
-          }),
-          Brand.findAll({ order: [['name']] }),
-          Category.findAll({ order: [['name']] }),
-          Section.findAll({ order: [['name']] })
-        ]);
-        
-      if (!product) {
-        return res.status(404).render('error', {
-          message: 'Producto no encontrado'
-        });
-      }
-
-
-      const { name, price, discount, description, categoryId, sectionId, brandId } = req.body;
-console.log('reqBODY: ' , req.body)
       product.set({
         name: name.trim(),
         description: description.trim(),

@@ -5,55 +5,59 @@
       <div class="top-header-nav">
         <input type="checkbox" name="checkbox" id="menu-toggle">
         <label for="menu-toggle" class="menu-icon-action">
-          <div class='fa-solid fa-bars' id="menu-icon"></div>
+          <div class='fa-solid fa-bars' id="menu-icon">
+
+          </div>
         </label>
+        <ul class="nav-bar">
+          <li><a href="/">Home</a></li>
+          <li><a href="/nav/guitarras">Guitarras</a></li>
+          <li><a href="/nav/bajos">Bajos</a></li>
+          <li><a href="/nav/baterias">Baterias</a></li>
+          <li><a href="/nav/teclados">Teclados</a></li>
+          <li><a href="/nav/accesorios">Accesorios</a></li>
+          <li><a href="/nav//amplis">Amplificadores</a></li>
+          <li><a href="/nav/audio">Audio</a></li>
+          <li><a href="admin">Administración</a></li>
+        </ul>
+
+        <%-include('slider')%>
 
     </section>
     <h1 class="logo">MUSIC PLACE</h1>
- <section class="input-icons"
- >
-    <form class="header-form">
-      <div class="search">
-        <input class="header-input" type="text" name="search" placeholder="Buscar marcas, productos...">
-        <div>
-          <i class="fa-solid fa-magnifying-glass"></i>
+    <section class="input-icons">
+      <form class="header-form">
+        <div class="search">
+          <input class="header-input" type="text" name="search" placeholder="Buscar marcas, productos...">
+          <div>
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
 
-    <ul class="ul-flex-usuarios">
-      <% if(locals.userLogin) { %>
-    
-        <span>
-          <li><a href="/users/logout"><i class="fa-solid fa-right-from-bracket"></i></li> </a>
-        </span>
-
-        <span>
-          <li><a href="/"><i class="fa-solid fa-shopping-cart"></i></li></a>
-        </span>
-        <% }else{ %>
+      <ul class="ul-flex-usuarios">
+        <% if(locals.userLogin) { %>
 
           <span>
-            <li><a href="/users/register"><i class="fa-regular fa-user"></i></li></a>
+            <li><a href="/users/logout"><i class="fa-solid fa-right-from-bracket"></i></li> </a>
           </span>
+
           <span>
-            <li><a href="/users/login"><i class="fa-solid fa-right-to-bracket"></i></li> </a>
+            <li><a href="/"><i class="fa-solid fa-shopping-cart"></i></li></a>
           </span>
-          <% } %>
-    </ul>
+          <% }else{ %>
+
+            <span>
+              <li><a href="/users/register"><i class="fa-regular fa-user"></i></li></a>
+            </span>
+            <span>
+              <li><a href="/users/login"><i class="fa-solid fa-right-to-bracket"></i></li> </a>
+            </span>
+            <% } %>
+      </ul>
   </div>
   </div>
-</section>
-  <ul class="nav-bar">
-    <li><a href="/">Home</a></li>
-    <li><a href="/nav/guitarras">Guitarras</a></li>
-    <li><a href="/nav/bajos">Bajos</a></li>
-    <li><a href="/nav/baterias">Baterias</a></li>
-    <li><a href="/nav/teclados">Teclados</a></li>
-    <li><a href="/nav/accesorios">Accesorios</a></li>
-    <li><a href="/nav//amplis">Amplificadores</a></li>
-    <li><a href="/nav/audio">Audio</a></li>
-    <li><a href="admin">Administración</a></li>
-  </ul>
+  </section>
+
   <%-include('slider')%>
 </header>

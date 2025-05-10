@@ -1,73 +1,114 @@
 <!DOCTYPE html>
 <html>
-
-<%- include('../partials/head',{ title:'Cargar producto' }) %>
+<%- include('../partials/head', { title:'Cargar producto' }) %>
 
   <body>
     <main class="body">
-
       <div id="registroForm">
-
         <h2 class="tit-reg">Agregar producto</h2>
-<form action="/products/create" method="POST" id="formAddProduct" enctype="multipart/form-data">
-  <br>
- 
-  <label for="name">Nombre del producto</label>
-  <input class="reg-input" type="text" id="name" name="name" required>
-  <div class="error" id="errorProduct"></div>
-  <br>
-  <label for="sectionId">Sección</label>
-  <select name="section" id="section">
-    <option value="" hidden selected>Seleccione sección...</option>
-    <% sections.forEach(s => { %>
-     <option value="<%= s.id %>"><%= s.name %></option>
-    <% }) %>
-   </select>
 
-   <label for="brand">Marca</label>
-<select name="brand" id="brand">
-  <option value="" hidden selected>Seleccione marca...</option>
-  <% brands.forEach(b => { %>
-    <option value="<%= b.id %>"><%= b.name %></option>
-  <% }) %>
-</select>
+        <form action="/products/create" method="POST" id="formAddProduct" enctype="multipart/form-data">
+          <br>
 
-    <label for="category">Categoría</label>
-  <select name="category" id="category">
-    <option value="" hidden selected>Seleccione categoria...</option>
-    <% categories.forEach(c => { %>
-     <option value="<%= c.id %>"><%= c.name %></option>
-    <% }) %>
-   </select>
-  <br>
+          <!-- Nombre -->
+          <label for="name">Nombre del producto</label>
+          <input class="reg-input" type="text" id="name" name="name" value="<%= old?.name || '' %>">
+          <% if (errors?.name) { %><br>
+            <span class="error">
+              <%= errors.name.msg %>
+            </span>
+            <% } %>
+              <br>
 
-  <label for="price">Precio</label>
-  <input class="reg-input" type="number" id="price" name="price" required>
-  <div class="error" id="errorPrice"></div>
-  <br>
+              <!-- Sección -->
+              <label for="section">Sección</label>
+              <select name="section" id="section">
+                <option value="" hidden selected>Seleccione sección...</option>
+                <% sections.forEach(s=> { %>
+                  <option value="<%= s.id %>" <%=old?.section==s.id ? 'selected' : '' %>><%= s.name %>
+                  </option>
+                  <% }) %>
+              </select>
+              <% if (errors?.section) { %><br>
+                <span class="error">
+                  <%= errors.section.msg %>
+                </span>
+                <% } %>
 
-  <label for="discount">Descuento</label>
-  <input class="reg-input" type="number" id="discount" name="discount">
-  <div class="error" id="errorDiscount"></div>
-  <br>
+                  <!-- Marca -->
+                  <label for="brand">Marca</label>
+                  <select name="brand" id="brand">
+                    <option value="" hidden selected>Seleccione marca...</option>
+                    <% brands.forEach(b=> { %>
+                      <option value="<%= b.id %>" <%=old?.brand==b.id ? 'selected' : '' %>><%= b.name %>
+                      </option>
+                      <% }) %>
+                  </select>
+                  <% if (errors?.brand) { %><br>
+                    <span class="error">
+                      <%= errors.brand.msg %>
+                    </span>
+                    <% } %>
 
- <label for="image" class="form-label">Imagenes</label>
-  <input class="reg-input-file" type="file" name="image" id="image" > 
-<br>
-<br>
-<br>
+                      <!-- Categoría -->
+                      <label for="category">Categoría</label>
+                      <select name="category" id="category">
+                        <option value="" hidden selected>Seleccione categoria...</option>
+                        <% categories.forEach(c=> { %>
+                          <option value="<%= c.id %>" <%=old?.category==c.id ? 'selected' : '' %>><%= c.name %>
+                          </option>
+                          <% }) %>
+                      </select>
+                      <% if (errors?.category) { %><br>
+                        <span class="error">
+                          <%= errors.category.msg %>
+                        </span>
+                        <% } %>
+                          <br>
+                          <!-- Precio -->
+                          <label for="price">Precio</label>
+                          <input class="reg-input" type="number" id="price" name="price"
+                            value="<%= old?.price || '' %>">
+                          <% if (errors?.price) { %><br>
+                            <span class="error">
+                              <%= errors.price.msg %>
+                            </span>
+                            <% } %>
+                              <br>
 
-  
+                              <br>
 
+                              <!-- Descuento -->
+                              <label for="discount">Descuento</label>
+                              <input class="reg-input" type="number" id="discount" name="discount"
+                                value="<%= old?.discount || '' %>">
+                              <% if (errors?.discount) { %><br>
+                                <span class="error">
+                                  <%= errors.discount.msg %>
+                                </span>
+                                <% } %>
+                                  <br><br>
 
-  <label for="description" class="form-label">Descripción:</label>
-  <textarea name="description" id="description" class="textarea" rows="8"></textarea>
-  <br>
-  
-  <button type="submit" class="reg-button">Agregar producto</button>
-</form>
-</div>
+                                  <!-- Imagen -->
+                                  <label for="image" class="form-label">Imágenes</label>
+                                  <input class="reg-input-file" type="file" name="image" id="image">
+                                  <br><br>
 
-</body>
+                                  <!-- Descripción -->
+                                  <label for="description" class="form-label">Descripción:</label>
+                                  <textarea name="description" id="description" class="textarea"
+                                    rows="8"><%= old?.description || '' %></textarea>
+                                  <% if (errors?.description) { %><br>
+                                    <span class="error">
+                                      <%= errors.description.msg %>
+                                    </span>
+                                    <% } %><br>
+
+                                      <br>
+                                      <button type="submit" class="btn btn-outline-dark">Actualizar Producto</button>
+        </form>
+      </div>
+    </main>
+  </body>
 
 </html>

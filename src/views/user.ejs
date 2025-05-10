@@ -1,62 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./partials/headAdmin', {title: 'Administrar usuarios' }) %>
-<body>
+
+<%- include('./partials/headAdmin', {title: 'Administrar usuarios' }) %>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table th,
+    table td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    table th:first-child,
+    table td:first-child {
+      width: 50px;
+      text-align: center;
+    }
+
+    table th:nth-child(2),
+    table td:nth-child(2),
+    table th:nth-child(3),
+    table td:nth-child(3),
+    table th:nth-child(4),
+    table td:nth-child(4) {
+      width: 120px;
+    }
+
+    table th:nth-child(5),
+    table td:nth-child(5) {
+      width: 200px;
+    }
+
+    table th:nth-child(6),
+    table td:nth-child(6) {
+      width: 100px;
+    }
+
+    table th:nth-child(7),
+    table td:nth-child(7) {
+      width: 150px;
+    }
+  </style>
+
+  <body>
 
     <%- include('./partials/headerAdmin', {title: 'Administrar usuarios' }) %>
 
-  <main class="menu-admin">
-  <table border="2" >
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Usuario</th>
-        <th>email</th>
-        <th>Rol</th>
-        <th><div>
-          <a class="btn btn-sm btn-new " href="/users/register">Nuevo registro</a>
-        </div></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% users.forEach(({id,name,surname,username,email,rolId}) => {%>
-        <tr>
-          <th scope="row"><%= id %></th>
-          <td><%=name%></td>
-          <td><%=surname%></td>
-          <td><%=username%></td>
-          <td><%=email%></td>
-          <td><%=rolId%></td>
-          <td> <div class="d-flex gap-2">
-          <div>
-              <a href="/users/profile/<%=id%>" class=" btn btn-edit">Editar</a>
-            </div>			
-            
-              
-              <form action="/users/remove/<%=id%>?_method=DELETE" method="POST" id="formAddProduct">
-                <button  type="submit" class="btn btn-del">Eliminar</button>
-              </form>
-          						
-            </div>
-          </td>
-        </tr>
-     <% }) %>
-  </tbody>
-  </table>
-  <tfoot>
-    <%- include('./partials/pager', {
-    path : '/admin/users',
-    currentPage,
-    totalPages
-  }) %>
-</tfoot>
-</main>
+      <main class="mainAdmin container py-4">
+        <!-- Button outside the table -->
+        <div class="mb-3 text-end">
+          <a class="btn btn-sm btn-primary" href="/users/register">Agregar usuario</a>
+        </div>
+
+        <table class="table table-striped table-bordered align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Foto</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Usuario</th>
+              <th>email</th>
+              <th>Rol</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(({id,name,avatar,surname,username,email,rolId})=> {%>
+              <tr>
+                <th scope="row">
+                  <%= id %>
+                </th>
+                <td>
+                  <img src="/images/users/<%= avatar || 'usuario.webp' %>" alt="<%= name %>"
+                    style="width: 60px; height: auto; object-fit: cover; border-radius: 4px;">
+
+                </td>
+                <td>
+                  <%=name%>
+                </td>
+                <td>
+                  <%=surname%>
+                </td>
+                <td>
+                  <%=username%>
+                </td>
+                <td>
+                  <%=email%>
+                </td>
+                <td>
+                  <% const rol=rols.find(r=> r.id === rolId);
+                    const rolName = rol ? rol.name : '----';
+                    %>
+                    <%= rolName %>
+                </td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <a href="/users/profile/<%= id %>" class="btn btn-sm btn-warning">Editar</a>
+
+                    <form action="/users/remove/<%= id %>?_method=DELETE" method="POST">
+                      <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+        <tfoot>
+          <%- include('./partials/pager', { path : '/admin/users' , currentPage, totalPages }) %>
+        </tfoot>
+      </main>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-crossorigin="anonymous"></script>
-</body>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+  </body>
+
 </html>

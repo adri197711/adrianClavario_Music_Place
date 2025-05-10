@@ -89,7 +89,9 @@ module.exports = {
   
       const products = await db.Product.findAll({
         where,
-        include: ['brand', 'section', 'category']
+        include: ['brand', 'section', 'category',
+          { model: db.Image, as: 'images' }
+        ]
       })
   
       const categories = await db.Category.findAll()
@@ -114,56 +116,49 @@ module.exports = {
       return res.status(500).send('An error occurred while fetching products')
     }
   },
+
   
-  users: async(req, res) => {
-      const db = require('../database/models')
-      try {
-        let users = await db.User.findAll()
-        
-        const { page, perPage, rol, search } = req.query
-        const rols = await db.Rol.findAll() 
-    
-        if (rol) {
-          users = users.filter(user => user.rolId === parseInt(rol))
-        }
-    
-        if (search) {
-          users = users.filter(user =>
-            user.name.toLowerCase().includes(search.toLowerCase().trim())
-          )
-        }
-    
-        const { items, total } = paginator(users, page, perPage);
-    
-        return res.render('user', {
-          users: items,
-          currentPage: page || 1,
-          totalPages: total,
-          rols,
-          filterCategory: rol,
-          search,
-          toThousand, 
-        });
-      } catch (error) {
-        console.error('Error fetching users:', error);
-        return res.status(500).send('An error occurred while fetching users');
-      }
-    },
+  users: async (req, res) => {
+  const db = require('../database/models');
+  try {
+    const { page = 1, perPage = 10, rol, search } = req.query;
 
-  adminUsers: (req, res) => {
-    const users = require('../db/users.json')
+    const where = {};
 
-    const { page, perPage } = req.query
+    if (rol) where.rolId = +rol;
 
-    const { items, total } = paginator(users, page, perPage)
+    if (search) {
+      where.name = {
+        [db.Sequelize.Op.like]: `%${search.trim().toLowerCase()}%`
+      };
+    }
 
-    return res.render('users/usersAdmin', {
-      users: items,
-      currentPage: page || 1,
-      totalPages: total,
-    })
+    const { count, rows } = await db.User.findAndCountAll({
+      where,
+      include: ['rol'], 
+      limit: +perPage,
+      offset: (+page - 1) * +perPage
+    });
+
+    const rols = await db.Rol.findAll();
+
+    const totalPages = Math.ceil(count / perPage);
+
+    return res.render('user', {
+      users: rows,
+      currentPage: +page,
+      totalPages,
+      rols,
+      filterCategory: rol,
+      search,
+      toThousand,
+    });
+
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    return res.status(500).send('An error occurred while fetching users');
   }
-
+}
 }
 
 

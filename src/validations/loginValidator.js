@@ -25,4 +25,6 @@ const loginValidator = [
         })
 ]
 
-module.exports = loginValidator
+
+
+module.exports = loginValidator; 

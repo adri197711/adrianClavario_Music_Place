@@ -1,60 +1,110 @@
 <!DOCTYPE html>
 <html>
-  <%- include('.././partials/headAdmin', {title:'Editar usuario'}) %>
- 
-<body>
-  <main class="body">
-  <div id="registroForm">
+<%- include('.././partials/headAdmin', {title:'Editar usuario'}) %>
 
-    <h2 class="tit-reg">Actualizar Legajo de usuario</h2>
+  <body>
+    <main class="body">
+      <div id="registroForm">
 
-    <form  action="/users/update/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <h2 class="tit-reg">Actualizar Legajo de usuario</h2>
+        <form action="/users/update/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
-      <label for="name">Nombre</label>
-      <input class="reg-input" type="text" id="nombre" name="name"
-      value="<%=user.name%>">
-      <div class="error" id="errorNombre"></div>
-      <br>
 
-      <label for="surname">Apellido</label>
-      <input class="reg-input"  type="text" id="surname" name="surname" 
-      value="<%=user.surname%>">
-      <div class="error" id="errorApellido"></div>
+          <label for="name">Nombre</label>
+          <input class="reg-input" type="text" id="name" name="name" value="<%=user.name%>">
+          <div class="error" id="errorNombre"></div>
+          <br>
 
-      <label for="username">Usuario</label>
-      <input class="reg-input"  type="text" id="username" name="username"   
-      value="<%=user.username%>">
-      <div class="error" id="errorUsername"></div>
-      <br>
+          <label for="surname">Apellido</label>
+          <input class="reg-input" type="text" id="surname" name="surname" value="<%=user.surname%>">
+          <div class="error" id="errorApellido"></div>
 
-      <label for="email">Email</label>
-      <input class="reg-input"  type="email" id="email" name="email" 
-      value="<%=user.email%>">
-      <div class="error" id="errorEmail"></div>
-      <br>
-   
-      <div>
-      <label class="inline">Acepto Términos y condiciones</label>
-      <input type="checkbox" name="aceptoTerminos" class="check" id="check"  checked="off"
-         required>
-         
-         <div class="error" id="errorAceptoTerminos"></div>
-        </div>
-         <br>
-         
+          <label for="username">Usuario</label>
+          <input class="reg-input" type="text" id="username" name="username" value="<%=user.username%>">
+          <div class="error" id="errorUsername"></div>
+          <br>
 
-        <button type="submit" class="btn btn-outline-dark">Actualizar usuario</button>
-      </form>
+          <label for="email">Email</label>
+          <input class="reg-input" type="email" id="email" name="email" value="<%=user.email%>">
+          <div class="error" id="errorEmail"></div>
+          <br>
+          <label for="avatar">Foto</label>
+          <input type="file" name="avatar">
 
-      <br>
-      <br>
-      <form action="/users/remove/<%=user.id%>?_method=DELETE" method="POST">
-        <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
-      </form>
-    </div>
+          <div>
+            <label class="inline">Acepto Términos y condiciones</label>
+            <input type="checkbox" name="aceptoTerminos" class="check" id="check">
 
- 
+            <div class="error" id="errorAceptoTerminos"></div>
+          </div>
+          <br>
 
-</body>
+
+          <button type="submit" class="btn btn-outline-dark">Actualizar usuario</button>
+        </form>
+
+        <br>
+        <br>
+        <form action="/users/remove/<%=user.id%>?_method=DELETE" method="POST">
+          <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
+        </form>
+      </div>
+
+    </main>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('#registroForm form');
+    const nombre = document.querySelector('#name');
+    const apellido = document.querySelector('#surname');
+    const usuario = document.querySelector('#username');
+    const email = document.querySelector('#email');
+    const terminos = document.querySelector('#check');
+
+    const errorNombre = document.querySelector('#errorNombre');
+    const errorApellido = document.querySelector('#errorApellido');
+    const errorUsername = document.querySelector('#errorUsername');
+    const errorEmail = document.querySelector('#errorEmail');
+    const errorAcepto = document.querySelector('#errorAceptoTerminos');
+
+    form.addEventListener('submit', (e) => {
+      let errores = false;
+
+      // Resetear errores
+      [errorNombre, errorApellido, errorUsername, errorEmail, errorAcepto].forEach(el => el.innerText = '');
+
+      if (!nombre.value.trim()) {
+        errorNombre.innerText = 'El nombre es obligatorio';
+        errores = true;
+      }
+
+      if (!apellido.value.trim()) {
+        errorApellido.innerText = 'El apellido es obligatorio';
+        errores = true;
+      }
+
+      if (!usuario.value.trim()) {
+        errorUsername.innerText = 'El usuario es obligatorio';
+        errores = true;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email.value.trim() || !emailRegex.test(email.value)) {
+        errorEmail.innerText = 'Debe ingresar un email válido';
+        errores = true;
+      }
+
+      if (!terminos.checked) {
+        errorAcepto.innerText = 'Debe aceptar los términos';
+        errores = true;
+      }
+
+      if (errores) {
+        e.preventDefault(); // Cancelar envío si hay errores
+      }
+    });
+  });
+</script>
+
+  </body>
 
 </html>

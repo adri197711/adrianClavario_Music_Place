@@ -53,3 +53,9 @@ margin-left: 60%;
   width: 12rem;
   display: flex;
 }
+
+.error{
+  color: crimson;
+  width: 80%;
+  background-color: rgb(239, 208, 220);
+}
