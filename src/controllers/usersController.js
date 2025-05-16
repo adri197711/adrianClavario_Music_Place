@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
+const path = require('path');
 const { User, Rol } = require('../database/models')
 
 module.exports = {
@@ -12,6 +13,7 @@ module.exports = {
       old: {}
     });
   },
+
 processLogin: async function (req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -21,42 +23,50 @@ processLogin: async function (req, res) {
     });
   }
 
-  const { password } = req.body;
-  const user = req.user;  // El usuario ya está cargado en req.user gracias al validador
+  const { email, password, recordar } = req.body;
+  const user = await User.findOne({
+  where: { email },
+  attributes: ['id','name','email', 'password', 'rolId', 'avatar'], 
+});;  
 
-  const passOk = bcrypt.compareSync(password, user.password);
-  if (!passOk) {
+
+  if (!user) {
     return res.render('users/login', {
       errors: {
-        password: { msg: "Contraseña incorrecta" }
+        email: { msg: 'Credenciales inválidas' }
       },
       old: req.body
     });
   }
 
-  // Aquí carga el rol para el usuario (podrías optimizar que el validador también lo incluya)
-  const { Rol } = require('../database/models');
-  const rol = await Rol.findByPk(user.rolId);
+  const passOk = bcrypt.compareSync(password, user.password);
+  if (!passOk) {
+    return res.render('users/login', {
+      errors: {
+        password: { msg: "Credenciales inválidas" }
+      },
+      old: req.body
+    });
+  }
 
   const userLogin = {
     id: user.id,
     name: user.name,
     email: user.email,
     rolId: user.rolId,
-    roleName: rol?.name || 'Usuario',
     avatar: user.avatar,
   };
 
   req.session.userLogin = userLogin;
-
-  if (req.body.recordar) {
+console.log('USERLOGIN: ', userLogin)
+  if (recordar) {
     res.cookie("user", JSON.stringify(userLogin), { maxAge: 60000 * 60 * 30 });
   }
 
+  console.log('🧠 Session:', req.session.userLogin);
+
   return res.redirect('/');
 },
-
-
 
   register: async (req, res) => {
     try {

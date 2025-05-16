@@ -13,7 +13,7 @@ router
     .post('/processRegister',upload.single('avatar'), registerValidator, processRegister)
     .get('/login', login)
     .post('/processLogin', loginValidator, processLogin)
-    .get('/profile/:id', profile)
+    .get('/profile/:id', adminCheck, profile)
     .put('/update/:id', upload.single('avatar'), userEditValidator, update)
     .get('/logout', logout)
     .delete('/remove/:id',remove)

@@ -7,20 +7,7 @@ const loginValidator = [
     check('email')
         .notEmpty().withMessage('El email es requerido')
         .isEmail().withMessage('Debe ser un correo electrónico válido')
-        .normalizeEmail()
-        .custom(async (email, { req }) => {
-            const user = await db.User.findOne({
-                where: { email },
-                attributes: ['id', 'email', 'password']
-            });
-
-            if (!user) {
-                throw new Error('Usuario no encontrado');
-            }
-
-            // Save user for password validation
-            req.user = user;
-        }),
+        .normalizeEmail(),
 
     // Password check
     check('password')
