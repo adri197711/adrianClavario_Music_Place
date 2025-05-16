@@ -18,7 +18,7 @@ router
     .put('/update/:id',upload.single('image'),productValidation, update)
     .delete('/remove/:id', remove)
     .get('/search', search)
-    .get('/cart/:id',cart)
-    .get('/ofertas',cartDetail)
+    // .get('/cart/:id',cart)
+    // .get('/ofertas',cartDetail)
 
 module.exports = router;

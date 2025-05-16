@@ -11,25 +11,25 @@
 
         <label for="email">Email</label>
         <input type="email" name="email" id="email" placeholder="Ingrese email"
-          value="<%= old && old.email ? old.email : '' %>" autocomplete="off" />
+        value="<%= old && old.email ? old.email : '' %>" autocomplete="off" /><br>
         <% if (errors?.email) { %>
-          <span class="error-validation">
-            <%= errors.email.msg %>
+          <span class="error-validation is-invalid"
+            <%= errors.email.msg %>>
           </span>
-          <% } %>
+          <% } %><br>
 
             <label for="password">Password</label>
             <input type="password" name="password" placeholder="Ingrese contraseña" id="password" autocomplete="off" />
             <% if (errors?.password) { %>
-              <span class="error-validation">
+              <span class="error-validation is-invalid">
                 <%= errors.password.msg %>
               </span>
               <% } %>
-                <span id="show-hide">Show/Hide</span>
+                <span id="show-hide">Mostrar</span>
 
-               <div class="div-recordar"></div>
-<input type="checkbox" name="recordar" id="recordar" <%= old?.recordar ? 'checked' : '' %> />
-<label for="recordar" class="label-recordar">Recordarme</label>
+                <div class="div-recordar"></div>
+                <input type="checkbox" name="recordar" id="recordar" <%=old?.recordar ? 'checked' : '' %> />
+                <label for="recordar" class="label-recordar">Recordarme</label>
 
 
                 <button type="submit" class="btn-login">Login</button>

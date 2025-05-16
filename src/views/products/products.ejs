@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
 <%- include('../partials/head',{title:'products'}) %>
+<body>
+  
+<form action="/products/search" method="GET">
+  <input type="text" name="query" placeholder="Buscar productos...">
+  <button type="submit">Buscar</button>
+</form>
 
-  <body>
-    <%- include('../partials/header') %>
-      <main>
-<% products.forEach((products) => {%>
+<h2>Resultados de búsqueda para: "<%= searchTerm %>"</h2>
 
-<%-include('../partials/productCard',{
-products
-}
-)%>
-<%})%>
+<% if (products.length === 0) { %>
+  <p>No se encontraron productos.</p>
+<% } else { %>
+  <ul>
+    <% products.forEach(product => { %>
+      <li><%= product.name %> - $<%= toThousand(product.price) %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+
       </main>
       <%- include('../partials/footer') %>
   </body>

@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
 const { Product, Category, Section, Brand, Image } = require("../database/models");
+const { Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const { toThousand, paginator } = require('../utils/index');
@@ -75,7 +76,7 @@ module.exports = {
       });
     } catch (error) {
       return res.status(500).render('error', {
-         message: error.message,
+        message: error.message,
       })
     }
   },
@@ -161,7 +162,7 @@ module.exports = {
 
       } catch (error) {
         console.error("Error al crear el producto:", error);
-        return res.status(500).render(error , {message: "Error al crear el producto"});
+        return res.status(500).render(error, { message: "Error al crear el producto" });
       }
     }
   },
@@ -259,36 +260,36 @@ module.exports = {
 
       await product.save();
 
-    if (req.file) {
-  let oldImage = null;
+      if (req.file) {
+        let oldImage = null;
 
-  if (product.images.length) {
-    oldImage = product.images[0];
+        if (product.images.length) {
+          oldImage = product.images[0];
 
-    if (oldImage.file !== 'default.webp') {
-      const pathFile = path.join(__dirname, '../../public/images/products', oldImage.file);
-      if (fs.existsSync(pathFile)) {
-        fs.unlinkSync(pathFile);
+          if (oldImage.file !== 'default.webp') {
+            const pathFile = path.join(__dirname, '../../public/images/products', oldImage.file);
+            if (fs.existsSync(pathFile)) {
+              fs.unlinkSync(pathFile);
+            }
+          }
+
+          await oldImage.destroy();
+        }
+
+        await Image.create({
+          productId: product.id,
+          file: req.file.filename
+        });
       }
-    }
-
-    await oldImage.destroy();
-  }
-
-  await Image.create({
-    productId: product.id,
-    file: req.file.filename
-  });
-}
       return res.redirect('/admin');
 
-  } catch(error) {
-    console.error(error);
-    return res.status(500).render('error', {
-      message: error.message
-    });
-  }
-},
+    } catch (error) {
+      console.error(error);
+      return res.status(500).render('error', {
+        message: error.message
+      });
+    }
+  },
 
   remove: async (req, res) => {
     try {
@@ -316,69 +317,71 @@ module.exports = {
     }
   },
 
-    cart: async (req, res) => {
-      const cartProductIds = [1, 2, 3]; // IDs simulados del carrito
+  // cart: async (req, res) => {
+  //   const cartProductIds = [1, 2, 3]; // IDs simulados del carrito
 
-      try {
-        const products = await Product.findAll({
-          where: {
-            id: cartProductIds
-          },
-          include: ['images']
-        });
+  //   try {
+  //     const products = await Product.findAll({
+  //       where: {
+  //         id: cartProductIds
+  //       },
+  //       include: ['images']
+  //     });
 
-        return res.render('products/cart', { products });
-      } catch (error) {
-        console.error(error);
-        return res.status(500).send('Error al cargar el carrito');
-      }
-    },
-      cart: async (req, res) => {
-        const cartProductIds = [1, 2, 3]; // IDs simulados del carrito
+  //     return res.render('products/cart', { products });
+  //   } catch (error) {
+  //     console.error(error);
+  //     return res.status(500).send('Error al cargar el carrito');
+  //   }
+  // },
+  // cart: async (req, res) => {
+  //   const cartProductIds = [1, 2, 3]; // IDs simulados del carrito
 
-        try {
-          const products = await Product.findAll({
-            where: {
-              id: cartProductIds
-            },
-            include: ['images'] // Asegúrate de incluir las imágenes si tu modelo lo permite
-          });
+  //   try {
+  //     const products = await Product.findAll({
+  //       where: {
+  //         id: cartProductIds
+  //       },
+  //       include: ['images'] // Asegúrate de incluir las imágenes si tu modelo lo permite
+  //     });
 
-          return res.render('products/cart', { products });
-        } catch (error) {
-          console.error(error);
-          return res.status(500).send('Error al cargar el carrito');
-        }
-      },
-
-
-        cartDetail: (req, res) => {
-          res.send(req.session.cart)
-        },
+  //     return res.render('products/cart', { products });
+  //   } catch (error) {
+  //     console.error(error);
+  //     return res.status(500).send('Error al cargar el carrito');
+  //   }
+  // },
 
 
-          search: async (req, res) => {
-            try {
-              const query = req.query.query || '';
-              const products = await Product.findAll({
-                where: {
-                  name: {
-                    [Op.like]: `%${query}%`
-                  }
-                },
-                include: [
-                  { model: Brand, as: 'brand' },
-                  { model: Category, as: 'category' },
-                  { model: Section, as: 'section' },
-                  { model: Image, as: 'images' }
-                ]
-              });
+  // cartDetail: (req, res) => {
+  //   res.send(req.session.cart)
+  // },
 
-              return res.render('products/products', { products, toThousand });
-            } catch (error) {
-              console.error('Error en búsqueda:', error);
-              return res.status(500).send('Error al buscar productos');
-            }
-
+  search: async (req, res) => {
+    try {
+      const query = req.query.query || '';
+      const products = await Product.findAll({
+        where: {
+          name: {
+            [Op.like]: `%${query}%`
           }
+        },
+        include: [
+          { model: Brand, as: 'brand' },
+          { model: Category, as: 'category' },
+          { model: Section, as: 'section' },
+          { model: Image, as: 'images' }
+        ]
+      });
+
+      return res.render('products/products', {
+        products, toThousand,
+        searchTerm: query
+      });
+    } catch (error) {
+      console.error('Error en búsqueda:', error);
+      return res.status(500).send('Error al buscar productos');
+    }
+
+  }
 }

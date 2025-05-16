@@ -26,15 +26,23 @@
     </section>
     <h1 class="logo">MUSIC PLACE</h1>
     <section class="input-icons">
-      <form class="header-form">
+      <form class="header-form" method="GET">
         <div class="search">
-          <input class="header-input" type="text" name="search" placeholder="Buscar marcas, productos...">
-          <div>
+          <input class="header-input" type="text" name="search" placeholder="Buscar marcas, productos... " >
+          <div type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>
           </div>
         </div>
       </form>
-      
+       <!-- <form class="header-form" action="/search" method="GET">
+      <div class="search">
+        <input class="header-input" type="text" name="search" placeholder="Buscar marcas, productos...">
+        <button type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </form> -->
+       
     <ul class="ul-flex-usuarios">
   <% if(locals.userLogin) { %>
     <span >
