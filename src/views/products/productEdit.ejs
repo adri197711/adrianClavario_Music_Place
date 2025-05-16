@@ -15,82 +15,84 @@
 
        
         <!-- Nombre -->
-        <label for="name">Nombre del Producto</label>
-        <input class="reg-input" type="text" id="productname" name="name" value="<%= old?.name || product.name %>">
-        <% if (errors?.name) { %><br>
-          <span class="error"><%= errors.name.msg %></span>
-        <% } %>
-
-        <!-- Categoría -->
-        <label for="categoryId">Categoría</label>
-        <select name="categoryId" id="categoryId">
-          <% categories.forEach(c => { %>
-            <option value="<%= c.id %>" <%= (old?.categoryId == c.id || product.categoryId == c.id) ? 'selected' : '' %>><%= c.name %></option>
-          <% }); %>
-        </select>
-        <% if (errors?.categoryId) { %><br>
-          <span class="error"><%= errors.categoryId.msg %></span>
+        <label class="label-input" for="name" >Nombre del Producto</label>
+        <input class="reg-input" type="text" id="productname" name="name" value="<%= old?.name || product.name %>"/>
+        <% if (errors?.name) { %>
+          <span class="p-invalid"><%= errors.name.msg %></span>
         <% } %>
 
         <!-- Marca -->
-        <label for="brandId">Marca</label>
-        <select name="brandId" id="brandId">
-          <% brands.forEach(b => { %>
-            <option value="<%= b.id %>" <%= (old?.brandId == b.id || product.brandId == b.id) ? 'selected' : '' %>><%= b.name %></option>
-          <% }); %>
-        </select>
+        <label class="label-input" for="brandId">Marca</label>
+      <select name="brandId" id="brand">
+  <% brands.forEach(b => { %>
+    <option value="<%= b.id %>" <%= (old?.brandId == b.id || product.brandId == b.id) ? 'selected' : '' %>><%= b.name %></option>
+  <% }); %>
+</select>
         <% if (errors?.brandId) { %><br>
-          <span class="error"><%= errors.brandId.msg %></span>
+          <span class="p-invalid"><%= errors.brandId.msg %></span>
         <% } %>
 
         <!-- Sección -->
-        <label for="sectionId">Sección</label>
-        <select name="sectionId" id="sectionId">
-          <% sections.forEach(s => { %>
-            <option value="<%= s.id %>" <%= (old?.sectionId == s.id || product.sectionId == s.id) ? 'selected' : '' %>><%= s.name %></option>
-          <% }); %>
-        </select>
+        <label class="label-input" for="sectionId">Sección</label>
+        <select name="sectionId" id="section">
+  <% sections.forEach(section => { %>
+    <option value="<%= section.id %>" <%= (old?.sectionId == section.id || product.sectionId == section.id) ? 'selected' : '' %>><%= section.name %></option>
+  <% }); %>
+</select>
+
         <% if (errors?.sectionId) { %><br>
-          <span class="error"><%= errors.sectionId.msg %></span>
+          <span class="p-invalid"><%= errors.sectionId.msg %></span>
+        <% } %>
+
+        <!-- Categoría -->
+        <label class="label-input" for="categoryId">Categoría</label>
+       <select name="categoryId" id="category">
+  <% categories.forEach(c => { %>
+    <option value="<%= c.id %>" <%= (old?.categoryId == c.id || product.categoryId == c.id) ? 'selected' : '' %>><%= c.name %></option>
+  <% }); %>
+</select>
+
+        <% if (errors?.categoryId) { %><br>
+          <span class="p-invalid"><%= errors.categoryId.msg %></span>
         <% } %>
 
         <!-- Precio -->
-        <label for="price">Precio</label>
+        <label class="label-input" for="price">Precio</label>
         <input class="reg-input" type="number" id="price" name="price" value="<%= old?.price || product.price %>">
         <% if (errors?.price) { %><br>
-          <span class="error"><%= errors.price.msg %></span>
+          <span class="p-invalid"><%= errors.price.msg %></span>
         <% } %>
 
         <!-- Descuento -->
-        <label for="discount">Descuento</label>
+        <label class="label-input" for="discount">Descuento</label>
         <input class="reg-input" type="number" id="discount" name="discount" value="<%= old?.discount || product.discount %>">
         <% if (errors?.discount) { %><br>
-          <span class="error"><%= errors.discount.msg %></span>
+          <span class="p-invalid"><%= errors.discount.msg %></span>
         <% } %>
 
         <!-- Imagen actual -->
-        <label class="form-label">Imagen actual:</label>
+        <label class="label-input form-label">Imagen actual:</label>
         <div>
           <% if (product.images && product.images.length > 0) { %>
-            <img src="/images/products/<%= product.images[0].file %>" alt="Imagen actual" style="max-width: 150px; margin-bottom: 10px;">
+            <img class="img" src="/images/products/<%= product.images[0].file %>" alt="Imagen actual" style="max-width: 150px; margin-bottom: 10px;">
           <% } else { %>
-            <img src="/images/products/default.jpg" alt="Imagen por defecto" style="max-width: 150px; margin-bottom: 10px;">
+            <img class="img" src="/images/products/default.webp" alt="Imagen por defecto" style="max-width: 150px; margin-bottom: 10px;">
           <% } %>
         </div>
 
         <!-- Nueva imagen -->
-        <label for="image" class="form-label">Cambiar imagen</label>
+        <label class="label-input form-label" for="image">Cambiar imagen</label>
         <input  type="file" name="image" id="image">
 
         <!-- Descripción -->
-        <label for="description" class="form-label">Descripción:</label>
+        <label class="label-input" for="description" class="form-label">Descripción:</label>
         <textarea name="description" id="description" style="resize: none;" rows="5" cols="2"><%= old?.description || product.description %></textarea>
         <% if (errors?.description) { %><br>
-          <span class="error"><%= errors.description.msg %></span>
+          <span class="p-invalid"><%= errors.description.msg %></span>
         <% } %>
 
         <br>
-        <button type="submit" class="btn btn-outline-dark">Actualizar Producto</button>
+        <button type="submit" class="btn-reg">Actualizar Producto</button>
       </form>
 
       <% } %>

@@ -7,9 +7,9 @@
     <%- include('../partials/slider') %><br>
       <%- include('../partials/navbar') %><br>
 
-
-        <h1 class="h1-grid">Listado de Guitarras</h1>
-        <main class="guitar-grid">
+<!-- 
+        <h1 class="h1-grid">Listado de Guitarras</h1>-->
+        <main class="guitar-grid"> 
 
           <% products.forEach(product=> { %>
             <div class="guitar-card">
@@ -19,15 +19,14 @@
                   src="/images/products/<%= product.images && product.images.length > 0 ? product.images[0].file : 'default.webp' %>"
                   alt="<%= product.name %>">
 
-
-
-
                 <% if (product.discount> 0) { %>
                   <div class="badge offer">¡OFERTA!</div>
                   <% } else { %>
                     <div class="badge new">NUEVO</div>
                     <% } %>
               </div>
+
+              <a href="/products/cart/<%=product.id%>"> <button class="btn-grid">Agregar al carrito</button></a>
 
               <h2 class="h2-grid">
                 <%= product.name %>

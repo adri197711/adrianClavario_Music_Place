@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
     cb(null,path.join(__dirname,'../../public/images/users/'));
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = path.basename(file.originalname, path.extname(file.originalname)) + "-" + Date.now() + "-" + uuidv4() + path.extname(file.originalname);
+    const uniqueSuffix = path.basename(file.originalname, path.extname(file.originalname)) + "-" + Date.now() + path.extname(file.originalname);
     cb(null, uniqueSuffix);
   },
 });
@@ -19,7 +19,7 @@ const fileFilter = (req, file, cb) => {
 
   console.log("fileFilter: ", file);
   
-  const filtro = /\.(jpg|jpeg|png|gif)$/;
+  const filtro = /\.(jpg|jpeg|png|gif|webp)$/;
   if (filtro.test(file.originalname)) {
     // To accept this file pass `false`, like so:
     cb(null, true);

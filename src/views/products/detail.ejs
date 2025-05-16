@@ -5,56 +5,56 @@
   <body>
 
     <%- include('../partials/slider') %>
-    <%- include('../partials/navbar') %>
+      <%- include('../partials/navbar') %>
 
-      <main>
-        <section class="detail-container">
-          <% if (product.images && product.images.length > 0) { %>
-            <% product.images.forEach(image => { %>
-              <img class="main-detail-foto"
-              src="/images/products/<%= product.images && product.images.length > 0 ? product.images[0].file : 'default.webp' %>"
-              alt="<%= product.name %>" style="width: 16rem" 
-              />
-            <% }) %>
-          <% } else { %>
-            <p>No hay imágenes disponibles para este producto.</p>
-          <% } %>
+        <main>
+          <section class="detail-container">
+            <% if (product.images && product.images.length> 0) { %>
+              <img class="main-detail-foto" src="/images/products/<%= product.images[0].file %>" alt="<%= product.name %>"
+                style="width: 16rem" />
+              <% } else { %>
+                <img class="main-detail-foto" src="/images/default.webp" alt="Imagen por defecto" />
+                <% } %>
 
-          <article class="detail-info">
-            <h1 class="h1-detail">
-              <%= product.name %>
-            </h1>
-            <p class="detail-data">
-              <strong>Marca: <%= product.brand.name  %>
-              </strong>
-            </p>
-            
-            <p class="detail-data">
-              <%= product.description %>
-            </p>
-          
-            <p class="detail-data" >
-              <strong> <%= product.category.name %>
-              </strong>
-            </p>
-            <% if (product.discount !=0) { %>
-              <span>
-                <% product.price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> 
-                <span class="tachado">
-                    $<%= product.price%>
-                </span>
-                  <strong class="discountCard">/<%- product.discount %>% OFF</strong>
-              </span>
-              <% } %>
-                <h2 class="price-detail">Precio $
-                  <%= (product.price - product.price * product.discount / 100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
-                </h2>
-              
-                <a href="/products/cart/<%=product.id%>"> <button class="btn-det">Agregar al carrito</button></a>
-          </article>
-        </section>
-      </main>
-      <%- include('../partials/footer') %>
+                  <article class="detail-info">
+                    <h1 class="h1-detail">
+                      <%= product.name %>
+                    </h1>
+                    <p class="detail-data">
+                      <strong>Marca:
+                        <%= product.brand ? product.brand.name : '' %>
+                      </strong>
+                    </p>
+
+                    <p class="detail-data">
+                      <%= product.description %>
+                    </p>
+
+                     <p class="detail-data">
+                      <strong>
+                        <%= product.category ? product.category.name : '' %>
+                      </strong>
+                    </p>
+                    <% if (product.discount !=0) { %>
+                      <span>
+                        <% product.price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %>
+                          <span class="tachado">
+                            $<%= product.price%>
+                          </span>
+                          <strong class="discountCard">/<%- product.discount %>% OFF</strong>
+                      </span>
+                      <% } %>
+                        <h2 class="price-detail">Precio $
+                          <%= (product.price - product.price * product.discount /
+                            100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
+                        </h2>
+
+                        <a href="/products/cart/<%=product.id%>"> <button class="btn-det">Agregar al
+                            carrito</button></a>
+                  </article>
+          </section>
+        </main>
+        <%- include('../partials/footer') %>
   </body>
 
 </html>

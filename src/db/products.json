@@ -7,7 +7,7 @@
     "sectionId": 1,
     "brandId": 1,
     "discount": 10,
-    "image": "/images/products/ibanez.jpg"
+    "image": "ibanez.jpg"
   },
   {
     "id": 2,
@@ -17,7 +17,7 @@
     "sectionId": 1,
     "brandId": 6,
     "discount": 0,
-    "image": "/images/products/lespaul1.jpg"
+    "image": "lespaul1.jpg"
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@
     "sectionId": 1,
     "brandId": 6,
     "discount": 5,
-    "image": "/images/products/lespaul2.jpg"
+    "image": "lespaul2.jpg"
   },
   {
     "id": 4,
@@ -37,7 +37,7 @@
     "sectionId": 6,
     "brandId": 2,
     "discount": 0,
-    "image": "/images/products/ampli.jpg"
+    "image": "ampli.jpg"
   },
   {
     "id": 5,
@@ -47,7 +47,7 @@
     "sectionId": 1,
     "brandId": 0,
     "discount": 0,
-    "image": "/images/products/oferta.jpg"
+    "image": "oferta.jpg"
   },
   {
     "id": 6,
@@ -57,7 +57,7 @@
     "sectionId": 4,
     "brandId": 0,
     "discount": 0,
-    "image": "/images/products/teclado.jpg"
+    "image": "teclado.jpg"
   },
   {
     "id": 7,
@@ -67,7 +67,7 @@
     "sectionId": 1,
     "brandId": 0,
     "discount": 0,
-    "image": "/images/products/strato.jpg"
+    "image": "strato.jpg"
   },
   {
     "id": 8,
@@ -77,6 +77,6 @@
     "sectionId": 6,
     "brandId": 2,
     "discount": 0,
-    "image": "/images/products/marshall.jpg"
+    "image": "marshall.jpg"
   }
 ]

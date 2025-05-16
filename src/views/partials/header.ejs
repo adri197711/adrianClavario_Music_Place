@@ -34,30 +34,29 @@
           </div>
         </div>
       </form>
+      
+    <ul class="ul-flex-usuarios">
+  <% if(locals.userLogin) { %>
+    <span >
+      <li><a href="/users/logout">Logout<i class="fa-solid fa-right-from-bracket"></i></a></li>
+    </span>
+    
+    <span>
+      <li><a href="/">  Cart<i class="fa-solid fa-shopping-cart"></i> </a></li>
+    </span>
+  <% } else { %>
+    <span>
+      <li><a href="/users/register">Register<i class="fa-regular fa-user"></i></a></li>
+    </span>
+    <span>
+      <li><a href="/users/login">  Login<i class="fa-solid fa-right-to-bracket"></i></a></li>
+    </span>
+  <% } %>
+</ul>
 
-      <ul class="ul-flex-usuarios">
-        <% if(locals.userLogin) { %>
-
-          <span>
-            <li><a href="/users/logout"><i class="fa-solid fa-right-from-bracket"></i></li> </a>
-          </span>
-
-          <span>
-            <li><a href="/"><i class="fa-solid fa-shopping-cart"></i></li></a>
-          </span>
-          <% }else{ %>
-
-            <span>
-              <li><a href="/users/register"><i class="fa-regular fa-user"></i></li></a>
-            </span>
-            <span>
-              <li><a href="/users/login"><i class="fa-solid fa-right-to-bracket"></i></li> </a>
-            </span>
-            <% } %>
-      </ul>
-  </div>
-  </div>
-  </section>
+        </div>
+        </div>
+      </section>
 
   <%-include('slider')%>
 </header>

@@ -40,11 +40,11 @@ font-weight: 900;
 }
 
 
-.textarea{
+#description{
+  margin-left: 10%;
   border: 1px solid grey;
-  margin: 5rem ;
-  width: 45%;
-  height: 2rem;
+  width: 80%;
+  height: 5rem;
 }
 
 .iconos-redes{
@@ -54,8 +54,21 @@ margin-left: 60%;
   display: flex;
 }
 
-.error{
+.p-invalid{
   color: crimson;
-  width: 80%;
   background-color: rgb(239, 208, 220);
+  margin-left:10%;
+}
+.error-validation{
+   margin-left:10%;
+  color: crimson;
+  background-color: rgb(239, 208, 220);
+  text-align: left;
+  display: block;
+  width: 15rem;
+}
+.is-invalid{
+  margin-left: 10%;
+  border: 2px solid red;
+  box-shadow: 2px 2px 2px;
 }

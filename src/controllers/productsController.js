@@ -70,12 +70,12 @@ module.exports = {
       return res.render("products/detail", {
         title: "Detalle del Producto",
         product,
-        admin: req.query.admin,
+        // admin: req.query.admin,
         toThousand
       });
     } catch (error) {
       return res.status(500).render('error', {
-        // message: error.message,
+         message: error.message,
       })
     }
   },
@@ -105,24 +105,24 @@ module.exports = {
         categories
       })
     } catch (error) {
-      console.log(error)
+      console.error("Error al cargar el formulario de creación:", error);
+      return res.status(500).send("Error al cargar el formulario");
     }
   },
-  
+
   create: async (req, res) => {
-    
-    try {
-    const { Product, Category, Section, Brand, Image } = require("../database/models");
+
     const errors = validationResult(req);
-    console.log("BODY:", req.body);
-    
+    const { Product, Category, Section, Brand, Image } = require("../database/models");
+
+    const { name, price, discount = 0, description, brandId, categoryId, sectionId } = req.body;
+
     if (!errors.isEmpty()) {
       const [sections, brands, categories] = await Promise.all([
         Section.findAll({ order: [['name']] }),
         Brand.findAll({ order: [['name']] }),
         Category.findAll({ order: [['name']] })
       ]);
-      
       return res.render('products/productAdd', {
         errors: errors.mapped(),
         old: req.body,
@@ -130,36 +130,39 @@ module.exports = {
         categories,
         brands
       });
-    }else{
-    
-    const { name, price, discount, description, brand, category, section } = req.body;
-      const newProduct = await Product.create({
-        name: name.trim(),
-        price: +price,
-        discount: +discount,
-        description: description.trim(),
-        brandId: brand,
-        categoryId: category,
-        sectionId: section,
-      });
+    } else {
 
-      if (req.file) {
-        try {
-          const image = await Image.create({
-            productId: newProduct.id,
-            file: req.file.filename
-          });
-          console.log("Imagen guardada correctamente:", image);
-        } catch (imageError) {
-          console.error("Error al guardar la imagen:", imageError);
-          return res.status(500).send("Error al guardar la imagen");
+      try {
+
+        const newProduct = await Product.create({
+          name: name.trim(),
+          price: +price,
+          discount: +discount,
+          description: description.trim(),
+          sectionId,
+          categoryId,
+          brandId,
+        });
+
+        if (req.file) {
+          try {
+            const image = await Image.create({
+              productId: newProduct.id,
+              file: req.file.filename
+            });
+            console.log("Imagen guardada correctamente:", image);
+          } catch (imageError) {
+            console.error("Error al guardar la imagen:", imageError);
+            return res.status(500).send("Error al guardar la imagen");
+          }
         }
+        console.log('NEWPRODUCT: ', newProduct)
+        return res.redirect('/admin');
+
+      } catch (error) {
+        console.error("Error al crear el producto:", error);
+        return res.status(500).render(error , {message: "Error al crear el producto"});
       }
-      return res.redirect('/admin');
-    }
-    } catch (error) {
-      console.error("Error al crear el producto:", error);
-      return res.status(500).send("Error al crear el producto");
     }
   },
 
@@ -215,7 +218,7 @@ module.exports = {
       ]);
 
       return res.render('products/productEdit', {
-   product: { ...req.body, id: req.params.id },
+        product: { ...req.body, id: req.params.id },
         errors: errors.mapped(),
         old: req.body,
         categories,
@@ -256,34 +259,36 @@ module.exports = {
 
       await product.save();
 
-      if (req.file) {
-        if (product.images.length) {
-          const pathFile = path.join(__dirname, '../../public/images/products', product.images[0].file);
-          fs.existsSync(pathFile) && fs.unlinkSync(pathFile);
-          await Image.update({
-            file: req.file.filename
-          }, {
-            where: {
-              productId: product.id
-            }
-          });
-        } else {
-          await Image.create({
-            productId: product.id,
-            file: req.file.filename
-          });
-        }
-      }
+    if (req.file) {
+  let oldImage = null;
 
+  if (product.images.length) {
+    oldImage = product.images[0];
+
+    if (oldImage.file !== 'default.webp') {
+      const pathFile = path.join(__dirname, '../../public/images/products', oldImage.file);
+      if (fs.existsSync(pathFile)) {
+        fs.unlinkSync(pathFile);
+      }
+    }
+
+    await oldImage.destroy();
+  }
+
+  await Image.create({
+    productId: product.id,
+    file: req.file.filename
+  });
+}
       return res.redirect('/admin');
 
-    } catch (error) {
-      console.error(error);
-      return res.status(500).render('error', {
-        message: error.message,
-      });
-    }
-  },
+  } catch(error) {
+    console.error(error);
+    return res.status(500).render('error', {
+      message: error.message
+    });
+  }
+},
 
   remove: async (req, res) => {
     try {
@@ -311,45 +316,69 @@ module.exports = {
     }
   },
 
+    cart: async (req, res) => {
+      const cartProductIds = [1, 2, 3]; // IDs simulados del carrito
 
-  cart: async (req, res) => {
-    const { id } = req.params;
-    const product = await Product.findByPk(id);
+      try {
+        const products = await Product.findAll({
+          where: {
+            id: cartProductIds
+          },
+          include: ['images']
+        });
 
-    if (!product) {
-      return res.status(404).send('Producto no encontrado');
-    }
+        return res.render('products/cart', { products });
+      } catch (error) {
+        console.error(error);
+        return res.status(500).send('Error al cargar el carrito');
+      }
+    },
+      cart: async (req, res) => {
+        const cartProductIds = [1, 2, 3]; // IDs simulados del carrito
 
-    return res.render('products/cart', { product });
-  },
+        try {
+          const products = await Product.findAll({
+            where: {
+              id: cartProductIds
+            },
+            include: ['images'] // Asegúrate de incluir las imágenes si tu modelo lo permite
+          });
 
-  cartDetail: (req, res) => {
-    res.send(req.session.cart)
-  },
+          return res.render('products/cart', { products });
+        } catch (error) {
+          console.error(error);
+          return res.status(500).send('Error al cargar el carrito');
+        }
+      },
 
 
-  search: async (req, res) => {
-    try {
-      const query = req.query.query || '';
-      const products = await Product.findAll({
-        where: {
-          name: {
-            [Op.like]: `%${query}%`
-          }
+        cartDetail: (req, res) => {
+          res.send(req.session.cart)
         },
-        include: [
-          { model: Brand, as: 'brand' },
-          { model: Category, as: 'category' },
-          { model: Section, as: 'section' },
-          { model: Image, as: 'images' }
-        ]
-      });
 
-      return res.render('products/products', { products, toThousand });
-    } catch (error) {
-      console.error('Error en búsqueda:', error);
-      return res.status(500).send('Error al buscar productos');
-    }
 
-  }
+          search: async (req, res) => {
+            try {
+              const query = req.query.query || '';
+              const products = await Product.findAll({
+                where: {
+                  name: {
+                    [Op.like]: `%${query}%`
+                  }
+                },
+                include: [
+                  { model: Brand, as: 'brand' },
+                  { model: Category, as: 'category' },
+                  { model: Section, as: 'section' },
+                  { model: Image, as: 'images' }
+                ]
+              });
+
+              return res.render('products/products', { products, toThousand });
+            } catch (error) {
+              console.error('Error en búsqueda:', error);
+              return res.status(500).send('Error al buscar productos');
+            }
+
+          }
 }

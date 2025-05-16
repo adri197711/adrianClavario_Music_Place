@@ -12,12 +12,29 @@ main {
 }
 
 .main-index {
-  background: #000;
-}
-
-.index-container {
+  width: 100%;
+  background: #1c1b1b;
   display: flex;
   flex-direction: row;
+}
+
+.titulo-index{
+  padding: 2rem 0 1.5rem 0;
+  text-transform: uppercase;
+  color: #3081be;
+  background-color: black;
+  text-align: center;
+}
+.titulo-index1{
+  padding: 1rem 0 .5rem 0;
+  text-transform: uppercase;
+  color: #3081be;
+  background-color: black;
+  text-align: center;
+}
+article.index-card {
+  margin: .5rem;
+  width: 45%;
 }
 
 .index-card {
@@ -27,21 +44,19 @@ main {
   flex-direction: row;
   border: 1px solid grey;
   border-radius: 10px;
-  width: 70%;
 }
 
 .main-product-foto {
-  margin: 0 auto;
+  margin: 20% auto;
   display: flex;
   flex-direction: row;
   border: 1px solid grey;
   border-radius: 10px;
-  width: 95%;
+  width: 50%;
 }
 
 .index-fotos {
-  width: 80%;
-  height: 80%;
+
   border-radius: 5px;
   margin: .5rem;
   padding: .5rem;
@@ -54,16 +69,14 @@ main {
 }
 
 .index-info {
-  padding: 3rem;
-margin: 0;
+  padding: 1rem;
+  margin: 0;
 
-background: radial-gradient(
-  rgba(164, 161, 161, 0.9),
-  rgba(139, 138, 138, 0.7),
-  rgba(89, 88, 88, 0.5),
-  rgba(0, 0, 0, 0.3),
-  rgba(0, 0, 0, 0)
-);
+  background: radial-gradient(rgba(164, 161, 161, 0.9),
+      rgba(139, 138, 138, 0.7),
+      rgba(89, 88, 88, 0.5),
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0));
 
 }
 
@@ -71,7 +84,7 @@ background: radial-gradient(
   color: rgb(253, 252, 252);
 }
 
-.index-h1{
+.index-h1 {
   font-size: 2rem;
   text-decoration: none;
 }
@@ -92,4 +105,53 @@ background: radial-gradient(
   font-size: 1rem;
   color: rgb(111, 222, 111);
   text-decoration: line-through;
+}
+
+@media (max-width: 768px) {
+
+  .index-card {
+    margin: 0 auto;
+    padding: .5rem;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 80%;
+  }
+
+  .main-product-foto {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 100%;
+  }
+
+  .index-fotos {
+    width: 80%;
+    height: 80%;
+    border-radius: 5px;
+    margin: .5rem;
+    padding: .5rem;
+    text-align: center;
+    border: 1px solid white;
+  }
+
+  .index-info {
+    padding: 2rem;
+    padding-bottom: 0;
+  }
+
+  .index-h1 {
+    margin-bottom: 2rem;
+  }
+
+  .price-index {
+    font-size: 24px;
+  }
+
+  .index-detail {
+    display: none;
+  }
 }

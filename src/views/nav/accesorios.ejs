@@ -9,7 +9,7 @@
 
 
   <main>
-    <h1 class="h1-grid">Listado de Accesorios</h1>
+    <!-- <h1 class="h1-grid">Listado de Accesorios</h1> -->
     <main class="guitar-grid">
 
       <% products.forEach(product => { %>
@@ -27,6 +27,7 @@
           <% } %>
         </div>
   
+        <a href="/products/cart/<%=product.id%>"> <button class="btn-grid">Agregar al carrito</button></a>
           <h2 class="h2-grid"><%= product.name %></h2>
           <h2 class="h3-grid"><%= product.description %></h2>
           <% if (product.discount !=0) { %>

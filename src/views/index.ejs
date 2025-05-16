@@ -9,12 +9,14 @@
       
       <%- include('./partials/banner') %>
 
-      <% products.forEach((product) => { %>
-        <section class="index-container">
-          <article class="index-card">
+      <!-- <section class="index-container"> -->
+        <h2 class="titulo-index">Un universo de instrumentos</h2>
+        <h3 class="titulo-index1">Explorá nuestro catálogo y descubrí tu próximo sonido.</h3>
+        <% products.forEach((product) => { %>
+        <article class="index-card">
             <a href="/products/detail/<%= product.id %>">
               <img class="main-product-foto"
-              src="/images/products/<%= product.images && product.images.length > 0 ? product.images[0].file : 'default.webp' %>"
+              src="images/products/<%= product.images && product.images.length > 0 ? product.images[0].file : 'default.webp' %>"
               alt="<%= product.name %>"
               />
             </a>
@@ -38,9 +40,9 @@
                   Precio $<%= product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %>
                 </h2>
               <% } %>
-            </div>
-          </article>
-        </section>
+            </article>
+          </div>
+        <!-- </section> -->
       <% }) %>
     </main>
 

@@ -13,34 +13,43 @@ body {
   display: flex;
   justify-content: center;
   height: max-content;
-  padding: 3rem;
+  padding: 2rem 10rem;
 }
 
 .tit-reg {
   padding: 1rem;
   text-align: center;
-  color: rgb(217, 227, 217);
+  color: rgb(90, 79, 211);
+  font-weight: bold;
 }
 
 #registroForm {
+  width: 100%;
   background-color: rgb(171, 168, 156);
-  padding: 25px;
-  border-radius: 10px;
+  border-radius: 15px;
+  padding: 2rem 0;
 
 }
 
-label {
-  font-size: 1rem;
-  display: block;
-  margin-bottom: 5px;
-  color: #1aad1a;
-
+.label-input {
+  color: #37363c;
+  font-size: 1.2rem;
+  margin-left: 10%;
+  line-height: 1.5;
 }
 
-label.inline {
-  display: inline-block;
+.file-input {
+  padding: 0;
+  color: #37363c;
+  font-size: .8rem;
+  margin-left: 10%;
+  line-height: 1.5;
 }
+#rol{
 
+ margin-bottom: 2rem;
+  
+}
 input,
 select {
   padding: 8px;
@@ -48,38 +57,40 @@ select {
   box-sizing: border-box;
 }
 
-input[type="checkbox"] {
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
 
 .reg-input[type="text"],
 .reg-input[type="email"],
 .reg-input[type="number"],
 .reg-input[type="password"],
 select {
+  margin-left: 10%;
   width: 80%;
 }
 
 .reg-input[type="file"] {
   padding: 0.5rem 3rem;
   font-family: inherit;
-  display:none;
+  display: none;
 }
+
 .reg-input[type="file"] {
   padding: 0.5rem 3rem;
   font-family: inherit;
 }
+
+#image {
+  margin-left: 10%;
+  padding: 0;
+  color:rgb(59, 65, 65);
+}
+
+.img {
+  margin-left: 10%;
+}
+
 .custom-file-upload {
-  /* display: inline-block;
-  padding: 0.5rem 1.5rem;
-  background-color: #444;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease; */
-  margin: 0 4rem;
+
+  margin: 0 10%;
   width: 9.5rem;
   padding: 0.2rem 1rem;
   background-color: #444;
@@ -97,32 +108,32 @@ select {
 
 #check {
   position: relative;
-  padding: 0;
-  width: 10px;
+  margin-left: 10%;
+  padding: 0 .5rem;
+  width: 1rem;
   display: flex;
 }
 
 .inline {
-  position: absolute;
-  margin: 0 20px;
+  margin-left: 9%;
+  color: #4c63e6;
+  font-size: 1rem;
   display: flex;
   flex-direction: row;
 }
 
-
 #show-hide {
   position: relative;
-  top: -8px;
+  top: -6px;
   float: right;
-  color: dimgrey;
+  color: rgb(7, 7, 7);
   cursor: pointer;
   border-bottom: 1px solid transparent;
   transition: all .5s ease;
 }
 
 #show-hide:hover {
-  border-bottom: 1px solid gainsboro;
-  color: rgb(17, 17, 17);
+  color: rgb(33, 6, 235);
 }
 
 input[type="button"] {
@@ -146,7 +157,19 @@ input[type="button"]:hover {
   margin: 1em 10%;
   color: aliceblue;
   font-weight: 900;
-  background-color: rgb(38, 194, 36);
+  background-color: rgb(32, 125, 30);
+  padding: 10px;
+  border-radius: 10px;
+  width: 80%;
+  border: none;
+}
+.btn-reg:hover {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 1em 10%;
+  color: rgb(252, 252, 252);
+  font-weight: 900;
+  background-color: rgb(21, 234, 17);
   padding: 10px;
   border-radius: 10px;
   width: 80%;
@@ -154,6 +177,7 @@ input[type="button"]:hover {
 }
 
 .h2-edit {
+  padding: 2rem;
   color: #2053c9;
   text-align: center;
 }
@@ -164,10 +188,29 @@ input[type="button"]:hover {
   margin: 0 auto;
 }
 
-.textarea {
-  margin: 0;
-  padding: 0%;
-  width: 60%;
-  height: 5rem;
-  resize: both;
+.btn-user {
+  width: 80%;
+  font-size: 1rem;
+  margin-left: 10%;
+  color: aliceblue;
+  font-size: 1rem;
+  font-weight: 900;
+  background-color: rgb(24, 174, 21);
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+
+}
+
+.btn-del {
+  width: 20%;
+  font-size: 1rem;
+  margin-left: 10%;
+  color: aliceblue;
+  font-size: 1rem;
+  font-weight: 900;
+  background-color: rgb(234, 10, 10);
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
 }

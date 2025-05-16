@@ -1,80 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <%- include('./partials/headAdmin', { title: 'Administrar Productos' }) %>
 
   <body>
+    <%- include('./partials/headerAdmin', { title: 'Administrar Productos' }) %>
 
-  <%- include('./partials/headerAdmin', { title: 'Administrar Productos' }) %>
+    <main class="mainAdmin container py-4">
+      <!-- Button outside the table -->
+      <div class="mb-3 text-end">
+        <a class="btn btn-sm btn-primary" href="/products/add"
+          >Agregar producto</a
+        >
+      </div>
 
-  <main class="mainAdmin container py-4">
-
-    <!-- Button outside the table -->
-    <div class="mb-3 text-end">
-      <a class="btn btn-sm btn-primary" href="/products/add">Agregar producto</a>
-    </div>
-
-    <table class="table table-striped table-bordered align-middle">
-      <thead class="table-light">
-        <tr>
-          <th>ID</th>
-          <th>Imagen</th>
-          <th>Producto</th>
-          <th>Marca</th>
-          <th>Precio</th>
-          <th>Descuento</th>
-          <th>Sección</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% products.forEach(({ id, name, images, brand, price, discount, section, description }) => { %>
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-light">
           <tr>
-            <th scope="row"><%= id %></th>
-            <td>
+            <th style="width: 2rem;">ID</th>
+            <th style="width: 4rem;">Imagen</th>
+            <th style="width: 8rem;">Producto</th>
+            <th style="width: 4rem;">Marca</th>
+            <th style="width: 3rem;">Precio</th>
+            <th style="width: 2rem;">Descuento</th>
+            <th>Descripción</th>
+            <th>Sección</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% products.forEach(({ id, name, images, brand, price, discount,
+          section, description }) => { %>
+          <tr>
+            <th scope="row" style="width: 2rem;"><%= id %></th>
+            <td style="width: 4rem;">
               <% if (images && images.length > 0 && images[0].file) { %>
-                <img 
-                  src="/images/products/<%= images[0].file || 'default.webp' %>" 
-                  alt="<%= name %>" 
-                  style="width: 60px; height: auto; object-fit: cover; border-radius: 4px;">
+              <img
+                src="/images/products/<%= images[0].file || 'default.webp' %>"
+                alt="<%= name %>"
+                style="
+                  width: 60px;
+                  height: auto;
+                  object-fit: cover;
+                  border-radius: 4px;
+                "
+              />
               <% } else { %>
-                <img 
-                  src="/images/products/default.webp" 
-                  alt="<%= name %>" 
-                  style="width: 60px; height: auto; object-fit: cover; border-radius: 4px;">
+              <img
+                src="/images/products/default.webp"
+                alt="<%= name %>"
+                style="
+                  width: 60px;
+                  height: auto;
+                  object-fit: cover;
+                  border-radius: 4px;
+                "
+              />
               <% } %>
             </td>
-            
-            <td><%= name %></td>
-            <td><%= brand?.name || '--' %></td>
-            <td>$<%= toThousand ? toThousand(price) : price %></td>
-            <td><%= discount %> %</td>
-            <td><%= section?.name %></td>
+
+            <td style="width: 8rem;"><%= name %></td>
+<td style="width: 4rem;"><%= brand ? brand.name : '----' %></td>
+
+            <td style="width: 3rem;">$<%= toThousand ? toThousand(price) : price %></td>
+            <td  style="width: 2rem;"><%= discount %> %</td>
+            <td><%= description %></td>
+
+            <td><%= section?.name || '----' %></td>
+
             <td>
               <div class="d-flex gap-2">
-                <a href="/products/edit/<%= id %>" class="btn btn-sm btn-warning">Editar</a>
+                <a
+                  href="/products/edit/<%= id %>"
+                  class="btn btn-sm btn-warning"
+                  >Editar</a>
 
-                <form action="/products/remove/<%= id %>?_method=DELETE" method="POST">
-                  <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
+                <form
+                  action="/products/remove/<%= id %>?_method=DELETE"
+                  method="POST"
+                >
+                  <button class="btn btn-sm btn-danger" type="submit">
+                    Eliminar
+                  </button>
                 </form>
               </div>
             </td>
           </tr>
-        <% }) %>
-      </tbody>
-    </table>
+          <% }) %>
+        </tbody>
+      </table>
 
-    <footer>
-      <%- include('./partials/pager', {
-        path: '/admin/products',
-        currentPage,
-        totalPages
-      }) %>
-    </footer>
-  </main>
+      <footer>
+        <%- include('./partials/pager', { path: '/admin/products', currentPage,
+        totalPages }) %>
+      </footer>
+    </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

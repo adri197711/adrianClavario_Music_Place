@@ -2,50 +2,56 @@
 <html>
 <%- include('../partials/head', {title:'Bajos'}) %>
 
-<body class="body-grid">
+  <body class="body-grid">
 
-  <%- include('../partials/slider') %><br>
-  <%- include('../partials/navbar') %><br>
-  
-    <h1 class="h1-grid">Listado de Bajos</h1>
-    <main class="guitar-grid">
+    <%- include('../partials/slider') %><br>
+      <%- include('../partials/navbar') %><br>
 
-      <% products.forEach(product => { %>
-        <div class="guitar-card">
-         
-        <div class="image-container">
-          <img
+        <!-- <h1 class="h1-grid">Listado de Bajos</h1> -->
+        <main class="guitar-grid">
+
+          <% products.forEach(product=> { %>
+            <div class="guitar-card">
+
+              <div class="image-container">
+                <img
                   src="/images/products/<%= product.images && product.images.length > 0 ? product.images[0].file : 'default.webp' %>"
                   alt="<%= product.name %>">
-  
-          <% if (product.discount > 0) { %>
-            <div class="badge offer">¡OFERTA!</div>
-          <% } else { %>
-            <div class="badge new">NUEVO</div>
-          <% } %>
-        </div>
-  
-          <h2 class="h2-grid"><%= product.name %></h2>
-          <h2 class="h3-grid"><%= product.description %></h2>
-          <% if (product.discount !=0) { %>
-            <span>
-                <%product.price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> <span class="tachado">$<%= product.price%>
-                 </span>
-                 <span>
-                    <strong class="discountCard">/<%- product.discount %>% OFF</strong>
-            </span>
-            <% } %>
-                <h2 class="priceDetailGrid">Precio $
-                    <%= (product.price - product.price * product.discount /
-                        100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
-                </h2>
-         
-        </div>
-      <% }) %>
 
-  </main>
+                <% if (product.discount> 0) { %>
+                  <div class="badge offer">¡OFERTA!</div>
+                  <% } else { %>
+                    <div class="badge new">NUEVO</div>
+                    <% } %>
+              </div>
 
-  <%- include('../partials/footer') %>
-</body>
+              <a href="/products/cart/<%=product.id%>"> <button class="btn-grid">Agregar al carrito</button></a>
+              <h2 class="h2-grid">
+                <%= product.name %>
+              </h2>
+              <h2 class="h3-grid">
+                <%= product.description %>
+              </h2>
+              <% if (product.discount !=0) { %>
+                <span>
+                  <%product.price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "." ) %> <span class="tachado">$<%=
+                        product.price%>
+                    </span>
+                    <span>
+                      <strong class="discountCard">/<%- product.discount %>% OFF</strong>
+                    </span>
+                    <% } %>
+                      <h2 class="priceDetailGrid">Precio $
+                        <%= (product.price - product.price * product.discount /
+                          100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "." ) %>
+                      </h2>
+
+            </div>
+            <% }) %>
+
+        </main>
+
+        <%- include('../partials/footer') %>
+  </body>
 
 </html>

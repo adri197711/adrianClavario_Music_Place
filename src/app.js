@@ -12,6 +12,7 @@ const productsRouter = require('./routes/products');
 const navRouter = require('./routes/nav');
 const sessionVerify = require('./middlewares/sessionVerify');
 
+
 const app = express();
 
 // view engine setup

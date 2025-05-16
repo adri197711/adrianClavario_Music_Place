@@ -11,104 +11,223 @@
           <br>
 
           <!-- Nombre -->
-          <label for="name">Nombre del producto</label>
-          <input class="reg-input" type="text" id="name" name="name" value="<%= old?.name || '' %>">
-          <% if (errors?.name) { %><br>
-            <span class="error">
+          <label class="label-input" for="name">Nombre del producto</label>
+          <input type="text" id="name" name="name" value="<%= old?.name || '' %>" class="reg-input" />
+          <span class="p-invalid" id="name-error"></span>
+          <% if (errors?.name) { %>
+            <span class="p-invalid">
               <%= errors.name.msg %>
             </span>
             <% } %>
-              <br>
+
 
               <!-- Sección -->
-              <label for="section">Sección</label>
-              <select name="section" id="section">
+              <label class="label-input" for="sectionId">Sección</label>
+              <select name="sectionId" id="section">
                 <option value="" hidden selected>Seleccione sección...</option>
-                <% sections.forEach(s=> { %>
-                  <option value="<%= s.id %>" <%=old?.section==s.id ? 'selected' : '' %>><%= s.name %>
+                <% sections.forEach(section=> { %>
+                  <option value="<%= section.id %>" <%=old?.sectionId==section.id ? 'selected' : '' %>>
+                    <%= section.name %>
                   </option>
                   <% }) %>
               </select>
-              <% if (errors?.section) { %><br>
-                <span class="error">
-                  <%= errors.section.msg %>
+              <% if (errors?.sectionId) { %><br>
+                <span class="p-invalid">
+                  <%= errors.sectionId.msg %>
                 </span>
                 <% } %>
 
                   <!-- Marca -->
-                  <label for="brand">Marca</label>
-                  <select name="brand" id="brand">
+                  <label class="label-input" for="brandId">Marca</label>
+                  <select name="brandId" id="brand">
                     <option value="" hidden selected>Seleccione marca...</option>
                     <% brands.forEach(b=> { %>
-                      <option value="<%= b.id %>" <%=old?.brand==b.id ? 'selected' : '' %>><%= b.name %>
+                      <option value="<%= b.id %>" <%=old?.brandId==b.id ? 'selected' : '' %>><%= b.name %>
                       </option>
                       <% }) %>
                   </select>
-                  <% if (errors?.brand) { %><br>
-                    <span class="error">
-                      <%= errors.brand.msg %>
+                  <% if (errors?.brandId) { %><br>
+                    <span class="p-invalid">
+                      <%= errors.brandId.msg %>
                     </span>
                     <% } %>
 
                       <!-- Categoría -->
-                      <label for="category">Categoría</label>
-                      <select name="category" id="category">
+                      <label class="label-input" for="categoryId">Categoría</label>
+                      <select name="categoryId" id="category">
                         <option value="" hidden selected>Seleccione categoria...</option>
                         <% categories.forEach(c=> { %>
-                          <option value="<%= c.id %>" <%=old?.category==c.id ? 'selected' : '' %>><%= c.name %>
+                          <option value="<%= c.id %>" <%=old?.categoryId==c.id ? 'selected' : '' %>><%= c.name %>
                           </option>
                           <% }) %>
                       </select>
-                      <% if (errors?.category) { %><br>
-                        <span class="error">
-                          <%= errors.category.msg %>
+                      <% if (errors?.categoryId) { %><br>
+                        <span class="p-invalid">
+                          <%= errors.categoryId.msg %>
                         </span>
                         <% } %>
                           <br>
                           <!-- Precio -->
-                          <label for="price">Precio</label>
-                          <input class="reg-input" type="number" id="price" name="price"
-                            value="<%= old?.price || '' %>">
-                          <% if (errors?.price) { %><br>
-                            <span class="error">
+                          <label class="label-input" for="price">Precio</label>
+                          <input type="number" id="price" name="price" value="<%= old?.price || '' %>"
+                            class="reg-input" />
+                          <span class="p-invalid" id="name-error"></span>
+
+                          <% if (errors?.price) { %>
+                            <span class="p-invalid">
                               <%= errors.price.msg %>
                             </span>
                             <% } %>
                               <br>
-
-                              <br>
-
                               <!-- Descuento -->
-                              <label for="discount">Descuento</label>
+                              <label class="label-input" for="discount">Descuento</label>
                               <input class="reg-input" type="number" id="discount" name="discount"
-                                value="<%= old?.discount || '' %>">
+                                value="<%= old?.discount || '' %>" />
+                              <span class="p-invalid" id="name-error"></span>
+
                               <% if (errors?.discount) { %><br>
-                                <span class="error">
+                                <span class="p-invalid">
                                   <%= errors.discount.msg %>
                                 </span>
                                 <% } %>
                                   <br><br>
 
                                   <!-- Imagen -->
-                                  <label for="image" class="form-label">Imágenes</label>
+                                  <label class="label-input" for="image" class="form-label">Imágenes</label>
                                   <input class="reg-input-file" type="file" name="image" id="image">
                                   <br><br>
 
                                   <!-- Descripción -->
-                                  <label for="description" class="form-label">Descripción:</label>
-                                  <textarea name="description" id="description" class="textarea"
-                                    rows="8"><%= old?.description || '' %></textarea>
+                                  <label class="label-input" for="description" class="form-label">Descripción:</label>
+                                  <textarea name="description" id="description"><%= old?.description || '' %></textarea>
+                                  <span class="p-invalid" id="name-error"></span>
+
+
                                   <% if (errors?.description) { %><br>
-                                    <span class="error">
+                                    <span class="p-invalid">
                                       <%= errors.description.msg %>
                                     </span>
                                     <% } %><br>
 
                                       <br>
-                                      <button type="submit" class="btn btn-outline-dark">Actualizar Producto</button>
+                                      <button type="submit" class="btn-reg">Agregar Producto</button>
         </form>
       </div>
     </main>
+    <script>
+      const $ = (e) => document.getElementById(e)
+
+      const formAddProduct = document.getElementById('formAddProduct')
+      const inputName = document.getElementById('name')
+      const inputPrice = document.getElementById('price')
+      const inputDiscount = document.getElementById('discount')
+      const inputDescription = document.getElementById('description')
+      const selectSection = document.getElementById('section')
+      const selectBrand = document.getElementById('brand')
+      const selectCategory = document.getElementById('category')
+
+      // Nombre
+      inputName.addEventListener('blur', function () {
+        switch (true) {
+          case this.value.trim().length < 2:
+            this.classList.add('is-invalid');
+            $("name-error").innerHTML = "El nombre debe tener al menos 2 caracteres";
+            break;
+          default:
+            this.classList.remove('is-invalid');
+            $("name-error").innerHTML = "";
+            break;
+        }
+      });
+
+      // Precio
+      inputPrice.addEventListener('blur', function () {
+        switch (true) {
+          case this.value.trim() === "" || this.value <= 0:
+            this.classList.add('is-invalid');
+            $("price-error").innerHTML = "El precio debe ser mayor a 0";
+            break;
+          default:
+            this.classList.remove('is-invalid');
+            $("price-error").innerHTML = "";
+            break;
+        }
+      });
+
+      // Descuento
+      inputDiscount.addEventListener('blur', function () {
+        switch (true) {
+          case this.value.trim() === "":
+          case this.value < 0 || this.value > 100:
+            this.classList.add('is-invalid');
+            $("discount-error").innerHTML = "El descuento debe estar entre 0 y 100";
+            break;
+          default:
+            this.classList.remove('is-invalid');
+            $("discount-error").innerHTML = "";
+            break;
+        }
+      });
+
+      // Descripción
+      inputDescription.addEventListener('blur', function () {
+        switch (true) {
+          case this.value.trim().length < 10:
+            this.classList.add('is-invalid');
+            $("description-error").innerHTML = "La descripción debe tener al menos 10 caracteres";
+            break;
+          default:
+            this.classList.remove('is-invalid');
+            $("description-error").innerHTML = "";
+            break;
+        }
+      });
+
+      // Sección
+      selectSection.addEventListener('blur', function () {
+        switch (true) {
+          case !this.value:
+            this.classList.add('is-invalid');
+            $("section-error").innerHTML = "Debes seleccionar una sección";
+            break;
+          default:
+            this.classList.remove('is-invalid');
+            $("section-error").innerHTML = "";
+            break;
+        }
+      });
+
+      // Marca
+      selectBrand.addEventListener('blur', function () {
+        switch (true) {
+          case !this.value:
+            this.classList.add('is-invalid');
+            $("brand-error").innerHTML = "Debes seleccionar una marca";
+            break;
+          default:
+            this.classList.remove('is-invalid');
+            $("brand-error").innerHTML = "";
+            break;
+        }
+      });
+
+      // Categoría
+      selectCategory.addEventListener('blur', function () {
+        switch (true) {
+          case !this.value:
+            this.classList.add('is-invalid');
+            $("category-error").innerHTML = "Debes seleccionar una categoría";
+            break;
+          default:
+            this.classList.remove('is-invalid');
+            $("category-error").innerHTML = "";
+            break;
+        }
+      });
+
+
+
+    </script>
   </body>
 
 </html>

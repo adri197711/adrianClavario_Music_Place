@@ -1,101 +1,151 @@
-const { v4: uuidv4, validate } = require('uuid');
+const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
-const { User } = require('../database/models')
+const { User, Rol } = require('../database/models')
 
 module.exports = {
 
-  register: (req, res) => {
-    return res.render('users/register'), {
-      title: 'Cargar Usuario'
+
+  login: (req, res) => {
+    return res.render('users/login', {
+      title: 'Login',
+      errors: {},
+      old: {}
+    });
+  },
+processLogin: async function (req, res) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.render('users/login', {
+      errors: errors.mapped(),
+      old: req.body
+    });
+  }
+
+  const { password } = req.body;
+  const user = req.user;  // El usuario ya está cargado en req.user gracias al validador
+
+  const passOk = bcrypt.compareSync(password, user.password);
+  if (!passOk) {
+    return res.render('users/login', {
+      errors: {
+        password: { msg: "Contraseña incorrecta" }
+      },
+      old: req.body
+    });
+  }
+
+  // Aquí carga el rol para el usuario (podrías optimizar que el validador también lo incluya)
+  const { Rol } = require('../database/models');
+  const rol = await Rol.findByPk(user.rolId);
+
+  const userLogin = {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    rolId: user.rolId,
+    roleName: rol?.name || 'Usuario',
+    avatar: user.avatar,
+  };
+
+  req.session.userLogin = userLogin;
+
+  if (req.body.recordar) {
+    res.cookie("user", JSON.stringify(userLogin), { maxAge: 60000 * 60 * 30 });
+  }
+
+  return res.redirect('/');
+},
+
+
+
+  register: async (req, res) => {
+    try {
+      const rols = await Rol.findAll();
+      return res.render('users/register', {
+        title: 'Cargar Usuario',
+        rols,
+        old: {},
+        errors: {}
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send('Error al cargar el formulario de registro');
     }
   },
 
   processRegister: async (req, res) => {
     try {
-      const { name, surname, username, email, password, token, validated, locked, rolId, createdAt, updatedAt } = req.body;
+      const errors = validationResult(req);
+
+      const rols = await Rol.findAll();
+      const { name, surname, username, email, password, token, validated, locked, rolId } = req.body;
+
       const avatar = req.file ? req.file.filename : null;
 
+      if (!errors.isEmpty()) {
+        return res.render('users/register', {
+          title: 'Cargar Usuario',
+          rols,
+          avatar,
+          old: req.body,
+          errors: errors.mapped()
+        });
+      }
+
+      const existingUser = await User.findOne({ where: { email } });
+
+      if (existingUser) {
+        return res.render('users/register', {
+          title: 'Cargar Usuario',
+          rols,
+          avatar,
+          old: req.body,
+          errors: {
+            email: { msg: 'Este email ya está registrado' }
+          }
+        });
+      }
+
+      console.log('BODY:', req.body);
       await User.create({
         name,
         surname,
         username,
         email,
         avatar,
-        password: bcrypt.hashSync(password, 10),
-        token,
-        validated,
-        locked,
-        rolId,
-        createdAt,
-        updatedAt
+        password:  await bcrypt.hash(password, 10),
+        token: null,
+        validated: false,
+        locked: false,
+        rolId: parseInt(rolId)
       });
-      return res.redirect('/users/login')
+      console.log('BODY:', req.body);
+      return res.redirect('/users/login');
     } catch (error) {
-      return res.redirect('/users/login')
+      console.error('Error detallado:', error);
+      return res.status(500).send('Error al crear el usuario');
     }
   },
 
-
-  login: function (req, res) {
-    return res.render('users/login', { title: 'Login' })
-  },
-
-  processLogin: async function (req, res) {
-    const { email, password } = req.body;
-    try {
-      const { User } = require('../database/models');
-
-      const user = await User.findOne({
-        where: { email },
-        attributes: ['id', 'name', 'surname', 'username', 'email', 'password', 'avatar', 'validated', 'locked', 'token', 'rolId']
-      });
-
-      if (!user || !bcrypt.compareSync(password, user.password)) {
-        return res.render('users/login', {
-          error: "Credenciales inválidas"
-        });
-      }
-
-      const userLogin = {
-        id: user.id,
-        name: user.name,
-        rolId: user.rolId,
-        avatar: user.avatar,
-        email: user.email
-      };
-
-      req.session.userLogin = userLogin;
-console.log('userLogin: ', userLogin )
-      if (req.body.recordar) {
-        res.cookie("user", userLogin, { maxAge: 60000 * 60 * 30 }); // 30 minutos
-      }
-
-      return res.redirect('/');
-
-    } catch (error) {
-      console.error('Error during login:', error);
-      return res.status(500).render('users/login', {
-        error: "Ocurrió un error al procesar tu solicitud"
-      });
-    }
-  },
 
   profile: async (req, res) => {
     try {
-    const id = req.session.userLogin?.id;
-    console.log('userLogin: ', id )
-    if (!id) {
-      return res.redirect('/users/login');  // Redirigir si no hay sesión activa
-    }
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(req.params.id);
+      const rols = await Rol.findAll();
 
-      if (user) {
-        return res.render('users/profile', {
-          user: user.get({ plain: true })
-        });
-      } else {
-        return res.redirect('/users/login'); 
+      if (!user) {
+        return res.status(404).send("Usuario no encontrado");
       }
+
+      return res.render("users/profile", {
+        title: "Editar usuario",
+        user,
+        rols,
+        errors: {},
+        old: {},
+
+      });
+
     } catch (error) {
       console.error('Error en obtener el perfil de usuario:', error);
       return res.status(500).send('Internal Server Error');
@@ -103,42 +153,72 @@ console.log('userLogin: ', userLogin )
   },
 
   update: async (req, res) => {
+    const errors = validationResult(req);
     const { id } = req.params;
-    const { name, surname, username, email,password,avatar, rol }
-      = req.body;
-    try {
-      const existingUser = await User.findByPk(id);
+    const rols = await Rol.findAll();
+    const user = await User.findByPk(id);
+    console.log(errors.array());
 
-      if (!existingUser) {
-        return res.status(404).send('Usuario no encontrado');
-      }
-      let newPassword = password;
-      if (newPassword) {
-        // Encriptar la contraseña si se envió una nueva
-        newPassword = bcrypt.hashSync(password, 10);
-      } else {
-        // Si no se envió, mantener la contraseña anterior
-        newPassword = existingUser.password;
-      }
-
-
-      const usersModify = await User.update({
-        name: name.trim(),
-        surname: surname.trim(),
-        username: username.trim(),
-        email: email.trim(),
-        password: newPassword,
-        avatar: req.file ? req.file.filename : existingUser.avatar,
-        token: null,
-        validated: true,
-        locked: false,
-        rolId: rol
-      },
-        { where: { id } 
+    if (!errors.isEmpty()) {
+      return res.render('users/profile', {
+        title: 'Editar usuario',
+        user,
+        rols,
+        old: req.body,
+        errors: errors.mapped()
       });
+    }
 
+    try {
+      const { name, surname, username, email, password, rolId }
+        = req.body;
+
+      const existingUser = await User.findByPk(id);
+      let avatar = existingUser.avatar;
+
+      if (req.file) {
+        console.log('ARCHIVO SUBIDO:', req.file);
+        // Si existe una imagen anterior, eliminarla
+        if (existingUser.avatar) {
+          const oldImagePath = path.join(__dirname, '../../public/images/users/', existingUser.avatar);
+          if (fs.existsSync(oldImagePath)) {
+            fs.unlink(oldImagePath, (err) => {
+              if (err) {
+                console.error('Error al eliminar imagen anterior:', err);
+              } else {
+                console.log('Imagen anterior eliminada:', oldImagePath);
+              }
+            });
+          }
+        }
+
+        avatar = req.file.filename;  // Nuevo avatar
+      }
+
+      // if (!existingUser) {
+      //   return res.status(404).send('Usuario no encontrado');
+      // }
+
+      const newPassword = password
+        ? bcrypt.hashSync(password, 10)
+        : existingUser.password;
+const usersModify = await User.update({
+  name: name.trim(),
+  surname: surname.trim(),
+  username: username.trim(),
+  email: email.trim(),
+  password: newPassword,
+  avatar,
+  token: null,
+  validated: false,
+  locked: false,
+  rolId: +rolId // 👈 asegúrate que estás usando `rolId`, no `rol`
+}, {
+  where: { id },
+  returning: true
+});
       console.log('USERS MODIFY', usersModify)
-      
+
       return res.redirect('/user/')
 
     } catch (error) {
@@ -147,11 +227,11 @@ console.log('userLogin: ', userLogin )
     }
   },
 
-
   logout: (req, res) => {
-    req.session.destroy();
-    res.clearCookie('user');
-    res.redirect("/");
+    req.session.destroy(() => {
+      res.clearCookie('user');
+      res.redirect("/");
+    });
   },
 
   remove: async (req, res) => {
@@ -164,7 +244,7 @@ console.log('userLogin: ', userLogin )
         return res.status(404).send('Usuario no encontrado');
       }
       await user.destroy();
-      return res.redirect('/');
+      return res.redirect('/user');
     } catch (error) {
       return res.status(500).send('Internal Server Error');
     }

@@ -3,7 +3,7 @@
   padding: 0;
   font-family: 'Arial', sans-serif;
   background-color: #010000;
-} 
+}
 
 .sliderBanner {
   position: relative;
@@ -30,21 +30,23 @@
   display: block;
 
 }
-.slick-dots{
-visibility: hidden;
+
+.slick-dots {
+  visibility: hidden;
 }
+
 .slideBanner-content {
   position: absolute;
   top: 15%;
-  right: 100%;
+  left: 5%;
   background: rgba(255, 255, 255, 0.3);
   color: #0d0d0d;
   padding: 10px;
-  max-width: 1300px;
+  max-width: 600px;
 }
 
 .slideBanner-content h2 {
-  font-family:cursive; 
+  font-family: cursive;
   font-size: 24px;
   font-weight: 900;
   margin-bottom: 10px;
@@ -68,47 +70,13 @@ visibility: hidden;
 }
 
 @media (max-width: 768px) {
-  .slideBanner-content {
-    top: 10%;
-    left: 5%;
-    max-width: 80%;
-    padding: 1px;
-  }
 
-  .slideBanner-content h2 {
-    font-size: 30px;
-  }
-
-  .slideBanner-content p {
-    font-size: 14px;
-  }
-
-  .slideBanner-content a {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
+  .bannerMain, 
+  .sliderBanner, 
+  .slidesBanner, 
+  .slideBanner {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
-@media (max-width: 480px) {
-  .slideBanner-content {
-    top: 5%;
-    left: 5%;
-    max-width: 100%;
-    height: 100vh;
-    padding: 10px;
-
-  }
-
-  .slideBanner-content h2 {
-    font-size: 1rem;
-  }
-
-  .slideBanner-content p {
-    font-size: 13px;
-  }
-
-  .slideBanner-content a {
-    padding: 6px 12px;
-    font-size: 13px;
-  }
 }

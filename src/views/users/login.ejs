@@ -4,33 +4,40 @@
 
   <body>
     <main class="login-main">
-    <div class="login_logo">
-      <a href="/"><img src="/images/logo_music_place.png" alt="Logo Music Place"></a>
-    </div>
-    <form action="/users/processLogin" method="POST" class="form-login" id="loginForm">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" placeholder="Ingrese email o nombre de usuario" required autocomplete="off">
-      <div class="errorMessage" id="emailError"></div>
-
-      <label for="password">Password</label>
-      <input type="password" name="password" placeholder="Ingrese contraseña"    id="password" required autocomplete="off">
-      <span id="show-hide">Show/Hide</span>
-      <div class="errorMessage" id="passwordError"></div>
-
-<% if (locals.error) { %>
- <div class="alert alert-danger">
-  <%= error %>
- </div>
-<% } %>
-<div>
-  <label for="recordar">Recordarme</label><input type="checkbox" name="recordar" id="recordar" >
-  
-</div>
-<button type="submit" class="btn-login">Login</button>
-      <a href="register"><input type="button" value="Crear cuenta"> </a>
+      <div class="login_logo">
+        <a href="/"><img src="/images/logo_music_place.png" alt="Logo Music Place"></a>
       </div>
-    </form>
+      <form action="/users/processLogin" method="POST" class="form-login" id="loginForm">
 
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Ingrese email"
+          value="<%= old && old.email ? old.email : '' %>" autocomplete="off" />
+        <% if (errors?.email) { %>
+          <span class="error-validation">
+            <%= errors.email.msg %>
+          </span>
+          <% } %>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Ingrese contraseña" id="password" autocomplete="off" />
+            <% if (errors?.password) { %>
+              <span class="error-validation">
+                <%= errors.password.msg %>
+              </span>
+              <% } %>
+                <span id="show-hide">Show/Hide</span>
+
+               <div class="div-recordar"></div>
+<input type="checkbox" name="recordar" id="recordar" <%= old?.recordar ? 'checked' : '' %> />
+<label for="recordar" class="label-recordar">Recordarme</label>
+
+
+                <button type="submit" class="btn-login">Login</button>
+
+                <a href="register"><input type="button" value="Crear cuenta"> </a>
+                </div>
+      </form>
+      <script src="/js/loginFrontValidation.js"></script>
   </body>
 
 </html>

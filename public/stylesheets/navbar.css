@@ -34,7 +34,7 @@
   
   
   #menu-toggle-navbar:checked+label.menu-icon-action-navbar {
-    color: rgb(103, 94, 94);
+    color: rgb(26, 23, 226);
   }
   
   
@@ -79,6 +79,7 @@
     align-items: center;
     padding: 1px 20px;
     transition: all .5s ease-out;
+    z-index:1;
   }
   
   .nav-bar-partial li a {

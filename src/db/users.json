@@ -3,8 +3,8 @@
     "name": "adri",
     "surname": "clavario",
     "username": "adrian",
-    "email": "adri@gmail",
-    "password": "$2b$10$6CU48txuqaKRhPunDFGdLuhoKzZB6tN.5k.G5i16FRQdf92oK1a9G",
+    "email": "adri@gmail.com",
+    "password":"$2b$10$NxP1rwcHXTvBCqHqi4ixV.VQCmsAuVPoYjntC0c4LN8gcOI9k.xp6",
     "token": null,
     "validated": true,
     "locked": false,
@@ -44,6 +44,7 @@
     "token": null,
     "validated": true,
     "locked": false,
+     "avatar": "ada.jpg",
     "rolId": 1
   },
   {

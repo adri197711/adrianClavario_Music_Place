@@ -1,5 +1,5 @@
 .body-admin {
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-image: url('../images/footer.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -10,6 +10,19 @@
   padding: 1rem;
   margin: 0 auto;
   color: whitesmoke;
+  font-size: 24px;
+  list-style: none;
+}
+.logo-a{
+  width: 5rem;
+}
+
+.admin-a{
+list-style: none;
+text-decoration: none;
+color: aliceblue;
+cursor:pointer;
+
 }
 .mainAdmin{
   padding: .1rem;
